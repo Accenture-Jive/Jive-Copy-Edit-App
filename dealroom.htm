@@ -186,7 +186,7 @@ alert("false");
 break;
 }
 var request = osapi.jive.corev3.contents.get({
-    fields: 'permalink','subject','content',
+    fields: ['permalink,subject,content'],
 	type:'post',
 	//count:100,
 	startIndex:[countVal]
