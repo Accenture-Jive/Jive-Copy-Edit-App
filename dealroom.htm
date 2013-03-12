@@ -20,7 +20,6 @@
 
 <script type="text/javascript">
 
- var permaLink='';
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -179,6 +178,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  var i=3000;
  var isNext=true;
  var countVal=0;
+ var permaLink='';
  while(countVal<=i)
  {
  if(isNext==false)
@@ -187,6 +187,7 @@ alert("false");
 break;
 }
 console.log("linkkkkk: "+permaLink);
+console.log("countVal: "+countVal);
  if(path==permaLink)
 {
 alert("same");
