@@ -19,7 +19,11 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-
+ var i=3000;
+ var isNext=true;
+ var countVal=0;
+ var permaLink='';
+ 
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -175,10 +179,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  //searchStr=searchStr.replace(/[0-9]/g, '');
   //searchStr=searchStr.replace(/ /g, '* ');
  //console.log(searchStr); 
- var i=3000;
- var isNext=true;
- var countVal=0;
- var permaLink='';
+
  while(countVal<=i)
  {
  if(isNext==false)
@@ -216,7 +217,6 @@ alert(permaLink);
 }
 }
 });
-console.log("linnnnnnnnnnnk: "+permaLink);
 countVal=countVal+25;
 }
 }
