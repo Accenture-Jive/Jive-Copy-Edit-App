@@ -213,7 +213,7 @@ console.log("permalink: "+response.list[i].permalink);
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 permaLink=response.list[i].permalink;
-value = jQuery.data(div, "blah"+permaLink);
+value = jQuery.data(div, "blah",permaLink);
 alert(value);
 }
 }
