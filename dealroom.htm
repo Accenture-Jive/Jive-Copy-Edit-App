@@ -195,14 +195,7 @@ var request = osapi.jive.corev3.contents.get({
 	
 // execute the request
 request.execute(function(response) {
-if(typeof  response.links.hasOwnProperty('next')!='undefined')
-{
-//console.log("val :"+countVal);
-isNext=response.links.hasOwnProperty('next');
-//console.log(isNext);
-//console.log(jQuery.isEmptyObject({ foo: "bar" }));
-}
-console.log("DATA: "+JSON.stringify(response));
+//console.log("DATA: "+JSON.stringify(response));
 var listCount=response.list.length;
 for(var i=0;i<listCount;i++)
 {
