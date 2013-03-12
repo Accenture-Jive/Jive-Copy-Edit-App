@@ -180,7 +180,6 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  var countVal=0;
  while(countVal<=i)
  {
- console.log(countVal);
  if(isNext==false)
 {
 alert("false");
@@ -204,6 +203,7 @@ if(path==response.list[i].permalink)
 console.log("permalink: "+response.list[i].permalink);
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
+console.log("DATA: "+response.list[i]);
 console.log(docContent);
 }
 }
