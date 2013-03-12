@@ -179,7 +179,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  var isNext=true;
  var countVal=0;
  var permaLink={};
- 
+  var value, div = $("div")[0];
  while(countVal<=i)
  {
  if(isNext==false)
@@ -187,8 +187,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
 alert("false");
 break;
 }
-console.log("linkkkkk: "+JSON.stringify(permaLink));
-console.log("linkkkkk: "+permaLink.data("username"));
+console.log("linkkkkk: "+value);
  if(path==permaLink)
 {
 alert("same");
@@ -213,8 +212,9 @@ if(path==response.list[i].permalink)
 console.log("permalink: "+response.list[i].permalink);
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
-permaLink.data("username",response.list[i].permalink);
-alert(permaLink);
+permaLink=response.list[i].permalink;
+value = jQuery.data(div, permaLink);
+alert(value);
 }
 }
 });
