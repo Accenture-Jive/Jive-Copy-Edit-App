@@ -170,7 +170,7 @@ docSubject=response.data.subject;
 if(blogIndex!=-1)
 {
 var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
-console.log(searchStr);
+//console.log(searchStr);
  //searchStr=searchStr.replace(/-/g,' ');
  //searchStr=searchStr.replace(/[0-9]/g, '');
   //searchStr=searchStr.replace(/ /g, '* ');
@@ -201,6 +201,7 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
+console.log("permalink: "+response.list[i].permalink);
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 console.log(docContent);
@@ -642,7 +643,7 @@ osapi.http.get({
     osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
 	}
 	else if(blogIndex!=-1)
-	{    alert("to_place_blog_url: "+to_place_blog_url);    
+	{        
             if(to_place_blog_url!='')
 			{
 			var jdoc = new osapi.jive.corev3.contents.Post();
