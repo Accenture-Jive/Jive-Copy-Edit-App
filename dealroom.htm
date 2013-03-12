@@ -19,11 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
- var i=3000;
- var isNext=true;
- var countVal=0;
- var permaLink='';
- 
+
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -80,7 +76,11 @@ function handleResponse(data)
 alert("Error in Application..!!");
 console.log(data);    		
 }
-
+ var i=3000;
+ var isNext=true;
+ var countVal=0;
+ var permaLink='';
+ 
 function onPageLoad() 
 {
 osapi.people.get({
@@ -180,6 +180,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
   //searchStr=searchStr.replace(/ /g, '* ');
  //console.log(searchStr); 
 
+ 
  while(countVal<=i)
  {
  if(isNext==false)
