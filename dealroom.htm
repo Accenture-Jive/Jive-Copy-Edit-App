@@ -1,0 +1,829 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"> 
+<head>
+<script type="text/javascript" src="js/jquery.loadmask.js"></script>
+<script type="text/javascript" src="js/jquery.datepick.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+ <script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<link href="css/jquery.loadmask.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
+<link type="text/css" href="css/custom-theme/jive-elements.css" rel="stylesheet"/>
+<link type="text/css" href="css/custom-theme/jive-icons.css" rel="stylesheet"/>
+<link type="text/css" href="css/security-groups.css" rel="stylesheet"/>
+<link type="text/css" href="style.css" rel="stylesheet"/>
+<LINK href="css/jquery.datepick.css" rel="stylesheet" type="text/css"/>    	
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+
+var docIndex='';
+var disIndex='';
+var pollIndex='';
+var blogIndex='';
+var hasAttachment=false;
+var docID='';
+var pollOptions='';
+var timeStamp='';
+var docUrl='';
+var docContent='';
+var docSubject='';
+
+var browserName='';
+var loggedUser='';
+var loggedUserName='';
+
+var space_url='';
+var to_url='';
+var redirection_url='';
+var source_html_url='';
+
+var files_row='';
+var docs_row='';
+var disc_row='';
+var idea_row='';
+var blog_row='';
+var poll_row='';
+
+var src_space_name='';
+var dest_space_name='';
+
+var to_place_blog_url='';
+var Grp_file_json='';
+var Grp_doc_json='';
+var Grp_idea_json='';
+var Grp_disc_json='';
+var Grp_blog_json='';
+var Grp_poll_json='';
+var msg2='Please select a place.';
+
+function showLoading() 
+{
+$("#maskLoad").mask("Please Wait...");
+}
+
+function hideLoading() 
+{
+
+$("#maskLoad").unmask();
+}   
+
+function handleResponse(data) 
+{
+alert("Error in Application..!!");
+console.log(data);    		
+}
+
+function onPageLoad() 
+{
+osapi.people.get({
+userId : '@me'
+}).execute(function(response) {
+//alert(JSON.stringify(response));
+loggedUser =response.id; 
+loggedUserName=response.name.formatted;
+//alert("loggedUser: "+loggedUser);
+//alert("loggedUserName: "+loggedUserName);
+});
+
+ var  valDate= new Date().toISOString();
+ var  dateandTime=valDate.substring(0,10);
+ var  hrsAndMins=valDate.substring(11,19);
+ var secVal=hrsAndMins.replace(/:/g,'-');  
+ timeStamp= dateandTime+'-'+secVal;
+ //console.log(timeStamp);
+ 
+//document.getElementById("to_place").disabled = true;
+
+navigator.sayswho= (function(){    
+	var N= navigator.appName, ua= navigator.userAgent, tem;
+    var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+	M= M? [M[1]]: [N];
+
+	browserName=M;
+    //alert("Browser: "+browserName);   
+})();
+
+//console.log(document.referrer);
+var path=document.referrer;
+docIndex=path.indexOf('DOC-');
+disIndex=path.indexOf('thread');
+pollIndex=path.indexOf('polls');
+blogIndex=path.indexOf('/blog/');
+/*osapi.jive.core.getObject({
+      type:'post', 
+      findUrl:'/blog/', 
+      jsonPath:'/'
+    }).execute(function(response) { console.log(JSON.stringify(response)); });*/
+if(disIndex!=-1)
+{
+var disID= path.substring(disIndex+7,path.length);
+var request = osapi.jive.core.discussions.get({id: disID});
+// execute the request
+request.execute(function(response) {
+docContent=response.data.messages.root.content;
+docSubject=response.data.messages.root.subject;
+});
+}
+
+if(pollIndex!=-1)
+{
+var pollID= path.substring(pollIndex+6,path.length);
+var request = osapi.jive.corev3.contents.get({
+entityDescriptor:[18,pollID]
+});
+
+// execute the request
+request.execute(function(response) {
+pollOptions=response.list[0].options;
+docContent=response.list[0].content;
+docSubject=response.list[0].subject;
+});
+}
+
+//console.log(docIndex);
+if(docIndex!=-1)
+{
+docID= path.substring(docIndex+4,path.length);
+var request = osapi.jive.core.documents.get({id: docID});
+// execute the request
+request.execute(function(response) {
+//console.log("DATA: "+JSON.stringify(response));
+hasAttachment=response.data.content.hasOwnProperty('binary');
+if(!hasAttachment)
+{
+//docUrl=response.data.resources.self.ref;
+docContent=response.data.content;
+docSubject=response.data.subject;
+}
+else
+{
+docUrl=response.data.resources.self.ref;
+docContent=response.data.content;
+docSubject=response.data.subject;
+}
+});
+}
+if(blogIndex!=-1)
+{
+var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
+console.log(searchStr);
+ //searchStr=searchStr.replace(/-/g,' ');
+ //searchStr=searchStr.replace(/[0-9]/g, '');
+  //searchStr=searchStr.replace(/ /g, '* ');
+ //console.log(searchStr); 
+ var i=3000;
+ var isNext=true;
+ var countVal=0;
+ while(countVal<=i)
+ {
+ console.log(countVal);
+ if(isNext==false)
+{
+break;
+}
+var request = osapi.jive.corev3.contents.get({
+    fields: ['permalink','subject','content'],
+	type:'post',
+	count:100,
+	startIndex:[countVal]
+	});
+	
+// execute the request
+request.execute(function(response) {
+if(typeof  response.links.hasOwnProperty('next')!='undefined')
+{
+//console.log("val :"+countVal);
+isNext=response.links.hasOwnProperty('next');
+//console.log(isNext);
+//console.log(jQuery.isEmptyObject({ foo: "bar" }));
+}
+console.log("DATA: "+JSON.stringify(response));
+var listCount=response.list.length;
+for(var i=0;i<listCount;i++)
+{
+if(path==response.list[i].permalink)
+{
+docSubject=response.list[i].subject;
+docContent=response.list[i].content;
+}
+}
+});
+countVal=countVal+25;
+}
+}
+/*
+else
+{
+//console.log("Copying the selected content type is not yet available!");
+$("#dialog").show();
+$("#dialog").dialog();
+document.getElementById("start_copying_button").disabled = true;
+document.getElementById("to_place").disabled = true;
+}
+*/
+}
+
+function toPlace()
+{
+
+var to_place = document.getElementById("to_place");
+var to_sel_place = to_place.options[to_place.selectedIndex].value;
+//alert("selected_value method_one: "+selected_value);
+
+if(to_sel_place=="to_space"){
+toSpaceRequest();
+}
+else if(to_sel_place=="to_group"){
+toGroupRequest();
+}
+else if(to_sel_place=="to_project"){
+toProjectRequest();
+}
+else if(to_sel_place=="select_to"){
+document.getElementById("start_copying_button").style.visibility="hidden";	
+$("#change_selection_div").hide();
+//document.getElementById("copyTo").style.visibility="hidden";
+}
+}
+
+
+function toSpaceRequest() {
+var to_place_name='';
+document.getElementById("to_project").innerHTML=msg2;
+document.getElementById("to_group").innerHTML=msg2;
+document.getElementById("to_space").innerHTML=msg2;
+var params = {
+type : "space",
+success : ( function(data){
+//console.log("DATA: "+JSON.stringify(data));
+to_place_name=data.name;
+if(data.resources.hasOwnProperty('blog'))
+{	
+to_place_blog_url=data.resources.blog.ref;
+}
+//showing execute button		
+
+if(to_place_name!='')
+{
+if(src_space_name==to_place_name)
+{
+//alert("The source place and destination place should be different..!!");
+document.getElementById("start_copying_button").style.visibility="hidden";	
+$("#change_selection_div").hide();
+//document.getElementById("copyTo").style.visibility="hidden";
+document.getElementById("to_space").innerHTML=msg2;
+$("#dialog").show();
+$("#dialog").dialog();
+}
+else
+{	
+//alert("inside else..!!");
+
+var dialog_obj = $("#dialog");
+dialog_obj.dialog("close");
+
+//$("#copyTo").text("Copy this:").append('<br/>');
+
+document.getElementById("start_copying_button").style.visibility="visible";
+$("#change_selection_div").show();
+//document.getElementById("copyTo").style.visibility="visible";
+document.getElementById("to_space").innerHTML='<span id="myId" style="text-decoration:underline;">Space</span>'+': '+to_place_name;	
+}
+}
+to_url=data.resources.self.ref;
+redirection_url=data.resources.html.ref;
+dest_space_name=to_place_name;
+
+//changing the selection to 'Change Place'	   
+$("#to_place option").each(function() {
+if($(this).text() == 'Select Place') {
+$(this).attr('selected', 'selected'); 
+$('#to_place :selected').text('Change Place');	
+}
+else if($(this).text() == 'Change Place')
+{  
+$('#to_place option:[text="' + $(this).text() + '"]').attr('selected', true);  
+}
+});
+
+$("#to_space").show();
+$("#to_group").hide();
+$("#to_project").hide();
+} ),
+error : handleResponse  };
+//hiding execute button
+if(to_place_name=='')
+{
+//document.getElementById("start_copying_button").style.visibility="hidden";	
+//document.getElementById("copyTo").style.visibility="hidden";
+$("#change_selection_div").hide();
+document.getElementById("to_space").innerHTML=msg2;
+//document.getElementById("to_space").innerHTML='<span id="myId" style="text-decoration:underline;">Space</span>'+': '+dest_space_name;
+$("#to_place option").each(function() {
+if($(this).text() == 'Select Place') {
+$(this).attr('selected', 'selected'); 
+$('#to_place :selected').text('Change Place');	
+}
+else if($(this).text() == 'Change Place')
+{  
+$('#to_place option:[text="' + $(this).text() + '"]').attr('selected', true);  
+}
+});	
+}
+
+osapi.jive.corev3.places.requestPicker(params);
+}
+
+function toGroupRequest() {
+var to_place_name='';
+document.getElementById("to_project").innerHTML=msg2;
+document.getElementById("to_group").innerHTML=msg2;
+document.getElementById("to_space").innerHTML=msg2;
+var params = {
+type : "group",
+success : ( function(data){
+//console.log("DATA: "+JSON.stringify(data));
+to_place_name=data.name;
+if(data.resources.hasOwnProperty('blog'))
+{	
+to_place_blog_url=data.resources.blog.ref;	
+}
+//showing execute button		
+if(to_place_name!='')
+{
+if(src_space_name==to_place_name)
+{
+//alert("The source place and destination place should be different..!!");
+document.getElementById("start_copying_button").style.visibility="hidden";	
+$("#change_selection_div").hide();
+//document.getElementById("copyTo").style.visibility="hidden";
+document.getElementById("to_group").innerHTML=msg2;
+$("#dialog").show();
+$("#dialog").dialog();
+}
+else
+{		
+//alert("inside group else..!!");
+
+var dialog_obj = $("#dialog");
+dialog_obj.dialog("close");
+//$("#copyTo").text("Copy this:").append('<br/>');
+
+document.getElementById("to_place").disabled = false; 	
+document.getElementById("start_copying_button").style.visibility="visible";
+$("#change_selection_div").show();
+//document.getElementById("copyTo").style.visibility="visible";
+document.getElementById("to_group").innerHTML='<span id="myId" style="text-decoration:underline;">Group</span>'+': '+to_place_name;	
+}
+}
+
+to_url=data.resources.self.ref;
+redirection_url=data.resources.html.ref;
+dest_space_name=to_place_name;
+
+
+//changing the selection to 'Change Place'	   
+$("#to_place option").each(function() {
+if($(this).text() == 'Select Place') {
+$(this).attr('selected', 'selected'); 
+$('#to_place :selected').text('Change Place');	
+}
+else if($(this).text() == 'Change Place')
+{  
+$('#to_place option:[text="' + $(this).text() + '"]').attr('selected', true);  
+}
+});	
+
+$("#to_space").hide();
+$("#to_group").show();
+$("#to_project").hide();
+} ),
+error : handleResponse  };
+
+if(to_place_name=='')
+{
+//document.getElementById("start_copying_button").style.visibility="hidden";	
+//document.getElementById("copyTo").style.visibility="hidden";
+//document.getElementById("copyTo").style.visibility="hidden";
+$("#change_selection_div").hide();
+document.getElementById("to_group").innerHTML=msg2;
+//document.getElementById("to_group").innerHTML='<span id="myId" style="text-decoration:underline;">Group</span>'+': '+dest_space_name;	
+$("#to_place option").each(function() {
+if($(this).text() == 'Select Place') {
+$(this).attr('selected', 'selected'); 
+$('#to_place :selected').text('Change Place');	
+}
+else if($(this).text() == 'Change Place')
+{  
+$('#to_place option:[text="' + $(this).text() + '"]').attr('selected', true);  
+}
+});	
+}
+
+osapi.jive.corev3.places.requestPicker(params);
+}
+
+function toProjectRequest() {
+var to_place_name='';
+document.getElementById("to_project").innerHTML=msg2;
+document.getElementById("to_group").innerHTML=msg2;
+document.getElementById("to_space").innerHTML=msg2;
+var params = {
+type : "project",
+success : ( function(data){
+//console.log("DATA: "+JSON.stringify(data));
+to_place_name=data.name;
+if(data.resources.hasOwnProperty('blog'))
+{
+to_place_blog_url=data.resources.blog.ref;	
+}
+//showing execute button		
+if(to_place_name!='')
+{
+if(src_space_name==to_place_name)
+{
+//alert("The source place and destination place should be different..!!");
+document.getElementById("start_copying_button").style.visibility="hidden";	
+$("#change_selection_div").hide();
+//document.getElementById("copyTo").style.visibility="hidden";
+document.getElementById("to_project").innerHTML=msg2;
+$("#dialog").show();
+$("#dialog").dialog();
+}
+else
+{
+//alert("inside project else..!!");
+
+var dialog_obj = $("#dialog");
+dialog_obj.dialog("close");
+//$("#copyTo").text("Copy this:").append('<br/>');
+//document.getElementById("to_place").disabled = false;
+document.getElementById("start_copying_button").style.visibility="visible";
+$("#change_selection_div").show();
+//document.getElementById("copyTo").style.visibility="visible";		
+document.getElementById("to_project").innerHTML='<span id="myId" style="text-decoration:underline;">Project</span>'+': '+to_place_name;
+
+}
+}
+
+to_url=data.resources.self.ref;
+redirection_url=data.resources.html.ref;
+dest_space_name=to_place_name;
+
+//changing the selection to 'Change Place'	   
+$("#to_place option").each(function() {
+if($(this).text() == 'Select Place') {
+$(this).attr('selected', 'selected'); 
+$('#to_place :selected').text('Change Place');	
+}
+else if($(this).text() == 'Change Place')
+{  
+$('#to_place option:[text="' + $(this).text() + '"]').attr('selected', true);  
+}
+});		
+
+$("#to_space").hide();
+$("#to_group").hide();
+$("#to_project").show();
+} ),
+error : handleResponse  };
+
+if(to_place_name=='')
+{
+//document.getElementById("start_copying_button").style.visibility="hidden";	
+//document.getElementById("copyTo").style.visibility="hidden";
+$("#change_selection_div").hide();
+//document.getElementById("copyTo").style.visibility="visible";
+document.getElementById("to_project").innerHTML=msg2;
+//document.getElementById("to_project").innerHTML='<span id="myId" style="text-decoration:underline;">Project</span>'+': '+dest_space_name;
+$("#to_place option").each(function() {
+if($(this).text() == 'Select Place') {
+$(this).attr('selected', 'selected'); 
+$('#to_place :selected').text('Change Place');	
+}
+else if($(this).text() == 'Change Place')
+{  
+$('#to_place option:[text="' + $(this).text() + '"]').attr('selected', true);  
+}
+});	
+}
+
+osapi.jive.corev3.places.requestPicker(params);
+}
+
+function startCopying(){
+$("#start_copying_button").hide();
+$("#to_place").hide();
+
+//alert("startCopying");
+if(browserName=="MSIE")
+{
+//alert("inside if msie");
+var finalurl=redirection_url+'/content';
+var ieSpan='<span id="ieSpan" style="font-family:Tahoma;font-size:12px;font-color:#3778C7;">Copying in Progress.<br>Please leave this window open until the copying process has been completed.</span>';
+document.getElementById("selected_items").innerHTML=ieSpan; 
+
+dest_space_name=dest_space_name.toLowerCase();
+dest_space_name=dest_space_name.replace(/[^a-z0-9-\s]/gi, '').replace(/[_\s]/g, '-');
+
+space_url='';
+Grp_file_json='';
+Grp_idea_json='';
+Grp_disc_json='';
+Grp_blog_json='';
+Grp_poll_json='';
+//loggedUser='';
+//loggedUserName='';
+
+Grp_doc_json=docUrl;
+
+var	postDoc = {
+	type : "document",
+	subject : "",
+	content : {
+		text : "",
+		type : ""
+	},
+	parent : ""
+	}
+	postDoc.subject = docSubject+'('+timeStamp+')';
+	postDoc.content = docContent;
+	postDoc.parent = to_url;
+    osapi.jive.corev3.documents.create(postDoc).execute(onContentCreated);
+	
+}
+else
+{
+var iframe = '<iframe id="frame1" src = "javascript:"&nbsp;" style="width:250px;height:90px;margin-top:0px;font-family:Tahoma"></iframe>';
+document.getElementById("selected_items").innerHTML=iframe;  
+//$("#copyTo").text("Copying this:");
+
+dest_space_name=dest_space_name.toLowerCase();
+dest_space_name=dest_space_name.replace(/[^a-z0-9-\s]/gi, '').replace(/[_\s]/g, '-');
+
+var initialMsg='Please wait, initialising copying..';
+document.getElementById("frame1").contentDocument.body.style.fontFamily="Tahoma";	
+document.getElementById("frame1").contentDocument.body.style.fontSize = "12px";
+document.getElementById("frame1").contentDocument.body.style.color='Grey';
+document.getElementById("frame1").contentDocument.body.innerHTML = "Copying in Progress.<br>Please leave this window open until the copying process has been completed.<br><br><span id='mySpan' style='font-weight:bold;'>"+initialMsg.fontcolor("#3778C7")+"</span>";
+
+/*space_url='';
+Grp_file_json='';
+Grp_idea_json='';
+Grp_disc_json='';
+Grp_blog_json='';
+Grp_poll_json='';
+loggedUser='';
+loggedUserName='';
+
+Grp_doc_json=docUrl;
+*/
+
+var	postJson = {
+	type : "",
+	subject : "",
+	content : {
+		text : "",
+		type : ""
+	},
+	parent : ""
+	}
+
+	postJson.subject = docSubject+'('+timeStamp+')';
+	postJson.content = docContent;
+	postJson.parent = to_url;
+	if(docIndex!=-1)
+	{
+	postJson.type = 'document';
+	if(!hasAttachment)
+	{
+	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
+	}
+	else
+	{
+	var iframe = '<iframe id="frame1" src = "" style="width:650px;height:90px;margin-top:0px;font-family:Tahoma"></iframe>';
+    document.getElementById("selected_items").innerHTML=iframe;  
+	
+dest_space_name=dest_space_name.toLowerCase();
+dest_space_name=dest_space_name.replace(/[^a-z0-9-\s]/gi, '').replace(/[_\s]/g, '-');
+
+var initialMsg='Please wait, initialising copying..';
+document.getElementById("frame1").contentDocument.body.style.fontFamily="Tahoma";	
+document.getElementById("frame1").contentDocument.body.style.fontSize = "12px";
+document.getElementById("frame1").contentDocument.body.style.color='Grey';
+document.getElementById("frame1").contentDocument.body.innerHTML = "Copying in Progress.<br>Please leave this window open until the copying process has been completed.<br><br><span id='mySpan' style='font-weight:bold;'>"+initialMsg.fontcolor("#3778C7")+"</span>";
+
+space_url='';
+Grp_doc_json='';
+Grp_idea_json='';
+Grp_disc_json='';
+Grp_blog_json='';
+Grp_poll_json='';
+//loggedUser='';
+//loggedUserName='';
+
+Grp_file_json=docUrl;
+
+osapi.http.get({
+'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/AIServlet?srcgroup_place_url='+space_url+'&target_groupurl='+to_url+'&src_group_file='+Grp_file_json+'&src_group_document='+Grp_doc_json+'&src_idea='+Grp_idea_json+'&src_discussion='+Grp_disc_json+'&src_blog='+Grp_blog_json+'&src_poll='+Grp_poll_json+'&logged-user='+loggedUser+'&logged-userName='+loggedUserName+'&group-name='+dest_space_name,
+'format' : 'json',
+'authz' : 'signed'
+}).execute(refreshiframe);
+	}
+	}
+	else if(disIndex!=-1)
+	{
+	postJson.type = 'discussion';
+    osapi.jive.corev3.discussions.create(postJson).execute(onContentCreated);	
+	}	
+	else if(pollIndex!=-1)
+	{
+	postJson.type = 'poll';
+	postJson.options = pollOptions;	
+    osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
+	}
+	else if(blogIndex!=-1)
+	{        
+            if(to_place_blog_url!='')
+			{
+			var jdoc = new osapi.jive.corev3.contents.Post();
+            jdoc.subject =  docSubject+'('+timeStamp+')';
+            jdoc.content =  docContent;
+			jdoc.parent =  to_place_blog_url;
+            osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
+           }
+           else
+		   {
+		   alert("This place doesn't allow you to create a blog");
+		   }
+	}
+}
+
+};
+
+function onContentCreated (response) {
+//console.log("Response: "+JSON.stringify(response));
+    if (response.error) {
+        mini.createDismissibleMessage("Unable to create discussions: " + response.error.message);
+		//mini.createTimerMessage("<div style='text-align:center;'>Unable to create document: " + response.error.message+"</div>", 4);
+        return;
+    }
+	else 
+	{
+	if(docIndex!=-1)
+	{
+	var redirectTo=response.resources.html.ref;
+    window.location = redirectTo+'/edit?ID='+response.id; 
+	 }
+	 else if(disIndex!=-1)
+	 {
+	var redirectTo=response.resources.html.ref;
+	var startIndex=redirectTo.indexOf('thread');
+    var docID= redirectTo.substring(startIndex+7,redirectTo.length);
+var request = osapi.jive.core.discussions.get({id: docID});
+request.execute(function(response) {
+var htmlRef=response.data.messages.root.resources.html.ref;
+htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
+window.location = htmlRef+'/edit'; 	
+});
+}
+else if(pollIndex!=-1)
+	{
+	var redirectTo=response.resources.html.ref;
+	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
+	redirectTo=redirectTo.replace('polls','poll');
+    window.location = redirectTo+'/edit.jspa?ID='+response.id;
+	 }
+	 else if(blogIndex!=-1)
+	{
+	
+	var redirectTo=response.resources.html.ref;
+	redirectTo= redirectTo.substring(0,redirectTo.indexOf('/',10));
+    window.location = redirectTo+'/blog/update-post.jspa?ID='+response.id;
+	 }
+}
+}
+
+//iframe start
+
+var flag=false;
+var htmlRef='';
+function refreshiframe() 
+{ 
+flag=true;
+osapi.http.get({
+'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/LoggerServlet?logged-user='+loggedUser+'&logged-userName='+loggedUserName,
+'format' : 'text',
+'authz' : 'signed'
+}).execute(refreshFrameResponse);
+}
+function refreshFrameResponse(response) 
+{
+if(!flag)
+{
+refreshiframe();
+}
+setTimeout("refreshiframe()",1000); 	
+var str=response.content;
+//console.log("str: "+str);
+var res='{ error: "Connect to /54.246.36.246:8080 timed out" }';
+var errorCode=str.indexOf(res);
+//alert("errorCode: "+errorCode);
+if(errorCode!=0)
+{
+//str='Copying file';
+if(str.indexOf('files')!=-1)
+ str='Copying selected file';
+
+if(str.indexOf('CopyEditHtmlSelfRef:')!=-1)
+{
+htmlRef=str;
+if(htmlRef.indexOf('http')!=-1)
+{
+str='';
+htmlRef=htmlRef.substring(20,htmlRef.length);
+}
+}
+document.getElementById("frame1").contentDocument.body.style.fontFamily="Tahoma";	
+document.getElementById("frame1").contentDocument.body.style.fontSize = "12px";
+document.getElementById("frame1").contentDocument.body.style.color='Grey';
+document.getElementById("frame1").contentDocument.body.innerHTML = "Copying in Progress.<br>Please leave this window open until the copying process has been completed.<br><br><span id='mySpan' style='font-weight:bold;'>"+str.fontcolor("#3778C7")+"</span>";
+
+var compare='You will be redirected to the "copy to" group.';
+
+var pos=str.indexOf(compare);
+//console.log("pos: "+pos+" "+str);
+if (pos!=-1)
+{
+//alert("redirecting....");
+document.getElementById("frame1").contentDocument.body.innerHTML = "Copying in Progress.<br>Please leave this window open until the copying process has been completed.<br><br><span id='mySpan' style='font-weight:bold;'>"+str.fontcolor("#3778C7")+"</span>";
+//setTimeout("refreshiframe()",1000); 
+$("#stylized").fadeOut(5000,function(){
+window.location = htmlRef+'/upload';         
+
+});
+}
+}	
+}
+</script>
+</head>
+
+<body id="maskLoad" style="text-align: center" onLoad="onPageLoad()">
+<div id="stylized" class="myform" style="font-family:Tahoma; width:230px; height:120px;">
+<table width="200">
+<tr>
+<td>
+<label id="to_label" style="margin-left:60px;width:100px;text-align:center;font-size:15px;font-weight:bold;">
+Copy To:
+</label>
+</td>
+</tr>
+<tr>
+<td>
+<label id="to_space" style="margin-left:50px;font-weight:normal;display:none;text-align:left;padding-top:10px;">Copy To Space</label>
+<label id="to_group" style="margin-left:50px;font-weight:normal;display:none;text-align:left;padding-top:10px;">Copy To Group</label>
+<label id="to_project" style="margin-left:50px;font-weight:normal;display:none;text-align:left;padding-top:10px;">Copy To Project</label>
+</td>
+</tr>
+
+<tr>
+<td>
+<br/>
+<select name="source_place" style="margin-left:60px;" id="to_place" onchange="javascript:toPlace();">  
+<option value="select_to">Select Place</option>
+<option value="to_space">Select Space</option>
+<option value="to_group">Select Group</option>
+<option value="to_project">Select Project</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<br/>
+
+<div id="change_selection_div" style="width:250px;display:none;font-family:Tahoma;margin-left:5px;">
+<div id="selected_items" style="font-family:Tahoma;overflow-y:auto;">
+</div>
+<div id="newUpSel" style="float: left">
+<input type="button" id="start_copying_button" style="margin-left:60px; float:left" value="Copy & Edit" name="start_copying" onclick="javascript:startCopying()"/>
+<br></br><br/>
+</div>
+</div>
+</td>
+</tr>
+</table>
+
+</div>
+
+<div id="dialog" title="Copy Edit not available" style="display:none;">
+Copying the selected content type is not yet available.!
+</div>
+
+<div id="footer" style="font-family:Tahoma">&copy; Accenture 2012-13</div>
+</body>
+</html>
