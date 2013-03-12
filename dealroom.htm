@@ -20,6 +20,7 @@
 
 <script type="text/javascript">
 
+ var permaLink='';
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -178,8 +179,6 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  var i=3000;
  var isNext=true;
  var countVal=0;
- var permaLink={};
-  var value, div = $("div")[0];
  while(countVal<=i)
  {
  if(isNext==false)
@@ -187,7 +186,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
 alert("false");
 break;
 }
-console.log("linkkkkk: "+value);
+console.log("linkkkkk: "+permaLink);
  if(path==permaLink)
 {
 alert("same");
@@ -208,13 +207,11 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
-
 console.log("permalink: "+response.list[i].permalink);
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 permaLink=response.list[i].permalink;
-value = jQuery.data(div, "blah",permaLink);
-alert(value);
+alert(permaLink);
 }
 }
 });
