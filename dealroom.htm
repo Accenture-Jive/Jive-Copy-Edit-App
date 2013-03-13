@@ -186,8 +186,10 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
 
  while(countVal<=i)
  {
+ if(countVal==25)
+ break;
 var request = osapi.jive.corev3.contents.get({
-    fields: ['permalink,subject,content'],
+    //fields: ['permalink,subject,content'],
 	type:'post',
 	count:100,
 	startIndex:[countVal]
@@ -195,7 +197,7 @@ var request = osapi.jive.corev3.contents.get({
 	
 // execute the request
 request.execute(function(response) {
-//console.log("DATA: "+JSON.stringify(response));
+console.log("DATA: "+JSON.stringify(response));
 var listCount=response.list.length;
 for(var i=0;i<listCount;i++)
 {
