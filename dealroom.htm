@@ -653,7 +653,7 @@ osapi.http.get({
 	}
 	else if(blogIndex!=-1)
 	{        
-            if(to_place_blog_url!='')
+            if(to_place_blog_url!='' || parentUrl!='')
 			{
 			var jdoc = new osapi.jive.corev3.contents.Post();
             jdoc.subject =  docSubject+' ('+timeStamp+')';
