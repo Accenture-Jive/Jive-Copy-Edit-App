@@ -192,7 +192,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  if(countVal==25)
  break;
 var request = osapi.jive.corev3.contents.get({
-    fields: ['parent,permalink,subject,content'],
+    //fields: ['parent,permalink,subject,content'],
 	type:'post',
 	count:100,
 	startIndex:[countVal]
