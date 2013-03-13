@@ -124,6 +124,7 @@ var disID= path.substring(disIndex+7,path.length);
 var request = osapi.jive.core.discussions.get({id: disID});
 // execute the request
 request.execute(function(response) {
+console.log("DATA: "+JSON.stringify(response));
 docContent=response.data.messages.root.content;
 docSubject=response.data.messages.root.subject;
 });
