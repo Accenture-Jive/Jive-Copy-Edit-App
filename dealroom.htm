@@ -162,20 +162,18 @@ entityDescriptor:[102,docID]
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
-alert(hasAttachment);
-/*hasAttachment=response.data.content.hasOwnProperty('binary');
 if(!hasAttachment)
 {
 //docUrl=response.data.resources.self.ref;
-docContent=response.data.content;
-docSubject=response.data.subject;
+docContent=response.list[0].content;
+docSubject=response.list[0].subject;
 }
 else
 {
-docUrl=response.data.resources.self.ref;
-docContent=response.data.content;
-docSubject=response.data.subject;
-}*/
+docUrl=response.list[0].resources.self.ref;
+docContent=response.list[0].content;
+docSubject=response.list[0].subject;
+}
 });
 }
 if(blogIndex!=-1)
