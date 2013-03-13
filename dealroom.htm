@@ -247,10 +247,17 @@ $("#change_selection_div").hide();
 //document.getElementById("copyTo").style.visibility="hidden";
 }
 else if(to_sel_place=="this_to"){
+if(parentUrl!='')
+{
 document.getElementById("start_copying_button").style.visibility="visible";
 $("#change_selection_div").show();
 to_url=parentUrl;
 to_place_blog_url=parentUrl;
+}
+else
+{
+alert('Please wait, Loading..');
+}
 }
 }
 
