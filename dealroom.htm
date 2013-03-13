@@ -189,6 +189,8 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
 
  while(countVal<=i)
  {
+ if(parentUrl!='')
+ break;
 var request = osapi.jive.corev3.contents.get({
     fields: ['parent,permalink,subject,content'],
 	type:'post',
