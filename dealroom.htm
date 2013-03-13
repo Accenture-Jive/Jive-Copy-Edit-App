@@ -25,7 +25,7 @@ var docIndex='';
 var disIndex='';
 var pollIndex='';
 var blogIndex='';
-var hasAttachment='';
+var hasAttachment=false;
 var docID='';
 var pollOptions='';
 var timeStamp='';
@@ -161,20 +161,21 @@ entityDescriptor:[102,docID]
 // execute the request
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
-hasAttachment=response.list[0].attachments.length;
-if(hasAttachment==0)
+hasAttachment=response.list[0].hasOwnProperty('binaryURL');
+alert(hasAttachment);
+/*hasAttachment=response.data.content.hasOwnProperty('binary');
+if(!hasAttachment)
 {
 //docUrl=response.data.resources.self.ref;
-docContent=response.list[0].content;
-docSubject=response.list[0].subject;
+docContent=response.data.content;
+docSubject=response.data.subject;
 }
 else
 {
-docUrl=response.list[0].resources.self.ref;
-//console.log(docUrl);
-docContent=response.list[0].content;
-docSubject=response.list[0].subject;
-}
+docUrl=response.data.resources.self.ref;
+docContent=response.data.content;
+docSubject=response.data.subject;
+}*/
 });
 }
 if(blogIndex!=-1)
@@ -602,7 +603,7 @@ var	postJson = {
 	if(docIndex!=-1)
 	{
 	postJson.type = 'document';
-	if(hasAttachment==0)
+	if(!hasAttachment)
 	{
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
