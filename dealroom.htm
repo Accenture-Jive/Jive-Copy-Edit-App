@@ -186,11 +186,11 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  //console.log(searchStr); 
  var i=3000;
  var countVal=0;
-
+var xhrList = [];
  while(countVal<=i)
  {
- if(parentUrl!='')
- break;
+ //if(parentUrl!='')
+ //break;
 var request = osapi.jive.corev3.contents.get({
     fields: ['parent,permalink,subject,content'],
 	type:'post',
@@ -209,6 +209,7 @@ if(path==response.list[i].permalink)
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
+ xhrList[parentUrl].abort();
 }
 }
 });
