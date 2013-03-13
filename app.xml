@@ -42,8 +42,5 @@
 		<Link rel="event.removeapp" href="http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-Staging/AIServlet/uninstalled" method="GET"/>
 		
     </ModulePrefs>
-	<UserPref name="presentationIndex"  display_name="Presentation Index" datatype="string" default_value="https://apphosting.jivesoftware.com/apps/dev/jiveslidessources/JW12Apps101FINAL/slideshow.json" required="false" />
-    <UserPref name="UserName" display_name="Siebel Account Username" datatype="string" default_value="" required="false" />
-  <UserPref name="Password" display_name="Siebel Account Password (Encrypted)" datatype="string" default_value="" required="false" />
-	<Content view="home, canvas" type="html" href="dealroom.htm" preferred_height="200" preferred_width="200"/>
+    <Content view="home, canvas" type="html" href="dealroom.htm" preferred_height="200" preferred_width="200"/>
 </Module>
