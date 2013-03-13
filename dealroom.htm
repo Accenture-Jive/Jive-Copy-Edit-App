@@ -154,11 +154,14 @@ parentUrl=response.list[0].parent;
 if(docIndex!=-1)
 {
 docID= path.substring(docIndex+4,path.length);
-var request = osapi.jive.core.documents.get({id: docID});
+//var request = osapi.jive.core.documents.get({id: docID});
+var request = osapi.jive.corev3.contents.get({
+entityDescriptor:[102,docID]
+});
 // execute the request
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
-hasAttachment=response.data.content.hasOwnProperty('binary');
+/*hasAttachment=response.data.content.hasOwnProperty('binary');
 if(!hasAttachment)
 {
 //docUrl=response.data.resources.self.ref;
@@ -170,7 +173,7 @@ else
 docUrl=response.data.resources.self.ref;
 docContent=response.data.content;
 docSubject=response.data.subject;
-}
+}*/
 });
 }
 if(blogIndex!=-1)
