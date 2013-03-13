@@ -130,10 +130,16 @@ request.execute(function(response) {
 
 console.log("DATA: "+JSON.stringify(response));
 
-var containerUrl=response.data.resources.container.ref;
-console.log(containerUrl);
-docContent=response.data.messages.root.content;
-docSubject=response.data.messages.root.subject;
+//var containerUrl=response.data.resources.container.ref;
+//console.log(containerUrl);
+//docContent=response.data.messages.root.content;
+//docSubject=response.data.messages.root.subject;
+docContent=response.list[0].content;
+docSubject=response.list[0].subject;
+var parent=response.list[0].parent;
+console.log(docContent);
+console.log(docSubject);
+console.log(parent);
 });
 }
 
