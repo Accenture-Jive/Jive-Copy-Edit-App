@@ -20,6 +20,7 @@
 
 <script type="text/javascript">
 
+var parentUrl='';
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -121,7 +122,6 @@ blogIndex=path.indexOf('/blog/');
 if(disIndex!=-1)
 {
 var disID= path.substring(disIndex+7,path.length);
-//var request = osapi.jive.core.discussions.get({id: disID});
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[1,disID]
 });
@@ -129,17 +129,9 @@ entityDescriptor:[1,disID]
 request.execute(function(response) {
 
 console.log("DATA: "+JSON.stringify(response));
-
-//var containerUrl=response.data.resources.container.ref;
-//console.log(containerUrl);
-//docContent=response.data.messages.root.content;
-//docSubject=response.data.messages.root.subject;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
-var parent=response.list[0].parent;
-console.log(docContent);
-console.log(docSubject);
-console.log(parent);
+parentUrl=response.list[0].parent;
 });
 }
 
@@ -249,6 +241,10 @@ else if(to_sel_place=="select_to"){
 document.getElementById("start_copying_button").style.visibility="hidden";	
 $("#change_selection_div").hide();
 //document.getElementById("copyTo").style.visibility="hidden";
+}
+else if(to_sel_place=="this_to"){
+document.getElementById("start_copying_button").style.visibility="visible";
+$("#change_selection_div").show();
 }
 }
 
@@ -797,6 +793,7 @@ Copy To:
 <br/>
 <select name="source_place" style="margin-left:60px;" id="to_place" onchange="javascript:toPlace();">  
 <option value="select_to">Select Place</option>
+<option value="this_to">This Place</option>
 <option value="to_space">Select Space</option>
 <option value="to_group">Select Group</option>
 <option value="to_project">Select Project</option>
