@@ -19,7 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-
+var containerUrl='';
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -127,7 +127,7 @@ request.execute(function(response) {
 
 console.log("DATA: "+JSON.stringify(response));
 
-var containerUrl=response.data.resources.container.ref;
+containerUrl=response.data.resources.container.ref;
 console.log(containerUrl);
 docContent=response.data.messages.root.content;
 docSubject=response.data.messages.root.subject;
@@ -585,11 +585,10 @@ var	postJson = {
 	},
 	parent : ""
 	}
-	alert(to_url);
-console.log(to_url);
+    console.log(to_url);
 	postJson.subject = docSubject+'('+timeStamp+')';
 	postJson.content = docContent;
-	postJson.parent = to_url;
+	postJson.parent = containerUrl;
 	if(docIndex!=-1)
 	{
 	postJson.type = 'document';
