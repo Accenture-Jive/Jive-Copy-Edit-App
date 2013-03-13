@@ -252,6 +252,7 @@ else if(to_sel_place=="this_to"){
 document.getElementById("start_copying_button").style.visibility="visible";
 $("#change_selection_div").show();
 to_url=parentUrl;
+to_place_blog_url=parentUrl;
 }
 }
 
@@ -652,23 +653,13 @@ osapi.http.get({
     osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
 	}
 	else if(blogIndex!=-1)
-	{   
-alert(parentUrl);	
-           /* if(to_place_blog_url!='')
+	{        
+            if(to_place_blog_url!='')
 			{
 			var jdoc = new osapi.jive.corev3.contents.Post();
             jdoc.subject =  docSubject+' ('+timeStamp+')';
             jdoc.content =  docContent;
 			jdoc.parent =  to_place_blog_url;
-            osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
-           } 
-		   
-		   else*/ if(parentUrl!='')
-			{
-			var jdoc = new osapi.jive.corev3.contents.Post();
-            jdoc.subject =  docSubject+' ('+timeStamp+')';
-            jdoc.content =  docContent;
-			jdoc.parent =  parentUrl;
             osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
            }
            else
