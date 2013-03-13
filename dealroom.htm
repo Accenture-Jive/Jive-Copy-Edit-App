@@ -19,7 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-var containerUrl='';
+
 var docIndex='';
 var disIndex='';
 var pollIndex='';
@@ -121,13 +121,16 @@ blogIndex=path.indexOf('/blog/');
 if(disIndex!=-1)
 {
 var disID= path.substring(disIndex+7,path.length);
-var request = osapi.jive.core.discussions.get({id: disID});
+//var request = osapi.jive.core.discussions.get({id: disID});
+var request = osapi.jive.corev3.contents.get({
+entityDescriptor:[1,disID]
+});
 // execute the request
 request.execute(function(response) {
 
 console.log("DATA: "+JSON.stringify(response));
 
-containerUrl=response.data.resources.container.ref;
+var containerUrl=response.data.resources.container.ref;
 console.log(containerUrl);
 docContent=response.data.messages.root.content;
 docSubject=response.data.messages.root.subject;
@@ -585,10 +588,10 @@ var	postJson = {
 	},
 	parent : ""
 	}
-    console.log(to_url);
+
 	postJson.subject = docSubject+'('+timeStamp+')';
 	postJson.content = docContent;
-	postJson.parent = containerUrl;
+	postJson.parent = to_url;
 	if(docIndex!=-1)
 	{
 	postJson.type = 'document';
@@ -659,7 +662,7 @@ osapi.http.get({
 };
 
 function onContentCreated (response) {
-console.log("Response: "+JSON.stringify(response));
+//console.log("Response: "+JSON.stringify(response));
     if (response.error) {
         mini.createDismissibleMessage("Unable to create discussions: " + response.error.message);
 		//mini.createTimerMessage("<div style='text-align:center;'>Unable to create document: " + response.error.message+"</div>", 4);
