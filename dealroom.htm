@@ -176,23 +176,10 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
   //searchStr=searchStr.replace(/ /g, '* ');
  //console.log(searchStr); 
  var i=3000;
- var isNext=true;
  var countVal=0;
- var permaLink='';
+
  while(countVal<=i)
  {
- if(isNext==false)
-{
-alert("false");
-break;
-}
-console.log("linkkkkk: "+permaLink);
-console.log("countVal: "+countVal);
- if(path==permaLink)
-{
-alert("same");
-break;
-}
 var request = osapi.jive.corev3.contents.get({
     fields: ['permalink,subject,content'],
 	type:'post',
@@ -208,11 +195,8 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
-console.log("permalink: "+response.list[i].permalink);
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
-permaLink=response.list[i].permalink;
-alert(permaLink);
 }
 }
 });
