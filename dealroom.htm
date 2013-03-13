@@ -167,12 +167,14 @@ if(!hasAttachment)
 //docUrl=response.data.resources.self.ref;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
+parentUrl=response.list[0].parent;
 }
 else
 {
 docUrl=response.list[0].resources.self.ref;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
+parentUrl=response.list[0].parent;
 }
 });
 }
