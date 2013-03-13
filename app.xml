@@ -43,5 +43,7 @@
 		
     </ModulePrefs>
 	<UserPref name="presentationIndex"  display_name="Presentation Index" datatype="string" default_value="https://apphosting.jivesoftware.com/apps/dev/jiveslidessources/JW12Apps101FINAL/slideshow.json" required="false" />
-    <Content view="home, canvas" type="html" href="dealroom.htm" preferred_height="200" preferred_width="200"/>
+    <UserPref name="UserName" display_name="Siebel Account Username" datatype="string" default_value="" required="false" />
+  <UserPref name="Password" display_name="Siebel Account Password (Encrypted)" datatype="string" default_value="" required="false" />
+	<Content view="home, canvas" type="html" href="dealroom.htm" preferred_height="200" preferred_width="200"/>
 </Module>
