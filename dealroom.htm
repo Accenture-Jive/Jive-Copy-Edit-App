@@ -653,7 +653,7 @@ osapi.http.get({
 	}
 	else if(blogIndex!=-1)
 	{        
-            if(to_place_blog_url!='')
+           /* if(to_place_blog_url!='')
 			{
 			var jdoc = new osapi.jive.corev3.contents.Post();
             jdoc.subject =  docSubject+' ('+timeStamp+')';
@@ -661,7 +661,7 @@ osapi.http.get({
 			jdoc.parent =  to_place_blog_url;
             osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
            } 
-		   else if(parentUrl!='')
+		   else*/ if(parentUrl!='')
 			{
 			var jdoc = new osapi.jive.corev3.contents.Post();
             jdoc.subject =  docSubject+' ('+timeStamp+')';
