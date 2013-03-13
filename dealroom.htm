@@ -549,7 +549,7 @@ var	postDoc = {
 	},
 	parent : ""
 	}
-	postDoc.subject = docSubject+'('+timeStamp+')';
+	postDoc.subject = docSubject+' ('+timeStamp+')';
 	postDoc.content = docContent;
 	postDoc.parent = to_url;
     osapi.jive.corev3.documents.create(postDoc).execute(onContentCreated);
@@ -592,7 +592,7 @@ var	postJson = {
 	parent : ""
 	}
 
-	postJson.subject = docSubject+'('+timeStamp+')';
+	postJson.subject = docSubject+' ('+timeStamp+')';
 	postJson.content = docContent;
 	postJson.parent = to_url;
 	if(docIndex!=-1)
@@ -650,7 +650,7 @@ osapi.http.get({
             if(to_place_blog_url!='')
 			{
 			var jdoc = new osapi.jive.corev3.contents.Post();
-            jdoc.subject =  docSubject+'('+timeStamp+')';
+            jdoc.subject =  docSubject+' ('+timeStamp+')';
             jdoc.content =  docContent;
 			jdoc.parent =  to_place_blog_url;
             osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
