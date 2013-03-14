@@ -161,20 +161,18 @@ entityDescriptor:[102,docID]
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
 
-var commentJSON = {
-     subject : "Comment created at " + new Date(),
-     content : {
-         type: "text/html",
-         text: "<p>Comment created using the V3 API!</p>"
-     }
- };
+if(response.list[0].hasOwnProperty('comments'))
+{
+alert("has comments");
+var  comment=new osapi.jive.corev3.contents.Comment();
+comment.content=response.list[0].content;
+comment.content=response.list[0].parent;
 
- var res = response.list[0].createComment(commentJSON);
-
+ var res = response.list[0].createComment(comment);
  res.execute(function(data) {
      console.log("Comment created!", data);
  });
- 
+ }
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
