@@ -596,7 +596,7 @@ loggedUserName='';
 
 Grp_doc_json=docUrl;
 */
-
+var aresData='';
 var	postJson = {
 	type : "",
 	subject : "",
@@ -621,7 +621,7 @@ var	postJson = {
 	var afterExe= osapi.jive.corev3.documents.create(postJson);
 	afterExe.execute(function(data) {
 	
-     var aresData=data;
+     aresData=data;
  }); 
 	if(resData.list[0].resources.hasOwnProperty('comments'))
 {
