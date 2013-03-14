@@ -157,6 +157,21 @@ docID= path.substring(docIndex+4,path.length);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[102,docID]
 });
+
+ var commentJSON = {
+     subject : "Comment created at " + new Date(),
+     content : {
+         type: "text/html",
+         text: "<p>Comment created using the V3 API!</p>"
+     }
+ };
+
+ var res = request.createComment(commentJSON);
+
+ res.execute(function(data) {
+     console.log("Comment created!", data);
+ });
+ 
 // execute the request
 request.execute(function(response) {
 //console.log("DATA: "+JSON.stringify(response));
@@ -166,22 +181,6 @@ if(!hasAttachment)
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
-
-	var	commentJson = {
-	content : {
-		text : "hello",
-		type : "text/html"
-	},
-	parent : ""
-	};
-	commentJson.content=docContent;
-	commentJson.parent=parentUrl;
-	
- var request=response.createComment(commentJson);
-			 request.execute(function(data) {
-               console.log("Comment created!", data);
-            });
-			
 }
 else
 {
