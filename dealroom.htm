@@ -173,7 +173,7 @@ console.log("DATA: "+JSON.stringify(response));
             commentJson.content =  docContent;
 			commentJson.parent =  response.list[0].parent;
 			
-            var request=document.createComment(commentJson);
+            var request=document.create(commentJson);
 			 request.execute(function(data) {
                console.log("Comment created!", data);
             });
