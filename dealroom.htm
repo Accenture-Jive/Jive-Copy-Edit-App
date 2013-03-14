@@ -169,11 +169,11 @@ console.log("DATA: "+JSON.stringify(response));
 	parent : ""
 	};
 	
+			var comment = new osapi.jive.corev3.contents.Comment();
+            comment.content =  docContent;
+			comment.parent =  response.list[0].parent;
 			var document = new osapi.jive.corev3.contents.Document();
-            commentJson.content =  docContent;
-			commentJson.parent =  response.list[0].parent+'/comments';
-			
-            var request=document.getComments();
+            var request=document.createComment(comment);
 			 request.execute(function(data) {
                console.log("Comment created!", data);
             });
