@@ -614,6 +614,20 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
+	
+	var	commentJson = {
+	content : {
+		text : "",
+		type : ""
+	},
+	parent : ""
+	}
+			var document = new osapi.jive.corev3.contents.Document();
+            commentJson.content =  docContent;
+			commentJson.parent =  to_url;
+			
+            document.create(commentJson).execute();
+			
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
 	else
