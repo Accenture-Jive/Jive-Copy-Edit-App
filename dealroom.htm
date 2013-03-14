@@ -616,7 +616,10 @@ var	postJson = {
 	if(!hasAttachment)
 	{
 	//alert("Responseeeeeeee: "+JSON.stringify(resData));
-if(resData.list[0].resources.hasOwnProperty('comments'))
+	
+	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
+	var afterExe= osapi.jive.corev3.documents.create(postJson);
+	if(resData.list[0].resources.hasOwnProperty('comments'))
 {
  var comments = resData.list[0].getComments();
  comments.execute(function(data) {
@@ -626,18 +629,17 @@ for (var i = 0; i <data.list.length; i++)
 {
 var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
-comment.parent='https://accenture.jiveon.com/api/core/v3/contents/35351/comments';
+//comment.parent=to_url;
 alert(to_url);
-alert(resData.list[0].resources.self.ref);
 
- var res = resData.list[0].createComment(comment);  
+ var res = afterExe.list[0].createComment(comment);  
  res.execute(function(data) {
      console.log("Comment DATA: "+JSON.stringify(data));
  }); 
 } 
  });
- }	
-	//osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
+ }
+	
 	}
 	else
 	{
