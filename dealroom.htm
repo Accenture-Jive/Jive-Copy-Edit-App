@@ -605,7 +605,15 @@ var	postJson = {
 	},
 	parent : ""
 	}
-
+	
+	var	commentJson = {
+	content : {
+		text : "",
+		type : ""
+	},
+	parent : ""
+	};
+	
 	postJson.subject = docSubject+' ('+timeStamp+')';
 	postJson.content = docContent;
 	postJson.parent = to_url;
@@ -615,13 +623,7 @@ var	postJson = {
 	if(!hasAttachment)
 	{
 	
-	var	commentJson = {
-	content : {
-		text : "",
-		type : ""
-	},
-	parent : ""
-	}
+
 			var document = new osapi.jive.corev3.contents.Document();
             commentJson.content =  docContent;
 			commentJson.parent =  to_url;
