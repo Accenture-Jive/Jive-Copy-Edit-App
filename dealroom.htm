@@ -19,7 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-
+var resData='';
 var parentUrl='';
 var docIndex='';
 var disIndex='';
@@ -160,24 +160,7 @@ entityDescriptor:[102,docID]
 // execute the request
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
-
-if(response.list[0].resources.hasOwnProperty('comments'))
-{
-
-var  comment=new osapi.jive.corev3.contents.Comment();
-comment.content=response.list[0].content;
-comment.parent=response.list[0].parent;
-
- var res = response.list[0].createComment(comment);
- var comments = response.list[0].getComments();
- 
- res.execute(function(data) {
-     console.log("Comment DATA: "+JSON.stringify(data));
- }); 
- comments.execute(function(data) {
-     console.log("comments: "+JSON.stringify(data));
- });
- }
+resData=response;
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
@@ -632,6 +615,7 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
+	console.log("Responseeeeeeee: "+JSON.stringify(resData));
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
 	else
