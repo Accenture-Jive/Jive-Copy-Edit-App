@@ -627,8 +627,8 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
-	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
-	document.createComment(commentJson).execute(onContentCreated);
+	var doc= osapi.jive.corev3.documents.create(postJson);
+	doc.createComment(commentJson).execute(onContentCreated);
 	}
 	else
 	{
