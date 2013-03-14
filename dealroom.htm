@@ -615,7 +615,7 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
-	console.log("Responseeeeeeee: "+JSON.stringify(resData));
+	alert("Responseeeeeeee: "+JSON.stringify(resData));
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
 	else
