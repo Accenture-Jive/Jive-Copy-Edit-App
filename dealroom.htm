@@ -159,7 +159,13 @@ entityDescriptor:[102,docID]
 });
 // execute the request
 request.execute(function(response) {
-console.log("DATA: "+JSON.stringify(response));
+//console.log("DATA: "+JSON.stringify(response));
+hasAttachment=response.list[0].hasOwnProperty('binaryURL');
+if(!hasAttachment)
+{
+docContent=response.list[0].content;
+docSubject=response.list[0].subject;
+parentUrl=response.list[0].parent;
 
 	var	commentJson = {
 	content : {
@@ -168,22 +174,14 @@ console.log("DATA: "+JSON.stringify(response));
 	},
 	parent : ""
 	};
+	commentJson.content=docContent;
+	commentJson.parent=parentUrl;
 	
-			var comment = new osapi.jive.corev3.contents.Comment();
-            comment.content =  docContent;
-			comment.parent =  response.list[0].parent;
-			
-            var request=osapi.jive.corev3.comments.get({uri:'https://accenture.jiveon.com/api/core/v3/contents/35351'});
+ var request=response.createComment(commentJson);
 			 request.execute(function(data) {
                console.log("Comment created!", data);
             });
 			
-hasAttachment=response.list[0].hasOwnProperty('binaryURL');
-if(!hasAttachment)
-{
-docContent=response.list[0].content;
-docSubject=response.list[0].subject;
-parentUrl=response.list[0].parent;
 }
 else
 {
