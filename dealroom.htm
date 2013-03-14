@@ -626,7 +626,7 @@ for (var i = 0; i <data.list.length; i++)
 {
 var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
-comment.parent=data.list[i].parent;
+comment.parent=to_url;
 
  var res = resData.list[0].createComment(comment);  
  res.execute(function(data) {
