@@ -171,9 +171,9 @@ console.log("DATA: "+JSON.stringify(response));
 	
 			var comment = new osapi.jive.corev3.contents.Comment();
             comment.content =  docContent;
-			comment.parent =  response.list[0].parent;
-			var document = new osapi.jive.corev3.contents.Document();
-            var request=document.createComment(comment);
+			comment.parent =  response.list[0].parent+'/comments';
+			
+            var request=osapi.jive.corev3.comments.get({});
 			 request.execute(function(data) {
                console.log("Comment created!", data);
             });
