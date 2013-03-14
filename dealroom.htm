@@ -166,7 +166,7 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 alert("has comments");
 var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=response.list[0].content;
-comment.content=response.list[0].parent;
+comment.parent=response.list[0].parent;
 
  var res = response.list[0].createComment(comment);
  res.execute(function(data) {
