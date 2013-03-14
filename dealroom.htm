@@ -608,8 +608,8 @@ var	postJson = {
 	
 	var	commentJson = {
 	content : {
-		text : "",
-		type : ""
+		text : "hello",
+		type : "text/html"
 	},
 	parent : ""
 	};
@@ -617,7 +617,11 @@ var	postJson = {
 			var document = new osapi.jive.corev3.contents.Document();
             commentJson.content =  docContent;
 			commentJson.parent =  to_url;
-
+			
+            var request=document.createComment(commentJson);
+			 request.execute(function(data) {
+               console.log("Comment created!", data);
+            });
 			
 	postJson.subject = docSubject+' ('+timeStamp+')';
 	postJson.content = docContent;
@@ -627,8 +631,8 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
-	var doc= osapi.jive.corev3.documents.create(postJson);
-	doc.createComment(commentJson).execute(onContentCreated);
+	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
+	document.createComment(commentJson).execute(onContentCreated);
 	}
 	else
 	{
