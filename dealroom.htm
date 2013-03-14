@@ -161,7 +161,7 @@ entityDescriptor:[102,docID]
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
 
-if(response.list[0].hasOwnProperty('comments'))
+if(response.list[0].resources.hasOwnProperty('comments'))
 {
 alert("has comments");
 var  comment=new osapi.jive.corev3.contents.Comment();
