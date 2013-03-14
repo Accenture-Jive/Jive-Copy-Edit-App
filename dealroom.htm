@@ -620,14 +620,14 @@ var	postJson = {
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	var afterExe= osapi.jive.corev3.documents.create(postJson);
 	afterExe.execute(function(data) {
-	
+	console.log("comments: "+JSON.stringify(data));	
      aresData=data;
  }); 
 	if(resData.list[0].resources.hasOwnProperty('comments'))
 {
  var comments = resData.list[0].getComments();
  comments.execute(function(data) {
-console.log("comments: "+JSON.stringify(data));	 
+//console.log("comments: "+JSON.stringify(data));	 
 alert("comments len: "+data.list.length);	 
 for (var i = 0; i <data.list.length; i++)
 {
