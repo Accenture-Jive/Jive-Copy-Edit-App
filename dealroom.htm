@@ -627,7 +627,7 @@ var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
 comment.parent=data.list[i].parent;
 
- var res = resData.list[i].createComment(comment);  
+ var res = resData.list[0].createComment(comment);  
  res.execute(function(data) {
      console.log("Comment DATA: "+JSON.stringify(data));
  }); 
