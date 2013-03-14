@@ -360,7 +360,7 @@ document.getElementById("to_space").innerHTML=msg2;
 var params = {
 type : "group",
 success : ( function(data){
-//console.log("DATA: "+JSON.stringify(data));
+console.log("DATA: "+JSON.stringify(data));
 to_place_name=data.name;
 if(data.resources.hasOwnProperty('blog'))
 {	
@@ -628,7 +628,6 @@ var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
 comment.parent=data.list[0].resources.self.ref;
 alert(to_url);
-alert(data.list[0].resources.self.ref);
 alert(resData.list[0].resources.self.ref);
 
  var res = resData.list[0].createComment(comment);  
