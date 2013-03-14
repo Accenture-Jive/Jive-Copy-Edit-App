@@ -187,9 +187,11 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  //console.log(searchStr); 
  var i=3000;
  var countVal=0;
-
+ var responseData='';
  while(countVal<=i)
  {
+ if(responseData!='')
+ console.log(responseData.list[0].subject);
  //if(parentUrl!='')
  //break;
 var request = osapi.jive.corev3.contents.get({
@@ -202,6 +204,7 @@ var request = osapi.jive.corev3.contents.get({
 // execute the request
 request.execute(function(response) {
 console.log("DATA: "+JSON.stringify(response));
+responseData=response;
 var listCount=response.list.length;
 for(var i=0;i<listCount;i++)
 {
@@ -615,7 +618,7 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
-	alert("Responseeeeeeee: "+JSON.stringify(resData));
+     
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
 	else
