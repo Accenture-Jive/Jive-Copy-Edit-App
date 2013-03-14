@@ -173,7 +173,7 @@ console.log("DATA: "+JSON.stringify(response));
             comment.content =  docContent;
 			comment.parent =  response.list[0].parent;
 			
-            var request=osapi.jive.corev3.comments.get({uri:'https://accenture.jiveon.com/api/core/v3/contents/35351/comments'});
+            var request=osapi.jive.corev3.comments.get({uri:'https://accenture.jiveon.com/api/core/v3/contents/35351'});
 			 request.execute(function(data) {
                console.log("Comment created!", data);
             });
