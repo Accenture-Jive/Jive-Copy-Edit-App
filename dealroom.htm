@@ -127,7 +127,7 @@ entityDescriptor:[1,disID]
 });
 // execute the request
 request.execute(function(response) {
-//console.log("DATA: "+JSON.stringify(response));
+console.log("DATA: "+JSON.stringify(response));
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
@@ -186,7 +186,7 @@ var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
  //console.log(searchStr); 
  var i=3000;
  var countVal=0;
-var xhrList = [];
+
  while(countVal<=i)
  {
  //if(parentUrl!='')
@@ -209,14 +209,9 @@ if(path==response.list[i].permalink)
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
- xhrList[parentUrl].abort();
 }
 }
 });
-xhrList.push(parentUrl);
-
-console.log("okkkkkkkkkkkkkk: "+parentUrl);
-console.log("vallllllllllll: "+xhrList[0]);
 countVal=countVal+25;
 }
 }
