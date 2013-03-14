@@ -170,7 +170,7 @@ entityDescriptor:[102,docID]
  
 // execute the request
 request.execute(function(response) {
-var res = response.createComment(commentJSON);
+var res = response.create(commentJSON);
 
  res.execute(function(data) {
      console.log("Comment created!", data);
