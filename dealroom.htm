@@ -695,9 +695,9 @@ console.log("Response: "+responseData);
 	
 	if(resData.list[0].resources.hasOwnProperty('comments'))
 {
-alert("Responseeeeeeee: "+JSON.stringify(resData));
+console.log("Responseeeeeeee: "+JSON.stringify(resData));
  var comments = resData.list[0].getComments();
- 
+ alert("comments: "+JSON.stringify(comments));
  comments.execute(function(data) {
 alert("comments: "+JSON.stringify(data));	 
 alert("comments len: "+data.list.length);	 
