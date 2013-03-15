@@ -693,13 +693,13 @@ console.log("Response: "+responseData);
 	if(docIndex!=-1)
 	{
 	
-	alert(resData.list[0]);
-	alert(resData.list[0].resources.hasOwnProperty('comments'));
-	//if(resData.list[0].resources.hasOwnProperty('comments'))
-//{
+	if(resData.list[0].resources.hasOwnProperty('comments'))
+{
+alert("Responseeeeeeee: "+JSON.stringify(resData));
  var comments = resData.list[0].getComments();
+ 
  comments.execute(function(data) {
-console.log("comments: "+JSON.stringify(data));	 
+alert("comments: "+JSON.stringify(data));	 
 alert("comments len: "+data.list.length);	 
 for (var i = 0; i <data.list.length; i++)
 {
@@ -714,7 +714,7 @@ alert(responseData.list[0].resources.self.ref);
  }); 
 } 
  });
-// }
+ }
 	
 	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
