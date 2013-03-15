@@ -620,7 +620,7 @@ var	postJson = {
 {
 console.log("Responseeeeeeee: "+JSON.stringify(resData));
  //var comments = resData.list[0].getComments();
- var comments = osapi.jive.corev3.comments.get({uri:'/comments/35461/comments'});
+ var comments = osapi.jive.corev3.comments.get({uri:'/contents/35461'});
  alert("comments: "+JSON.stringify(comments));
  comments.execute(function(data) {
 alert("comments: "+JSON.stringify(data));	 
