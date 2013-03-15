@@ -698,22 +698,7 @@ console.log("Response: "+responseData);
 console.log("Responseeeeeeee: "+JSON.stringify(resData));
  var comments = resData.list[0].getComments();
  alert("comments: "+JSON.stringify(comments));
- comments.execute(function(data) {
-alert("comments: "+JSON.stringify(data));	 
-alert("comments len: "+data.list.length);	 
-for (var i = 0; i <data.list.length; i++)
-{
-var  comment=new osapi.jive.corev3.contents.Comment();
-comment.content=data.list[i].content;
-//comment.parent=resData.list[0].resources.self.ref;
-alert(resData.list[0].resources.self.ref);
-
- var res = resData.list[0].createComment(comment);  
- res.execute(function(data) {
-     console.log("Comment DATA: "+JSON.stringify(data));
- }); 
-} 
- });
+ comments.execute(getData);
  }	
 
 	
@@ -748,7 +733,25 @@ else if(pollIndex!=-1)
 	 }
 }
 }
+function getData(response)
+{
+{
+alert("comments: "+JSON.stringify(response));	 
+alert("comments len: "+response.list.length);	 
+for (var i = 0; i <response.list.length; i++)
+{
+var  comment=new osapi.jive.corev3.contents.Comment();
+comment.content=response.list[i].content;
+//comment.parent=resData.list[0].resources.self.ref;
+alert(resData.list[0].resources.self.ref);
 
+ var res = resData.list[0].createComment(comment);  
+ res.execute(function(data) {
+     console.log("Comment DATA: "+JSON.stringify(data));
+ }); 
+} 
+ }
+}
 //iframe start
 
 var flag=false;
