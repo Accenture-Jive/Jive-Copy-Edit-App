@@ -628,10 +628,10 @@ for (var i = 0; i <data.list.length; i++)
 {
 var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
-comment.parent=responseData.list[0].resources.self.ref;
-alert(responseData.list[0].resources.self.ref);
+comment.parent=resData.list[0].resources.self.ref;
+alert(resData.list[0].resources.self.ref);
 
- var res = responseData.list[0].createComment(comment);  
+ var res = resData.list[0].createComment(comment);  
  res.execute(function(data) {
      console.log("Comment DATA: "+JSON.stringify(data));
  }); 
