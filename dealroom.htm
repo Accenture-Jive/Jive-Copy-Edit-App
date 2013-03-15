@@ -19,7 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-var resData='';
+
 var parentUrl='';
 var docIndex='';
 var disIndex='';
@@ -159,16 +159,11 @@ entityDescriptor:[102,docID]
 });
 // execute the request
 request.execute(function(response) {
-console.log("DATA: "+JSON.stringify(response));
-resData=response;
+//console.log("DATA: "+JSON.stringify(response));
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
 docContent=response.list[0].content;
-var text=docContent.text.replace('class=\"jive-link-email-small\" href=\"','class=\"jiveTT-hover-user jive-link-profile-small\" data-containerId=\"-1\" data-containerType=\"-1\" data-objectId=\"2006\" data-objectType=\"3\" href=\"https://accenture.jiveon.com/people/');
-var type='"text/html"';
-docContent='{"text":"'+text+'","type":'+type+'}';
-console.log(docContent);
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 }
@@ -612,8 +607,6 @@ var	postJson = {
 	}
 
 	postJson.subject = docSubject+' ('+timeStamp+')';
-	 //docContent.text=docContent.text.replace('class=\"jive-link-email-small\" href=\"','class=\"jiveTT-hover-user jive-link-profile-small\" data-containerId=\"-1\" data-containerType=\"-1\" data-objectId=\"2006\" data-objectType=\"3\" href=\"https://accenture.jiveon.com/people/');
-	alert(docContent.text);
 	postJson.content = docContent;
 	postJson.parent = to_url;
 	if(docIndex!=-1)
@@ -621,29 +614,6 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
-	//alert("Responseeeeeeee: "+JSON.stringify(resData));
-	/*	if(resData.list[0].resources.hasOwnProperty('comments'))
-{
-console.log("Responseeeeeeee: "+JSON.stringify(resData));
- var comments = resData.list[0].getComments();
- alert("comments: "+JSON.stringify(comments));
- comments.execute(function(data) {
-alert("comments: "+JSON.stringify(data));	 
-alert("comments len: "+data.list.length);	 
-for (var i = 0; i <data.list.length; i++)
-{
-var  comment=new osapi.jive.corev3.contents.Comment();
-comment.content=data.list[i].content;
-comment.parent=resData.list[0].resources.self.ref;
-alert(resData.list[0].resources.self.ref);
-
- var res = resData.list[0].createComment(comment);  
- res.execute(function(data) {
-     console.log("Comment DATA: "+JSON.stringify(data));
- }); 
-} 
- });
- }*/
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
 	else
@@ -709,8 +679,7 @@ osapi.http.get({
 };
 
 function onContentCreated (response) {
-var responseData='"list": [{'+JSON.stringify(response)+'}]';
-console.log("Response: "+responseData);
+//console.log("Response: "+JSON.stringify(response));
     if (response.error) {
         mini.createDismissibleMessage("Unable to create discussions: " + response.error.message);
 		//mini.createTimerMessage("<div style='text-align:center;'>Unable to create document: " + response.error.message+"</div>", 4);
@@ -720,9 +689,6 @@ console.log("Response: "+responseData);
 	{
 	if(docIndex!=-1)
 	{
-	
-
-	
 	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
