@@ -703,8 +703,8 @@ for (var i = 0; i <data.list.length; i++)
 {
 var  comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
-comment.parent=to_url;
-alert(to_url);
+comment.parent=responseData.list[0].resources.self.ref;
+alert(responseData.list[0].resources.self.ref);
 
  var res = responseData.list[0].createComment(comment);  
  res.execute(function(data) {
