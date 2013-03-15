@@ -619,13 +619,14 @@ var	postJson = {
 		if(resData.list[0].resources.hasOwnProperty('comments'))
 {
 console.log("Responseeeeeeee: "+JSON.stringify(resData));
- //var comments = resData.list[0].getComments();
- var comments= osapi.jive.corev3.contents.get({
-href:'/contents/35461/comments'
-});
+ var comments = resData.list[0].getComments();
  alert("comments: "+JSON.stringify(comments));
  comments.execute(function(data) {
-alert("comments: "+JSON.stringify(data));	 
+  var comments= osapi.jive.corev3.contents.get({
+href:'/contents/35461/comments'
+});
+
+alert("comments: "+JSON.stringify(comments));	 
 alert("comments len: "+data.list.length);	 
 for (var i = 0; i <data.list.length; i++)
 {
