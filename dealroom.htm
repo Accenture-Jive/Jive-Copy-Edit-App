@@ -681,8 +681,8 @@ osapi.http.get({
 };
 
 function onContentCreated (response) {
-var response='"list": [{'+response+'}]';
-console.log("Response: "+JSON.stringify(response));
+var responseData='"list": [{'+JSON.stringify(response)+'}]';
+console.log("Response: "+responseData);
     if (response.error) {
         mini.createDismissibleMessage("Unable to create discussions: " + response.error.message);
 		//mini.createTimerMessage("<div style='text-align:center;'>Unable to create document: " + response.error.message+"</div>", 4);
@@ -706,7 +706,7 @@ comment.content=data.list[i].content;
 comment.parent=to_url;
 alert(to_url);
 
- var res = response.list[0].createComment(comment);  
+ var res = responseData.list[0].createComment(comment);  
  res.execute(function(data) {
      console.log("Comment DATA: "+JSON.stringify(data));
  }); 
