@@ -155,6 +155,14 @@ pollOptions=response.list[0].options;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
+
+if(response.list[0].resources.hasOwnProperty('comments'))
+{
+ var comments = response.list[0].getComments();
+ comments.execute(function(data) {
+ commentData=data;
+ });
+ }
 });
 }
 
@@ -189,6 +197,13 @@ docUrl=response.list[0].resources.self.ref;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
+if(response.list[0].resources.hasOwnProperty('comments'))
+{
+ var comments = response.list[0].getComments();
+ comments.execute(function(data) {
+ commentData=data;
+ });
+ }
 }
 });
 }
@@ -225,6 +240,13 @@ if(path==response.list[i].permalink)
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
+if(response.list[i].resources.hasOwnProperty('comments'))
+{
+ var comments = response.list[i].getComments();
+ comments.execute(function(data) {
+ commentData=data;
+ });
+ }
 }
 }
 });
@@ -717,7 +739,7 @@ function onContentCreated (response) {
 	 }
 	 else if(disIndex!=-1)
 	 {
-	 	for(var i=0;i<messageData.list.length;i++)
+	for(var i=0;i<messageData.list.length;i++)
     {
     var message=new osapi.jive.corev3.contents.Message();
     message.content=messageData.list[i].content;
@@ -736,6 +758,13 @@ window.location = htmlRef+'/edit';
 }
 else if(pollIndex!=-1)
 	{
+	for(var i=0;i<commentData.list.length;i++)
+    {
+    var comment=new osapi.jive.corev3.contents.Comment();
+    comment.content=commentData.list[i].content;
+    comment.parent=commentData.list[i].parent;
+    response.createComment(comment).execute(); 
+    }
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 	redirectTo=redirectTo.replace('polls','poll');
@@ -743,7 +772,13 @@ else if(pollIndex!=-1)
 	 }
 	 else if(blogIndex!=-1)
 	{
-	
+	for(var i=0;i<commentData.list.length;i++)
+    {
+    var comment=new osapi.jive.corev3.contents.Comment();
+    comment.content=commentData.list[i].content;
+    comment.parent=commentData.list[i].parent;
+    response.createComment(comment).execute(); 
+    }
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('/',10));
     window.location = redirectTo+'/blog/update-post.jspa?ID='+response.id;
@@ -756,7 +791,14 @@ else if(pollIndex!=-1)
 var flag=false;
 var htmlRef='';
 function refreshiframe() 
-{ 
+{
+ 	for(var i=0;i<commentData.list.length;i++)
+    {
+    var comment=new osapi.jive.corev3.contents.Comment();
+    comment.content=commentData.list[i].content;
+    comment.parent=commentData.list[i].parent;
+    response.createComment(comment).execute(); 
+    }
 flag=true;
 osapi.http.get({
 'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/LoggerServlet?logged-user='+loggedUser+'&logged-userName='+loggedUserName,
