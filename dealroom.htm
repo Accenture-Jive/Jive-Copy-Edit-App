@@ -172,10 +172,13 @@ if(response.list[0].resources.hasOwnProperty('comments'))
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
 console.log("comments: "+JSON.stringify(data));
-comment=new osapi.jive.corev3.contents.Comment();
 alert(data.list.length);
-comment.content=data.list[0].content;
-comment.parent=data.list[0].parent;
+for(var i=0;i<data.list.length;i++)
+{
+comment=new osapi.jive.corev3.contents.Comment();
+comment.content=data.list[i].content;
+comment.parent=data.list[i].parent;
+}
 alert(JSON.stringify(comment));	 
  });
  }
