@@ -19,7 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-var comment='';
+var comments='';
 var parentUrl='';
 var docIndex='';
 var disIndex='';
@@ -169,18 +169,8 @@ parentUrl=response.list[0].parent;
 
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
- var comments = response.list[0].getComments();
- comments.execute(function(data) {
-console.log("comments: "+JSON.stringify(data));
-comment=new osapi.jive.corev3.contents.Comment();
-alert(data.list.length);
-for(var i=0;i<data.list.length;i++)
-{
-comment.content=data.list[i].content;
-comment.parent=data.list[i].parent;
-}
-alert(JSON.stringify(comment));	 
- });
+ comments = response.list[0].getComments();
+
  }
 }
 else
@@ -705,8 +695,19 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
-	alert(JSON.stringify(comment));
- var res = response.createComment(comment);  
+	 comments.execute(function(data) {
+console.log("comments: "+JSON.stringify(data));
+var comment=new osapi.jive.corev3.contents.Comment();
+alert(data.list.length);
+for(var i=0;i<data.list.length;i++)
+{
+comment.content=data.list[i].content;
+comment.parent=data.list[i].parent;
+alert(JSON.stringify(comment));
+ var res = response.createComment(comment); 
+}
+ });
+ 
  res.execute(function(data) {
      console.log("Comment DATA: "+JSON.stringify(data));
  }); 
