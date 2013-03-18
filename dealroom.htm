@@ -169,7 +169,7 @@ var text=docContent.text.replace('class=\"jive-link-email-small\" href=\"','clas
 var type='"text/html"';
 docContent='{"text":"'+text.replace(/"/g,"'")+'","type":'+type+'}';
 var docContent = JSON.stringify(eval("(" + docContent + ")"));
-console.log(json);
+console.log(docContent);
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 }
