@@ -697,10 +697,11 @@ function onContentCreated (response) {
 	{
 	 comments.execute(function(data) {
 console.log("comments: "+JSON.stringify(data));
-var comment=new osapi.jive.corev3.contents.Comment();
+var comment='';
 alert(data.list.length);
 for(var i=0;i<data.list.length;i++)
 {
+comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
 comment.parent=data.list[i].parent;
 alert(JSON.stringify(comment));
