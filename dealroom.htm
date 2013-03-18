@@ -699,7 +699,7 @@ console.log("comments: "+JSON.stringify(data));
 alert(data.list.length);
 for(var i=0;i<data.list.length;i++)
 {
-comment=new osapi.jive.corev3.contents.Comment();
+var comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
 comment.parent=data.list[i].parent;
 response.createComment(comment).execute(); 
