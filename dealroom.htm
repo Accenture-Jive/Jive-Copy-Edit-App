@@ -20,6 +20,7 @@
 
 <script type="text/javascript">
 var commentData='';
+var messageData='';
 var parentUrl='';
 var docIndex='';
 var disIndex='';
@@ -127,16 +128,15 @@ entityDescriptor:[1,disID]
 });
 // execute the request
 request.execute(function(response) {
-console.log("DATA: "+JSON.stringify(response));
+//console.log("DATA: "+JSON.stringify(response));
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 if(response.list[0].resources.hasOwnProperty('messages'))
 {
- var comments = response.list[0].getReplies();
- comments.execute(function(data) {
- commentData=data;
- console.log("Replies: "+JSON.stringify(data));
+ var messages = response.list[0].getReplies();
+ messages.execute(function(data) {
+ messageData=data;
  });
  }
 });
@@ -712,12 +712,18 @@ function onContentCreated (response) {
     comment.parent=commentData.list[i].parent;
     response.createComment(comment).execute(); 
     }
-    //response.createComment(comment).execute();  
   	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
 	 else if(disIndex!=-1)
 	 {
+	 	for(var i=0;i<messageData.list.length;i++)
+    {
+    var message=new osapi.jive.corev3.contents.Message();
+    message.content=messageData.list[i].content;
+    message.parent=messageData.list[i].parent;
+    response.createComment(message).execute(); 
+    }
 	var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
     var docID= redirectTo.substring(startIndex+7,redirectTo.length);
