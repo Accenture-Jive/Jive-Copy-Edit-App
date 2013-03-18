@@ -790,8 +790,9 @@ else if(pollIndex!=-1)
 
 var flag=false;
 var htmlRef='';
-function refreshiframe() 
+function refreshiframe(response) 
 {
+console.log("Response: "+JSON.stringify(response));
  	for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
