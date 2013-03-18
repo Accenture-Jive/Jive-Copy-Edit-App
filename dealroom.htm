@@ -164,6 +164,7 @@ resData=response;
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
+alert("hello");
 docContent=response.list[0].content;
 var text=docContent.text.replace('class=\"jive-link-email-small\" href=\"','class=\'jiveTT-hover-user jive-link-profile-small\' data-containerId=\'-1\' data-containerType=\'-1\' data-objectId=\'2007\' data-objectType=\'3\' href=\'https://accenture.jiveon.com/people/');
 var type='"text/html"';
