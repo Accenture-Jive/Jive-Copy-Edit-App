@@ -722,7 +722,7 @@ function onContentCreated (response) {
     var message=new osapi.jive.corev3.contents.Message();
     message.content=messageData.list[i].content;
     message.parent=messageData.list[i].parent;
-    response.createComment(message).execute(); 
+    response.createReply(message).execute(); 
     }
 	var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
