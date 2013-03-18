@@ -700,8 +700,10 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
+	alert(commentData.list.length);
 	for(var i=0;i<commentData.list.length;i++)
 {
+alert(commentData.list[i].content);
 comment=new osapi.jive.corev3.contents.Comment();
 comment.content=commentData.list[i].content;
 comment.parent=commentData.list[i].parent;
