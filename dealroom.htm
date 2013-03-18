@@ -613,7 +613,7 @@ var	postJson = {
 
 	postJson.subject = docSubject+' ('+timeStamp+')';
 	 //docContent.text=docContent.text.replace('class=\"jive-link-email-small\" href=\"','class=\"jiveTT-hover-user jive-link-profile-small\" data-containerId=\"-1\" data-containerType=\"-1\" data-objectId=\"2006\" data-objectType=\"3\" href=\"https://accenture.jiveon.com/people/');
-	alert(docContent);
+	console.log(docContent);
 	postJson.content = docContent;
 	postJson.parent = to_url;
 	if(docIndex!=-1)
