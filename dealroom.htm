@@ -705,7 +705,10 @@ function onContentCreated (response) {
 	if(docIndex!=-1)
 	{
 	alert(JSON.stringify(comment));
-    response.createComment(comment);    
+ var res = response.createComment(comment);  
+ res.execute(function(data) {
+     console.log("Comment DATA: "+JSON.stringify(data));
+ }); 
 	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
