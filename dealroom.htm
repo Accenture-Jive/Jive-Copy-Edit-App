@@ -696,7 +696,7 @@ if(docResponse.list[0].resources.hasOwnProperty('comments'))
 {
 alert(docResponse.list[0].resources.comments.ref);
  var comments = osapi.jive.corev3.comments.get({
-     "uri":docResponse.list[0].resources.comments.ref,
+     "uri":'/comments/35771',
      "fields": "@all"
  });
  comments.execute(function(data) {
