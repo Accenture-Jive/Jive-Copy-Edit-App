@@ -127,10 +127,18 @@ entityDescriptor:[1,disID]
 });
 // execute the request
 request.execute(function(response) {
-//console.log("DATA: "+JSON.stringify(response));
+console.log("DATA: "+JSON.stringify(response));
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
+if(response.list[0].resources.hasOwnProperty('messages'))
+{
+ var comments = response.list[0].getReplies();
+ comments.execute(function(data) {
+ commentData=data;
+ console.log("Replies: "+JSON.stringify(data));
+ });
+ }
 });
 }
 
@@ -172,8 +180,6 @@ if(response.list[0].resources.hasOwnProperty('comments'))
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
  commentData=data;
-console.log("comments: "+JSON.stringify(data));
-alert(data.list.length);
  });
  }
 }
@@ -700,12 +706,12 @@ function onContentCreated (response) {
 	if(docIndex!=-1)
 	{
 	for(var i=0;i<commentData.list.length;i++)
-{
-var comment=new osapi.jive.corev3.contents.Comment();
-comment.content=commentData.list[i].content;
-comment.parent=commentData.list[i].parent;
-response.createComment(comment).execute(); 
-}
+    {
+    var comment=new osapi.jive.corev3.contents.Comment();
+    comment.content=commentData.list[i].content;
+    comment.parent=commentData.list[i].parent;
+    response.createComment(comment).execute(); 
+    }
     //response.createComment(comment).execute();  
   	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
