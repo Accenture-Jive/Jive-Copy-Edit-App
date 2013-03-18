@@ -711,7 +711,7 @@ osapi.http.get({
 };
 
 function onContentCreated (response) {
-//console.log("Response: "+JSON.stringify(response));
+console.log("Response: "+JSON.stringify(response));
     if (response.error) {
         mini.createDismissibleMessage("Unable to create discussions: " + response.error.message);
 		//mini.createTimerMessage("<div style='text-align:center;'>Unable to create document: " + response.error.message+"</div>", 4);
