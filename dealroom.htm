@@ -168,8 +168,8 @@ docContent=response.list[0].content;
 var text=docContent.text.replace('class=\"jive-link-email-small\" href=\"','class=\'jiveTT-hover-user jive-link-profile-small\' data-containerId=\'-1\' data-containerType=\'-1\' data-objectId=\'2006\' data-objectType=\'3\' href=\'https://accenture.jiveon.com/people/');
 var type='"text/html"';
 docContent='{"text":"'+text.replace(/"/g,"'")+'","type":'+type+'}';
-var docContent = JSON.stringify(eval("(" + docContent + ")"));
-console.log(docContent);
+var json = JSON.stringify(eval("(" + docContent + ")"));
+console.log(json);
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 }
