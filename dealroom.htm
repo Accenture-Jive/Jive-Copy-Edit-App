@@ -700,10 +700,10 @@ console.log(JSON.stringify(comments));
 alert(JSON.stringify(comments));	
 comments.execute(function(data) {
 console.log("comments: "+JSON.stringify(data));
-var comment=new osapi.jive.corev3.contents.Comment();
 alert(data.list.length);
 for(var i=0;i<data.list.length;i++)
 {
+var comment=new osapi.jive.corev3.contents.Comment();
 comment.content=data.list[i].content;
 comment.parent=data.list[i].parent;
 response.createComment(comment);
