@@ -694,7 +694,11 @@ function onContentCreated (response) {
 	console.log("Response: "+JSON.stringify(docResponse));
 if(docResponse.list[0].resources.hasOwnProperty('comments'))
 {
- comments = docResponse.list[0].getComments();
+alert(docResponse.list[0].resources.comments.ref);
+ var comments = osapi.jive.corev3.comments.get({
+     "uri":docResponse.list[0].resources.comments.ref,
+     "fields": "@all"
+ });
  comments.execute(function(data) {
 console.log("comments: "+JSON.stringify(data));
 alert(data.list.length);
