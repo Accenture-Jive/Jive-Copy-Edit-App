@@ -197,13 +197,6 @@ docUrl=response.list[0].resources.self.ref;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
-if(response.list[0].resources.hasOwnProperty('comments'))
-{
- var comments = response.list[0].getComments();
- comments.execute(function(data) {
- commentData=data;
- });
- }
 }
 });
 }
@@ -791,7 +784,7 @@ else if(pollIndex!=-1)
 var flag=false;
 var htmlRef='';
 function refreshiframe() 
-{
+{ 
 flag=true;
 osapi.http.get({
 'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/LoggerServlet?logged-user='+loggedUser+'&logged-userName='+loggedUserName,
@@ -805,14 +798,6 @@ if(!flag)
 {
 refreshiframe();
 }
-console.log("Response: "+JSON.stringify(response));
- 	for(var i=0;i<commentData.list.length;i++)
-    {
-    var comment=new osapi.jive.corev3.contents.Comment();
-    comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].parent;
-    response.createComment(comment).execute(); 
-    }
 setTimeout("refreshiframe()",1000); 	
 var str=response.content;
 //console.log("str: "+str);
