@@ -704,9 +704,9 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
-  response.createComment(comment);  
- 
- var redirectTo=response.resources.html.ref;
+response.createComment(comment).execute();  
+  
+	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
 	 else if(disIndex!=-1)
