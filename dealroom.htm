@@ -20,6 +20,7 @@
 
 <script type="text/javascript">
 var comment='';
+var commentData='';
 var parentUrl='';
 var docIndex='';
 var disIndex='';
@@ -171,14 +172,9 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
+ commentData=data;
 console.log("comments: "+JSON.stringify(data));
 alert(data.list.length);
-for(var i=0;i<data.list.length;i++)
-{
-comment=new osapi.jive.corev3.contents.Comment();
-comment.content=data.list[i].content;
-comment.parent=data.list[i].parent;
-}
  });
  }
 }
@@ -704,7 +700,14 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
-    response.createComment(comment).execute();  
+	for(var i=0;i<commentData.list.length;i++)
+{
+comment=new osapi.jive.corev3.contents.Comment();
+comment.content=commentData.list[i].content;
+comment.parent=commentData.list[i].parent;
+response.createComment(comment).execute(); 
+}
+    //response.createComment(comment).execute();  
   	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
