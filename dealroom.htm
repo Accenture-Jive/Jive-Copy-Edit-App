@@ -691,6 +691,7 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
+	console.log("Response: "+JSON.stringify(docResponse));
 if(docResponse.list[0].resources.hasOwnProperty('comments'))
 {
  comments = docResponse.list[0].getComments();
