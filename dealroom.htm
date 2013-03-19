@@ -213,6 +213,8 @@ parentUrl=response.list[0].parent;
 }
 if(blogIndex!=-1)
 {
+document.getElementById("start_copying_button").style.visibility="hidden";	
+$("#change_selection_div").hide();
 var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
 //console.log(searchStr);
  //searchStr=searchStr.replace(/-/g,' ');
@@ -241,6 +243,8 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
+document.getElementById("start_copying_button").style.visibility="visible";	
+$("#change_selection_div").show();
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
