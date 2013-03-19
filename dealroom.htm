@@ -732,16 +732,17 @@ osapi.http.get({
             jdoc.subject =  docSubject+' ('+timeStamp+')';
             jdoc.content =  docContent;
 			jdoc.parent =  to_place_blog_url;
-			if(to_sel_place =='my_place')
-	         {
-	         postJson.visibility='hidden';
-	         delete postJson.parent;
-	         }
+
             osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
            }
-           else
+           else if(to_sel_place =='my_place')
 		   {
-		   alert("This place doesn't allow you to create a blog");
+			var jdoc = new osapi.jive.corev3.contents.Post();
+            jdoc.subject =  docSubject+' ('+timeStamp+')';
+            jdoc.content =  docContent;
+		   	postJson.visibility='hidden';
+	        delete postJson.parent;	  
+            osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);			
 		   }
 	}
 }
