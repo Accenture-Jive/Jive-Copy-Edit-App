@@ -653,9 +653,8 @@ var	postJson = {
 	{
 	if(to_sel_place =='my_place')
 	{
-	//postJson.visibility='hidden';
-	//delete postJson.parent;
-	alert(to_sel_place);
+	postJson.visibility='hidden';
+	delete postJson.parent;
 	}
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
