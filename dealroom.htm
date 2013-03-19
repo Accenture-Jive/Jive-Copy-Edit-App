@@ -710,7 +710,6 @@ osapi.http.get({
 	{
 	postJson.visibility='all';
 	delete postJson.parent;
-	//postJson.parent=parentUrl;
 	}
     osapi.jive.corev3.discussions.create(postJson).execute(onContentCreated);	
 	}	
@@ -720,10 +719,8 @@ osapi.http.get({
 	postJson.options = pollOptions;	
 	if(to_sel_place =='my_place')
 	{
-	alert(parentUrl);
 	postJson.visibility='all';
 	delete postJson.parent;
-	//postJson.parent=parentUrl;
 	}
     osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
 	}
