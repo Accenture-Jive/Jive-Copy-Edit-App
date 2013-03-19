@@ -83,6 +83,7 @@ console.log(data);
 
 function onPageLoad() 
 {
+alert(to_sel_place);
 osapi.people.get({
 userId : '@me'
 }).execute(function(response) {
@@ -262,7 +263,7 @@ document.getElementById("to_place").disabled = true;
 
 function toPlace()
 {
-alert("hello");
+
 var to_place = document.getElementById("to_place");
 to_sel_place = to_place.options[to_place.selectedIndex].value;
 //alert("selected_value method_one: "+selected_value);
@@ -875,10 +876,10 @@ Copy To:
 <tr>
 <td>
 <br/>
-<select name="source_place" style="margin-left:60px;" id="to_place" onchange="javascript:toPlace();" onload="javascript:toPlace();">  
+<select name="source_place" style="margin-left:60px;" id="to_place" onchange="javascript:toPlace();">  
 <option value="select_to">Select Place</option>
 <option value="this_to">This Place</option>
-<option value="my_place" selected onselect="javascript:toPlace();">My Place</option>
+<option value="my_place" selected>My Place</option>
 <option value="to_space">Select Space</option>
 <option value="to_group">Select Group</option>
 <option value="to_project">Select Project</option>
