@@ -19,6 +19,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
+
+var to_sel_place='';
 var commentData='';
 var messageData='';
 var parentUrl='';
@@ -262,7 +264,7 @@ function toPlace()
 {
 
 var to_place = document.getElementById("to_place");
-var to_sel_place = to_place.options[to_place.selectedIndex].value;
+to_sel_place = to_place.options[to_place.selectedIndex].value;
 //alert("selected_value method_one: "+selected_value);
 
 if(to_sel_place=="to_space"){
