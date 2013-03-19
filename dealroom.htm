@@ -725,7 +725,7 @@ osapi.http.get({
 	if(to_sel_place =='my_place')
 	{
 	postJson.visibility='all';
-	//delete postJson.parent;
+	delete postJson.parent;
 	}
     osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
 	}
