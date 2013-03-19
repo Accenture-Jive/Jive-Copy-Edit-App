@@ -767,7 +767,7 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
-	if(isChecked)
+	if(isChecked==true)
 	{
 	alert(isChecked);
 	for(var i=0;i<commentData.list.length;i++)
@@ -903,7 +903,6 @@ window.location = htmlRef+'/upload';
 function handleChange(cb)
 {
 isChecked= cb.checked;
-alert(isChecked);
 }
 </script>
 </head>
