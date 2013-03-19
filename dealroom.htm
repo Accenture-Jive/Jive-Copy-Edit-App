@@ -243,6 +243,7 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
+ terminateLoop();
 document.getElementById("start_copying_button").style.visibility="visible";	
 $("#change_selection_div").show();
 docSubject=response.list[i].subject;
@@ -255,7 +256,6 @@ if(response.list[i].resources.hasOwnProperty('comments'))
  commentData=data;
  });
  }
- terminateLoop();
 }
 }
 });
