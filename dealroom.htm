@@ -238,6 +238,9 @@ var request = osapi.jive.corev3.contents.get({
 // execute the request
 request.execute(function(response) {
 //console.log("DATA: "+JSON.stringify(response));
+console.log("getNextPage: "+JSON.stringify(response.getNextPage));
+console.log("getNextPage: "+response.getNextPage);
+
 if (response.getNextPage) {
 console.log("getNextPage: "+JSON.stringifyresponse.getNextPage()));
 }
