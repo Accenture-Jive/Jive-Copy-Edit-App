@@ -255,6 +255,7 @@ if(response.list[i].resources.hasOwnProperty('comments'))
  commentData=data;
  });
  }
+ terminateLoop();
 }
 }
 });
@@ -272,7 +273,12 @@ document.getElementById("to_place").disabled = true;
 }
 */
 }
-
+function terminateLoop()
+{
+alert("terminate: "+parentUrl);
+ if(parentUrl!='')
+ break;
+}
 function toPlace()
 {
 
