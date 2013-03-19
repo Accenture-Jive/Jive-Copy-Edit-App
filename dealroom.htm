@@ -750,7 +750,7 @@ osapi.http.get({
 };
 
 function onContentCreated (response) {
-console.log("Response: "+JSON.stringify(response));
+//console.log("Response: "+JSON.stringify(response));
     if (response.error) {
 	    var mini = new gadgets.MiniMessage();
         mini.createDismissibleMessage("Unable to create: " + response.error.message);
