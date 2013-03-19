@@ -85,8 +85,13 @@ function onPageLoad()
 {
 var myPopup = document.getElementById('to_place');
 alert(myPopup.options[2].value);
-alert(myPopup.options[2].selected);
-alert(to_sel_place);
+if(myPopup.options[2].value=='my_place')
+{
+document.getElementById("start_copying_button").style.visibility="visible";	
+$("#change_selection_div").show();
+}
+//alert(myPopup.options[2].selected);
+
 osapi.people.get({
 userId : '@me'
 }).execute(function(response) {
@@ -655,6 +660,7 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
+	alert(to_sel_place);
 	if(to_sel_place =='my_place')
 	{
 	postJson.visibility='hidden';
