@@ -651,9 +651,12 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
+	if(to_sel_place =='my_place')
+	{
 	//postJson.visibility='hidden';
 	//delete postJson.parent;
 	alert(to_sel_place);
+	}
 	osapi.jive.corev3.documents.create(postJson).execute(onContentCreated);
 	}
 	else
