@@ -709,7 +709,7 @@ osapi.http.get({
 	postJson.type = 'discussion';
 	if(to_sel_place =='my_place')
 	{
-	postJson.visibility='hidden';
+	postJson.visibility='place';
 	delete postJson.parent;
 	}
     osapi.jive.corev3.discussions.create(postJson).execute(onContentCreated);	
