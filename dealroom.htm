@@ -87,11 +87,12 @@ var myPopup = document.getElementById('to_place');
 alert(myPopup.options[2].value);
 if(myPopup.options[2].value=='my_place')
 {
+to_sel_place='my_place';
 document.getElementById("start_copying_button").style.visibility="visible";	
 $("#change_selection_div").show();
 }
 //alert(myPopup.options[2].selected);
-
+alert(to_sel_place);
 osapi.people.get({
 userId : '@me'
 }).execute(function(response) {
