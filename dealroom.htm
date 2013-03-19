@@ -584,7 +584,7 @@ osapi.jive.corev3.places.requestPicker(params);
 
 function startCopying(){
 alert(isChecked);
-/*$("#start_copying_button").hide();
+$("#start_copying_button").hide();
 $("#to_place").hide();
 
 //alert("startCopying");
@@ -649,7 +649,7 @@ loggedUser='';
 loggedUserName='';
 
 Grp_doc_json=docUrl;
-/
+*/
 
 var	postJson = {
 	type : "",	
@@ -751,7 +751,7 @@ osapi.http.get({
 		   }
 	}
 }
-*/
+
 };
 
 function onContentCreated (response) {
@@ -766,6 +766,9 @@ function onContentCreated (response) {
 	{
 	if(docIndex!=-1)
 	{
+	if(isChecked)
+	{
+	alert(isChecked);
 	for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
@@ -773,11 +776,14 @@ function onContentCreated (response) {
     comment.parent=commentData.list[i].parent;
     response.createComment(comment).execute(); 
     }
+	}
   	var redirectTo=response.resources.html.ref;
     window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
 	 else if(disIndex!=-1)
 	 {
+	 if(isChecked)
+	{
 	for(var i=0;i<messageData.list.length;i++)
     {
     var message=new osapi.jive.corev3.contents.Message();
@@ -785,6 +791,7 @@ function onContentCreated (response) {
     message.parent=messageData.list[i].parent;
     response.createReply(message).execute(); 
     }
+	}
 	var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
     var docID= redirectTo.substring(startIndex+7,redirectTo.length);
@@ -797,19 +804,7 @@ window.location = htmlRef+'/edit';
 }
 else if(pollIndex!=-1)
 	{
-	for(var i=0;i<commentData.list.length;i++)
-    {
-    var comment=new osapi.jive.corev3.contents.Comment();
-    comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].parent;
-    response.createComment(comment).execute(); 
-    }
-	var redirectTo=response.resources.html.ref;
-	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
-	redirectTo=redirectTo.replace('polls','poll');
-    window.location = redirectTo+'/edit.jspa?ID='+response.id;
-	 }
-	 else if(blogIndex!=-1)
+	if(isChecked)
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
@@ -818,6 +813,24 @@ else if(pollIndex!=-1)
     comment.parent=commentData.list[i].parent;
     response.createComment(comment).execute(); 
     }
+	}
+	var redirectTo=response.resources.html.ref;
+	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
+	redirectTo=redirectTo.replace('polls','poll');
+    window.location = redirectTo+'/edit.jspa?ID='+response.id;
+	 }
+	 else if(blogIndex!=-1)
+	{
+	if(isChecked)
+	{
+	for(var i=0;i<commentData.list.length;i++)
+    {
+    var comment=new osapi.jive.corev3.contents.Comment();
+    comment.content=commentData.list[i].content;
+    comment.parent=commentData.list[i].parent;
+    response.createComment(comment).execute(); 
+    }
+	}
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('/',10));
     window.location = redirectTo+'/blog/update-post.jspa?ID='+response.id;
