@@ -243,8 +243,8 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
-//document.getElementById("start_copying_button").style.visibility="visible";	
-//$("#change_selection_div").show();
+document.getElementById("start_copying_button").style.visibility="visible";	
+$("#change_selection_div").show();
 docSubject=response.list[i].subject;
 docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
@@ -260,8 +260,6 @@ if(response.list[i].resources.hasOwnProperty('comments'))
 });
 countVal=countVal+25;
 }
-document.getElementById("start_copying_button").style.visibility="visible";	
-$("#change_selection_div").show();
 }
 /*
 else
@@ -722,7 +720,7 @@ osapi.http.get({
 	if(to_sel_place =='my_place')
 	{
 	postJson.visibility='all';
-	delete postJson.parent;
+	//delete postJson.parent;
 	}
     osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
 	}
@@ -754,7 +752,8 @@ osapi.http.get({
 function onContentCreated (response) {
 console.log("Response: "+JSON.stringify(response));
     if (response.error) {
-        mini.createDismissibleMessage("Unable to create discussions: " + response.error.message);
+	    var mini = new gadgets.MiniMessage();
+        mini.createDismissibleMessage("Unable to create: " + response.error.message);
 		//mini.createTimerMessage("<div style='text-align:center;'>Unable to create document: " + response.error.message+"</div>", 4);
         return;
     }
