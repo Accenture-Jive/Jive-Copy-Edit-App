@@ -92,7 +92,6 @@ document.getElementById("start_copying_button").style.visibility="visible";
 $("#change_selection_div").show();
 }
 //alert(myPopup.options[2].selected);
-alert(to_sel_place);
 osapi.people.get({
 userId : '@me'
 }).execute(function(response) {
@@ -661,7 +660,6 @@ var	postJson = {
 	postJson.type = 'document';
 	if(!hasAttachment)
 	{
-	alert(to_sel_place);
 	if(to_sel_place =='my_place')
 	{
 	postJson.visibility='hidden';
@@ -704,12 +702,22 @@ osapi.http.get({
 	else if(disIndex!=-1)
 	{
 	postJson.type = 'discussion';
+	if(to_sel_place =='my_place')
+	{
+	postJson.visibility='hidden';
+	delete postJson.parent;
+	}
     osapi.jive.corev3.discussions.create(postJson).execute(onContentCreated);	
 	}	
 	else if(pollIndex!=-1)
 	{
 	postJson.type = 'poll';
 	postJson.options = pollOptions;	
+	if(to_sel_place =='my_place')
+	{
+	postJson.visibility='hidden';
+	delete postJson.parent;
+	}
     osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
 	}
 	else if(blogIndex!=-1)
@@ -720,6 +728,11 @@ osapi.http.get({
             jdoc.subject =  docSubject+' ('+timeStamp+')';
             jdoc.content =  docContent;
 			jdoc.parent =  to_place_blog_url;
+			if(to_sel_place =='my_place')
+	         {
+	         postJson.visibility='hidden';
+	         delete postJson.parent;
+	         }
             osapi.jive.corev3.posts.create(jdoc).execute(onContentCreated);
            }
            else
