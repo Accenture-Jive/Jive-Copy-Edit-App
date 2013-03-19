@@ -583,7 +583,6 @@ osapi.jive.corev3.places.requestPicker(params);
 }
 
 function startCopying(){
-alert(isChecked);
 $("#start_copying_button").hide();
 $("#to_place").hide();
 $("#inc_comments").hide();
@@ -769,7 +768,6 @@ function onContentCreated (response) {
 	{
 	if(isChecked==true)
 	{
-	alert(isChecked);
 	for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
@@ -783,7 +781,7 @@ function onContentCreated (response) {
 	 }
 	 else if(disIndex!=-1)
 	 {
-	 if(isChecked)
+	 if(isChecked==true)
 	{
 	for(var i=0;i<messageData.list.length;i++)
     {
@@ -805,7 +803,7 @@ window.location = htmlRef+'/edit';
 }
 else if(pollIndex!=-1)
 	{
-	if(isChecked)
+	if(isChecked==true)
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
@@ -822,7 +820,7 @@ else if(pollIndex!=-1)
 	 }
 	 else if(blogIndex!=-1)
 	{
-	if(isChecked)
+	if(isChecked==true)
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
