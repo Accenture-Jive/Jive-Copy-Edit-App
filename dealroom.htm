@@ -83,6 +83,9 @@ console.log(data);
 
 function onPageLoad() 
 {
+var myPopup = document.getElementById('to_place');
+alert(myPopup.options[2].value);
+alert(myPopup.options[2].selected);
 alert(to_sel_place);
 osapi.people.get({
 userId : '@me'
