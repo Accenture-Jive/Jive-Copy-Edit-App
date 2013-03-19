@@ -582,7 +582,7 @@ osapi.jive.corev3.places.requestPicker(params);
 }
 
 function startCopying(){
-alert($('#inc_comments:checked').val());
+alert($('#inc_comments').is(':checked'));
 var isChecked = $('#inc_comments:checked').val()?true:false;
 
 alert("val: "+isChecked);
