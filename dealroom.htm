@@ -255,7 +255,7 @@ if(response.list[i].resources.hasOwnProperty('comments'))
  commentData=data;
  });
  }
- exit();
+ request.abort();
 }
 }
 });
