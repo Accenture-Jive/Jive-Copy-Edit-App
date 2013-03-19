@@ -582,6 +582,11 @@ osapi.jive.corev3.places.requestPicker(params);
 }
 
 function startCopying(){
+alert($('#inc_comments:checked').val());
+var isChecked = $('#inc_comments:checked').val()?true:false;
+
+alert("val: "+isChecked);
+/*
 $("#start_copying_button").hide();
 $("#to_place").hide();
 
@@ -637,7 +642,7 @@ document.getElementById("frame1").contentDocument.body.style.fontSize = "12px";
 document.getElementById("frame1").contentDocument.body.style.color='Grey';
 document.getElementById("frame1").contentDocument.body.innerHTML = "Copying in Progress.<br>Please leave this window open until the copying process has been completed.<br><br><span id='mySpan' style='font-weight:bold;'>"+initialMsg.fontcolor("#3778C7")+"</span>";
 
-/*space_url='';
+space_url='';
 Grp_file_json='';
 Grp_idea_json='';
 Grp_disc_json='';
@@ -647,7 +652,7 @@ loggedUser='';
 loggedUserName='';
 
 Grp_doc_json=docUrl;
-*/
+
 
 var	postJson = {
 	type : "",	
@@ -749,7 +754,7 @@ osapi.http.get({
 		   }
 	}
 }
-
+*/
 };
 
 function onContentCreated (response) {
