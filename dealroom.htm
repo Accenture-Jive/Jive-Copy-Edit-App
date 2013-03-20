@@ -586,7 +586,6 @@ function startCopying(){
 $("#start_copying_button").hide();
 $("#to_place").hide();
 document.getElementById("newUpSel").style.visibility="hidden";
-//alert("startCopying");
 if(browserName=="MSIE")
 {
 //alert("inside if msie");
@@ -663,6 +662,7 @@ var	postJson = {
 	postJson.subject = docSubject+' ('+timeStamp+')';
 	postJson.content = docContent;
 	postJson.parent = to_url;
+	alert("select place1: "+to_sel_place);
 	if(docIndex!=-1)
 	{
 	postJson.type = 'document';
@@ -677,6 +677,7 @@ var	postJson = {
 	}
 	else
 	{
+	alert("select place2: "+to_sel_place);
 	var iframe = '<iframe id="frame1" src = "" style="width:650px;height:90px;margin-top:0px;font-family:Tahoma"></iframe>';
     document.getElementById("selected_items").innerHTML=iframe;  
 	
@@ -699,9 +700,9 @@ Grp_poll_json='';
 //loggedUserName='';
 
 Grp_file_json=docUrl;
-
+alert("val: "+to_sel_place);
 osapi.http.get({
-'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/AIServlet?app-name=copy-edit&srcgroup_place_url='+space_url+'&target_groupurl='+to_url+'&src_group_file='+Grp_file_json+'&src_group_document='+Grp_doc_json+'&src_idea='+Grp_idea_json+'&src_discussion='+Grp_disc_json+'&src_blog='+Grp_blog_json+'&src_poll='+Grp_poll_json+'&logged-user='+loggedUser+'&logged-userName='+loggedUserName+'&group-name='+dest_space_name,
+'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/AIServlet?app-name=copy-edit&my_place='+to_sel_place+'&srcgroup_place_url='+space_url+'&target_groupurl='+to_url+'&src_group_file='+Grp_file_json+'&src_group_document='+Grp_doc_json+'&src_idea='+Grp_idea_json+'&src_discussion='+Grp_disc_json+'&src_blog='+Grp_blog_json+'&src_poll='+Grp_poll_json+'&logged-user='+loggedUser+'&logged-userName='+loggedUserName+'&group-name='+dest_space_name,
 'format' : 'json',
 'authz' : 'signed'
 }).execute(refreshiframe);
