@@ -205,7 +205,6 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 }
 else
 {
-alert(docUrl);
 docUrl=response.list[0].resources.self.ref;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
@@ -699,7 +698,6 @@ Grp_poll_json='';
 //loggedUserName='';
 
 Grp_file_json=docUrl;
-alert(docUrl);
 osapi.http.get({
 'href' : 'http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-CopyAppv1/AIServlet?app-name=copy-edit&inc_comments='+isChecked+'&my_place='+to_sel_place+'&srcgroup_place_url='+space_url+'&target_groupurl='+to_url+'&src_group_file='+Grp_file_json+'&src_group_document='+Grp_doc_json+'&src_idea='+Grp_idea_json+'&src_discussion='+Grp_disc_json+'&src_blog='+Grp_blog_json+'&src_poll='+Grp_poll_json+'&logged-user='+loggedUser+'&logged-userName='+loggedUserName+'&group-name='+dest_space_name,
 'format' : 'json',
