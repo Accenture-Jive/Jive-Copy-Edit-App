@@ -79,7 +79,7 @@
 		element.append(maskDiv);
 		
 		if(label !== undefined) {
-			var maskMsgDiv = $('<div class="loadmask-msg" style="display:none;"></div>');
+			var maskMsgDiv = $('<div class="loadmask-msg"  style="background-image: url(../images/loading.gif);display:none;"></div>');
 			maskMsgDiv.append('<div>' + label + '</div>');
 			element.append(maskMsgDiv);
 			
