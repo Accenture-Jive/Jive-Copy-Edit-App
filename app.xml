@@ -18,7 +18,7 @@
     <ModulePrefs title="Copy Edit App"
                 author="Accenture"
            description="Copy Edit App">
-        <Link rel="Icon" href="group-icon.png"/>
+        <Link rel="Icon" href="images/group-icon.png"/>
         <Require feature="dynamic-height"/>
         <Require feature="jive-core-v3"/>
         <Require feature="jquery-1.4.2"/>
