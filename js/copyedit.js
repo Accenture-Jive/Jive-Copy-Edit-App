@@ -63,7 +63,6 @@ console.log(data);
 
 function onPageLoad() 
 {
-alert("Hello");
 var myPopup = document.getElementById('to_place');
 //alert(myPopup.options[2].value);
 if(myPopup.options[2].value=='my_place')
