@@ -35,7 +35,7 @@
                   path="jive/actions/content/*"
                   label="Copy &amp; Edit"
                   view="embedded"
-                  icon="copy_edit_icon.png" />  ]]>
+                  icon="images/copy_edit_icon.png" />  ]]>
       </Param>  
     </Require>  
 		<Link rel="event.addapp" href="http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-Staging/AIServlet/installed" method="GET"/>
