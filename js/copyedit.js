@@ -46,13 +46,13 @@ var msg2='Please select a place.';
 
 function showLoading() 
 {
-$("#maskLoad").mask("Please Wait...");
+$("#stylized").mask("Please Wait...");
 }
 
 function hideLoading() 
 {
 
-$("#maskLoad").unmask();
+$("#stylized").unmask();
 }   
 
 function handleResponse(data) 
@@ -209,6 +209,7 @@ document.getElementById("to_place").disabled = true;
 
 function processListByPage(request)
 {
+showLoading();
 document.getElementById("start_copying_button").style.visibility="hidden";	
 $("#change_selection_div").hide();
 var searchStr= path.substring(path.lastIndexOf('/')+1,path.length);
@@ -242,6 +243,7 @@ for(var i=0;i<listCount;i++)
 {
 if(path==response.list[i].permalink)
 {
+hideLoading();
 document.getElementById("start_copying_button").style.visibility="visible";	
 $("#change_selection_div").show();
 docSubject=response.list[i].subject;
