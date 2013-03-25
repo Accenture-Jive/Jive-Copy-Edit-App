@@ -19,7 +19,7 @@
                 author="Accenture"
            description="Copy Edit App">
         <Link rel="Icon" href="images/group-icon.png"/>
-		<img src="images/loading.gif">
+		<img src="images/loading.gif"/>
         <Require feature="dynamic-height"/>
         <Require feature="jive-core-v3"/>
         <Require feature="jquery-1.4.2"/>
