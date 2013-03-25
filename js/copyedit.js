@@ -46,13 +46,13 @@ var msg2='Please select a place.';
 
 function showLoading() 
 {
-$("#show-copy-edit").mask("Please Wait...");
+$("#stylized").mask("Please Wait...");
 }
 
 function hideLoading() 
 {
 
-$("#show-copy-edit").unmask();
+$("#stylized").unmask();
 }   
 
 function handleResponse(data) 
@@ -193,22 +193,8 @@ parentUrl=response.list[0].parent;
 }
 if(blogIndex!=-1)
 {
-processListByPage(request);
-}
-/*
-else
-{
-//console.log("Copying the selected content type is not yet available!");
-$("#dialog").show();
-$("#dialog").dialog();
-document.getElementById("start_copying_button").disabled = true;
-document.getElementById("to_place").disabled = true;
-}
-*/
-}
+//processListByPage(request);
 
-function processListByPage(request)
-{
 showLoading();
 document.getElementById("start_copying_button").style.visibility="hidden";	
 $("#change_selection_div").hide();
@@ -261,6 +247,21 @@ if(response.list[i].resources.hasOwnProperty('comments'))
 });
 countVal=countVal+25;
 }
+}
+/*
+else
+{
+//console.log("Copying the selected content type is not yet available!");
+$("#dialog").show();
+$("#dialog").dialog();
+document.getElementById("start_copying_button").disabled = true;
+document.getElementById("to_place").disabled = true;
+}
+*/
+}
+
+function processListByPage(request)
+{
 }
 function toPlace()
 {
