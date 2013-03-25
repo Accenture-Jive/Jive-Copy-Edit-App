@@ -46,13 +46,13 @@ var msg2='Please select a place.';
 
 function showLoading() 
 {
-$("#stylized").mask("Please Wait...");
+$("#newUpSel").mask("Please Wait...");
 }
 
 function hideLoading() 
 {
 
-$("#stylized").unmask();
+$("#newUpSel").unmask();
 }   
 
 function handleResponse(data) 
