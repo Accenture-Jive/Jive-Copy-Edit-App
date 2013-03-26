@@ -161,6 +161,7 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 if(docIndex!=-1)
 {
 docID= path.substring(docIndex+4,path.length);
+alert(docID);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[102,docID]
 });
@@ -176,8 +177,11 @@ parentUrl=response.list[0].parent;
 
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
+
  var comments = response.list[0].getComments();
+ console.log("comments: "+JSON.stringify(comments));
  comments.execute(function(data) {
+ console.log("Data: "+JSON.stringify(data));
  commentData=data;
  });
  }
@@ -237,11 +241,8 @@ docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
 if(response.list[i].resources.hasOwnProperty('comments'))
 {
-// var comments = response.list[i].getComments();
- var comments = response.list[i].get({uri:'/comments/2745/comments'});
-console.log("COMMENTS: "+JSON.stringify(comments));
+ var comments = response.list[i].getComments();
  comments.execute(function(data) {
- console.log("DATA: "+JSON.stringify(data));
  commentData=data;
  });
  }
@@ -810,11 +811,10 @@ else if(pollIndex!=-1)
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
-	alert("parent: "+commentData.list[i].resources.self.ref);
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    //comment.parent=commentData.list[i].resources.self.ref;
-	response.createComment(comment).execute(); 
+    comment.parent=commentData.list[i].parent;
+    response.createComment(comment).execute(); 
     }
 	}
 	var redirectTo=response.resources.html.ref;
