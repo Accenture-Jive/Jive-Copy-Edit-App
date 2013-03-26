@@ -759,8 +759,8 @@ function onContentCreated (response) {
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].resources.comments.ref;
-	alert("parent: "+comment.parent);
+    comment.parent=commentData.list[i].parent;
+	alert(comment.parent);
     response.createComment(comment).execute(); 
     }
 	}
