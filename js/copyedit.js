@@ -63,9 +63,6 @@ console.log(data);
 
 function onPageLoad() 
 {
-alert(jive.instance.home);
-alert(jive.home);
-alert(${jive.context});
 var myPopup = document.getElementById('to_place');
 //alert(myPopup.options[2].value);
 if(myPopup.options[2].value=='my_place')
