@@ -241,7 +241,7 @@ if(response.list[i].resources.hasOwnProperty('comments'))
  var comments = response.list[i].get({uri:'/comments/2230/comments'});
 console.log("COMMENTS: "+JSON.stringify(comments));
  comments.execute(function(data) {
- console.log("DATA: "+JSON.stringify(comments));
+ console.log("DATA: "+JSON.stringify(data));
  commentData=data;
  });
  }
