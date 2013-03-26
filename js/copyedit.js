@@ -755,11 +755,11 @@ function onContentCreated (response) {
 	{
 	if(isChecked==true)
 	{
-	for(var i=0;i<1;i++)
+	for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    comment.parent='https://accenture.jiveon.com/api/core/v3/comments/4854/comments';
+    comment.parent=commentData.list[i].resources.comments.ref;
 	alert("parent: "+comment.parent);
     response.createComment(comment).execute(); 
     }
