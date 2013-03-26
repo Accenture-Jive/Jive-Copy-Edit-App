@@ -167,7 +167,7 @@ entityDescriptor:[102,docID]
 });
 // execute the request
 request.execute(function(response) {
-console.log("response: "+JSON.stringify(response));
+//console.log("DATA: "+JSON.stringify(response));
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
@@ -178,8 +178,7 @@ parentUrl=response.list[0].parent;
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
 
- //var comments = response.list[0].getComments();
- var comments = response.list[0].get({type:'comment',uri:'/contents/40051/comments',excludeReplies:true});
+ var comments = response.list[0].getComments();
  console.log("comments: "+JSON.stringify(comments));
  comments.execute(function(data) {
  console.log("Data: "+JSON.stringify(data));
@@ -760,7 +759,7 @@ function onContentCreated (response) {
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].parent;
+    comment.parent='https://accenture.jiveon.com/api/core/v3/comments/4854/comments';
     response.createComment(comment).execute(); 
     }
 	}
