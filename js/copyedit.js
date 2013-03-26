@@ -179,7 +179,7 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 {
 
  //var comments = response.list[0].getComments();
- var comments = response.list[0].get({href:'/comments/4844/comments'});
+ var comments = response.list[0].getComments({href:'/comments/4844/comments'});
  console.log("comments: "+JSON.stringify(comments));
  comments.execute(function(data) {
  console.log("Data: "+JSON.stringify(data));
