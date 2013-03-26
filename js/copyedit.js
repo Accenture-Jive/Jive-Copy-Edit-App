@@ -238,7 +238,9 @@ parentUrl=response.list[i].parent;
 if(response.list[i].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[i].getComments();
+console.log("COMMENTS: "+JSON.stringify(comments));
  comments.execute(function(data) {
+ console.log("DATA: "+JSON.stringify(comments))
  commentData=data;
  });
  }
