@@ -812,7 +812,7 @@ else if(pollIndex!=-1)
 	alert("parent: "+commentData.list[i].resources.self.ref);
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].resources.self.ref;
+    //comment.parent=commentData.list[i].resources.self.ref;
 	response.createComment(comment).execute(); 
     }
 	}
