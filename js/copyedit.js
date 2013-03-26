@@ -755,7 +755,7 @@ function onContentCreated (response) {
 	{
 	if(isChecked==true)
 	{
-	for(var i=0;i<commentData.list.length;i++)
+	for(var i=0;i<1;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
