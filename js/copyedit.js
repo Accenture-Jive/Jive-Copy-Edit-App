@@ -240,7 +240,8 @@ if(response.list[i].resources.hasOwnProperty('comments'))
  var comments = response.list[i].getComments();
 console.log("COMMENTS: "+JSON.stringify(comments));
  comments.execute(function(data) {
- console.log("DATA: "+JSON.stringify(comments))
+ console.log("DATA: "+JSON.stringify(comments));
+ console.log("DATA: "+commentData.list.length);
  commentData=data;
  });
  }
@@ -811,7 +812,7 @@ else if(pollIndex!=-1)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].parent;
+    comment.parent=commentData.list[i].resources.parent;
     response.createComment(comment).execute(); 
     }
 	}
