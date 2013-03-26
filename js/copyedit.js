@@ -760,6 +760,7 @@ function onContentCreated (response) {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
     comment.parent='https://accenture.jiveon.com/api/core/v3/comments/4854/comments';
+	alert("parent: "+comment.parent);
     response.createComment(comment).execute(); 
     }
 	}
