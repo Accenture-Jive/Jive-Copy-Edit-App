@@ -237,7 +237,8 @@ docContent=response.list[i].content;
 parentUrl=response.list[i].parent;
 if(response.list[i].resources.hasOwnProperty('comments'))
 {
- var comments = response.list[i].getComments();
+// var comments = response.list[i].getComments();
+ var comments = response.list[i].get({uri:'/comments/2230/comments'});
 console.log("COMMENTS: "+JSON.stringify(comments));
  comments.execute(function(data) {
  console.log("DATA: "+JSON.stringify(comments));
