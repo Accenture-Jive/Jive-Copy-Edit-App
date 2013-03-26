@@ -167,7 +167,7 @@ entityDescriptor:[102,docID]
 });
 // execute the request
 request.execute(function(response) {
-//console.log("DATA: "+JSON.stringify(response));
+console.log("response: "+JSON.stringify(response));
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
