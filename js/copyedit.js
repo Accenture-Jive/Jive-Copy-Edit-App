@@ -241,7 +241,6 @@ if(response.list[i].resources.hasOwnProperty('comments'))
 console.log("COMMENTS: "+JSON.stringify(comments));
  comments.execute(function(data) {
  console.log("DATA: "+JSON.stringify(comments));
- console.log("DATA: "+commentData.list.length);
  commentData=data;
  });
  }
@@ -810,10 +809,11 @@ else if(pollIndex!=-1)
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
+	alert("parent: "+commentData.list[i].resources.parent);
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
     comment.parent=commentData.list[i].resources.parent;
-    response.createComment(comment).execute(); 
+	response.createComment(comment).execute(); 
     }
 	}
 	var redirectTo=response.resources.html.ref;
