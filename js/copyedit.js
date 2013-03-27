@@ -166,7 +166,7 @@ if(docIndex!=-1)
  });
 
  request.execute(function(data) {
-     console.log("Comment retrieved!", data);
+     console.log("Comment retrieved!", JSON.stringify(data));
  });
 docID= path.substring(docIndex+4,path.length);
 var request = osapi.jive.corev3.contents.get({
