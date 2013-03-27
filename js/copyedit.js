@@ -160,6 +160,14 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 //console.log(docIndex);
 if(docIndex!=-1)
 {
+ var request = comments.get({
+     "uri": "/contents/41187/comments",
+     "fields": "@all"
+ });
+
+ request.execute(function(data) {
+     console.log("Comment retrieved!", data);
+ });
 docID= path.substring(docIndex+4,path.length);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[102,docID]
@@ -738,7 +746,7 @@ osapi.http.get({
 };
 
 function onContentCreated (response) {
-console.log("Response: "+JSON.stringify(response));
+//console.log("Response: "+JSON.stringify(response));
     if (response.error) {
 	    var mini = new gadgets.MiniMessage();
         mini.createDismissibleMessage("Unable to create: " + response.error.message);
@@ -753,10 +761,9 @@ console.log("Response: "+JSON.stringify(response));
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
-	alert(response.resources.self.ref);
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
-    comment.parent=response.resources.self.ref;
+    comment.parent=commentData.list[i].parent;
     response.createComment(comment).execute(); 
     }
 	}
