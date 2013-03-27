@@ -177,11 +177,10 @@ parentUrl=response.list[0].parent;
 
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
-alert(response.list[0].resources.comments.ref);
- var request = osapi.jive.corev3.comments.get({
-     "uri": response.list[0].resources.comments.ref,
-     "fields": "@all"
- });
+
+ var request = osapi.jive.corev3.contents.get({
+entityDescriptor:[105,docID]
+});
 
  request.execute(function(data) {
      console.log("Comment retrieved!", JSON.stringify(data));
