@@ -178,7 +178,7 @@ parentUrl=response.list[0].parent;
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
  var request = osapi.jive.corev3.contents.get({
-entityDescriptor:[105,40142]
+entityDescriptor:[43,40142]
 });
 
  request.execute(function(data) {
