@@ -160,14 +160,13 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 //console.log(docIndex);
 if(docIndex!=-1)
 {
-
 docID= path.substring(docIndex+4,path.length);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[102,docID]
 });
 // execute the request
 request.execute(function(response) {
-console.log("DATA: "+JSON.stringify(response));
+//console.log("DATA: "+JSON.stringify(response));
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
@@ -177,14 +176,6 @@ parentUrl=response.list[0].parent;
 
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
- var request = osapi.jive.corev3.contents.get({
-entityDescriptor:[43,40142]
-});
-
- request.execute(function(data) {
-     console.log("Comment retrieved!", JSON.stringify(data));
- });
-
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
  commentData=data;
