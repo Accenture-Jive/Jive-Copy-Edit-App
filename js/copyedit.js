@@ -179,7 +179,7 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 {
 
  var request = osapi.jive.corev3.contents.get({
-entityDescriptor:[105,docID]
+entityDescriptor:[105,4844]
 });
 
  request.execute(function(data) {
