@@ -167,7 +167,7 @@ entityDescriptor:[102,docID]
 });
 // execute the request
 request.execute(function(response) {
-//console.log("DATA: "+JSON.stringify(response));
+console.log("DATA: "+JSON.stringify(response));
 hasAttachment=response.list[0].hasOwnProperty('binaryURL');
 if(!hasAttachment)
 {
@@ -177,7 +177,6 @@ parentUrl=response.list[0].parent;
 
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
-alert(response.list[0]);
  var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[105,response.list[0].id]
 });
