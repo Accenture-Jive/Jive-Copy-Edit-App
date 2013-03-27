@@ -161,7 +161,7 @@ if(response.list[0].resources.hasOwnProperty('comments'))
 if(docIndex!=-1)
 {
  var request = osapi.jive.corev3.comments.get({
-     "uri": "/contents/41187/comments",
+     "uri": "/comments/41187/comments",
      "fields": "@all"
  });
 
