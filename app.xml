@@ -42,5 +42,5 @@
 		<Link rel="event.removeapp" href="http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-Staging/AIServlet/uninstalled" method="GET"/>
 		
     </ModulePrefs>
-    <Content view="embedded" type="html" href="html/copyedit.htm" preferred_height="200" preferred_width="200"/>
+    <Content view="embedded" type="html" href="html/copyedit.htm" preferred_height="250" preferred_width="300"/>
 </Module>
