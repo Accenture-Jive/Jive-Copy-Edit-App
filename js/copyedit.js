@@ -6,7 +6,7 @@ var isChecked=new Boolean();
 	var targetPostResponseObj;
 	var commentsSelfURLMap = {};
 	var commentsPostURLMap = {};
-	boolean commentflag=false;
+	var commentflag=false;
 	
 var to_sel_place='';
 var commentData='';
