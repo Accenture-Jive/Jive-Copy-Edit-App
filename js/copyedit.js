@@ -859,15 +859,15 @@ else if(pollIndex!=-1)
 }
 }
 
-function commentResponse(response) {
-alert("comment Response: "+JSON.stringify(response));
+function commentResponse(commentResponseObj) {
+alert("comment Response: "+JSON.stringify(commentResponseObj));
 
-	alert("comment Response: - targetCommentSelfURL "+response.resources.self.ref);
-	alert("comment Response: - targetPostResponseObj ="+JSON.stringify(response));
+	alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
+	alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
 	
 	
-	 targetCommentSelfURL = response.resources.self.ref;
-	 targetPostResponseObj = response;
+	 targetCommentSelfURL = commentResponseObj.resources.self.ref;
+	 targetPostResponseObj = commentResponseObj;
 	commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
 	commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
 	
