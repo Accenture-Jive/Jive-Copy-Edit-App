@@ -829,7 +829,8 @@ else if(pollIndex!=-1)
 	}
 	
 	alert("starting to execute.....");
-    response.createComment(comment).execute(function(commentResponseObj){
+	var request=response.createComment(comment);
+    request.execute(function(commentResponseObj){
 		alert("comment Response: "+JSON.stringify(commentResponseObj));
 		alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
 		alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
