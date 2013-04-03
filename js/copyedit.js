@@ -1,5 +1,12 @@
 
 var isChecked=new Boolean();
+	var sourceCommentSelfURL = '';
+	var targetCommentSelfURL = '';
+	var sourceCommentParentUrl = '';
+	var targetPostResponseObj;
+	var commentsSelfURLMap = {};
+	var commentsPostURLMap = {};
+	
 var to_sel_place='';
 var commentData='';
 var messageData='';
@@ -790,10 +797,38 @@ else if(pollIndex!=-1)
 	{
 	for(var i=0;i<commentData.list.length;i++)
     {
+	console.log("commentData: "+commentData);
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
     comment.parent=commentData.list[i].parent;
-    response.createComment(comment).execute(); 
+	
+	alert("targetCommentSelfURL "+response.resources.self.ref);
+	alert("targetPostResponseObj ="+JSON.stringify(response));
+	alert("sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
+	alert("sourceCommentParentUrl = "+commentData.list[i].parent);
+	alert("index ="+i);
+	targetCommentSelfURL = response.resources.self.ref;
+	targetPostResponseObj = response;
+	
+	sourceCommentSelfURL = commentData.list[i].resources.self.ref;
+	sourceCommentParentUrl = commentData.list[i].parent;
+	commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
+	commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
+	 if(i > 0)
+	{
+			alert("inside if comment structure if");
+			alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
+			if(sourceCommentParentUrl in commentsSelfURLMap)
+			{
+				alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
+				alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
+			   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
+			   response = commentsPostURLMap[sourceCommentParentUrl];
+			}
+		
+	}
+	
+    response.createComment(comment).execute(commentResponse); 
     }
 	}
 	var redirectTo=response.resources.html.ref;
@@ -805,11 +840,15 @@ else if(pollIndex!=-1)
 	{
 	if(isChecked==true)
 	{
+	
+
 	for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
     comment.parent=commentData.list[i].parent;
+	
+
     response.createComment(comment).execute(); 
     }
 	}
@@ -820,6 +859,21 @@ else if(pollIndex!=-1)
 }
 }
 
+function commentResponse(response) {
+console.log("comment Response: "+JSON.stringify(response));
+
+	alert("targetCommentSelfURL "+response.resources.self.ref);
+	alert("targetPostResponseObj ="+JSON.stringify(response));
+	
+	
+	 targetCommentSelfURL = response.resources.self.ref;
+	 targetPostResponseObj = response;
+	commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
+	commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
+	
+	
+
+}
 //iframe start
 
 var flag=false;
