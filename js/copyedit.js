@@ -860,10 +860,10 @@ else if(pollIndex!=-1)
 }
 
 function commentResponse(response) {
-console.log("comment Response: "+JSON.stringify(response));
+alert("comment Response: "+JSON.stringify(response));
 
-	alert("targetCommentSelfURL "+response.resources.self.ref);
-	alert("targetPostResponseObj ="+JSON.stringify(response));
+	alert("comment Response: - targetCommentSelfURL "+response.resources.self.ref);
+	alert("comment Response: - targetPostResponseObj ="+JSON.stringify(response));
 	
 	
 	 targetCommentSelfURL = response.resources.self.ref;
