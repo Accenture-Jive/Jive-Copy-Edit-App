@@ -813,9 +813,11 @@ else if(pollIndex!=-1)
 	
 	sourceCommentSelfURL = commentData.list[i].resources.self.ref;
 	sourceCommentParentUrl = commentData.list[i].parent;
-	commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
-	commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
+	 if(i == 0) {
+		commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
+		commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
 	commentflag = false;
+	}
 	 if(i > 0)
 	{
 			alert("inside if comment structure if");
