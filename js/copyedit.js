@@ -755,6 +755,9 @@ function onContentCreated (response) {
     }
 	else 
 	{
+	
+		commentsSelfURLMap[sourceCommentSelfURL] = response.resources.self.ref;
+		commentsPostURLMap[sourceCommentSelfURL] = response;
 	if(docIndex!=-1)
 	{
 	if(isChecked==true)
@@ -811,13 +814,11 @@ else if(pollIndex!=-1)
 	targetCommentSelfURL = response.resources.self.ref;
 	targetPostResponseObj = response;
 	
-	sourceCommentSelfURL = commentData.list[i].resources.self.ref;
-	sourceCommentParentUrl = commentData.list[i].parent;
-	 if(i == 0) {
-		commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
-		commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
-	commentflag = false;
-	}
+	
+	
+		
+		commentflag = false;
+	
 	 if(i > 0)
 	{
 			alert("inside if comment structure if");
