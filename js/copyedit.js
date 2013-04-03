@@ -802,10 +802,10 @@ else if(pollIndex!=-1)
     comment.content=commentData.list[i].content;
     comment.parent=commentData.list[i].parent;
 	
-	alert("targetCommentSelfURL "+response.resources.self.ref);
-	alert("targetPostResponseObj ="+JSON.stringify(response));
-	alert("sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
-	alert("sourceCommentParentUrl = "+commentData.list[i].parent);
+	alert("Init targetCommentSelfURL "+response.resources.self.ref);
+	alert("Init targetPostResponseObj ="+JSON.stringify(response));
+	alert("Init sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
+	alert("Init sourceCommentParentUrl = "+commentData.list[i].parent);
 	alert("index ="+i);
 	targetCommentSelfURL = response.resources.self.ref;
 	targetPostResponseObj = response;
@@ -829,7 +829,15 @@ else if(pollIndex!=-1)
 	}
 	
 	alert("starting to execute.....");
-    response.createComment(comment).execute(commentResponse); 
+    response.createComment(comment).execute(function(commentResponseObj){
+		alert("comment Response: "+JSON.stringify(commentResponseObj));
+		alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
+		alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
+		targetCommentSelfURL = commentResponseObj.resources.self.ref;
+		targetPostResponseObj = commentResponseObj;
+		commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
+		commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
+	}); 
     }
 	}
 	var redirectTo=response.resources.html.ref;
