@@ -828,6 +828,7 @@ else if(pollIndex!=-1)
 		
 	}
 	
+	alert("starting to execute.....");
     response.createComment(comment).execute(commentResponse); 
     }
 	}
