@@ -842,8 +842,8 @@ else if(pollIndex!=-1)
 		alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
 		targetCommentSelfURL = commentResponseObj.resources.self.ref;
 		targetPostResponseObj = commentResponseObj;
-		commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
-		commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
+		commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
+		commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
 		commentflag = true;
 	});
 
