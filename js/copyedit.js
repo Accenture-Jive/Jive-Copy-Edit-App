@@ -755,7 +755,7 @@ function onContentCreated (response) {
     }
 	else 
 	{
-	
+		sourceCommentSelfURL = response.resources.self.ref;
 		commentsSelfURLMap[sourceCommentSelfURL] = response.resources.self.ref;
 		commentsPostURLMap[sourceCommentSelfURL] = response;
 	if(docIndex!=-1)
