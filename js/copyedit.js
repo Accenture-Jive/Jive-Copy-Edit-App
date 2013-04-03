@@ -6,6 +6,7 @@ var isChecked=new Boolean();
 	var targetPostResponseObj;
 	var commentsSelfURLMap = {};
 	var commentsPostURLMap = {};
+	boolean commentflag=false;
 	
 var to_sel_place='';
 var commentData='';
@@ -814,6 +815,7 @@ else if(pollIndex!=-1)
 	sourceCommentParentUrl = commentData.list[i].parent;
 	commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
 	commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
+	commentflag = false;
 	 if(i > 0)
 	{
 			alert("inside if comment structure if");
@@ -830,7 +832,9 @@ else if(pollIndex!=-1)
 	
 	alert("starting to execute.....");
 	var request=response.createComment(comment);
-    request.execute(function(commentResponseObj){
+	alert("request to execute.....");
+    
+	request.execute(function(commentResponseObj){
 		alert("comment Response: "+JSON.stringify(commentResponseObj));
 		alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
 		alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
@@ -838,7 +842,17 @@ else if(pollIndex!=-1)
 		targetPostResponseObj = commentResponseObj;
 		commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
 		commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
-	}); 
+		commentflag = true;
+	});
+
+	if(!commentflag){
+		var millisecondsToWait = 500;
+		setTimeout(function() {
+			// Whatever you want to do after the wait
+		}, millisecondsToWait);
+	}
+	
+	
     }
 	}
 	var redirectTo=response.resources.html.ref;
