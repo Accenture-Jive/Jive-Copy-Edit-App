@@ -7,6 +7,8 @@ var isChecked=new Boolean();
 	var commentsSelfURLMap = {};
 	var commentsPostURLMap = {};
 	var commentflag=false;
+	var commentDataResponse;
+	var commentDataIndex=0;
 	
 var to_sel_place='';
 var commentData='';
@@ -155,7 +157,7 @@ docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 
-if(response.list[0].resources.hasOwnProperty('comments'))
+if(response.data[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
@@ -799,64 +801,67 @@ else if(pollIndex!=-1)
 	{
 	if(isChecked==true)
 	{
-	for(var i=0;i<commentData.list.length;i++)
+	/*for(var i=0;i<commentData.list.length;i++)
     {
-	console.log("commentData: "+commentData);
-    var comment=new osapi.jive.corev3.contents.Comment();
-    comment.content=commentData.list[i].content;
-    comment.parent=commentData.list[i].parent;
-	
-	alert("Init targetCommentSelfURL "+response.resources.self.ref);
-	alert("Init targetPostResponseObj ="+JSON.stringify(response));
-	alert("Init sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
-	alert("Init sourceCommentParentUrl = "+commentData.list[i].parent);
-	alert("index ="+i);
-	targetCommentSelfURL = response.resources.self.ref;
-	targetPostResponseObj = response;
+		console.log("commentData: "+commentData);
+		var comment=new osapi.jive.corev3.contents.Comment();
+		comment.content=commentData.list[i].content;
+		comment.parent=commentData.list[i].parent;
+		
+		alert("Init targetCommentSelfURL "+response.resources.self.ref);
+		alert("Init targetPostResponseObj ="+JSON.stringify(response));
+		alert("Init sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
+		alert("Init sourceCommentParentUrl = "+commentData.list[i].parent);
+		alert("index ="+i);
+		targetCommentSelfURL = response.resources.self.ref;
+		targetPostResponseObj = response;
 	
 	
 	
 		
 		commentflag = false;
 	
-	 if(i > 0)
-	{
-			alert("inside if comment structure if");
-			alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
-			if(sourceCommentParentUrl in commentsSelfURLMap)
-			{
-				alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
-				alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
-			   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
-			   response = commentsPostURLMap[sourceCommentParentUrl];
-			}
-		
-	}
+		 if(i > 0)
+		{
+				alert("inside if comment structure if");
+				alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
+				if(sourceCommentParentUrl in commentsSelfURLMap)
+				{
+					alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
+					alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
+				   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
+				   response = commentsPostURLMap[sourceCommentParentUrl];
+				}
+			
+		}
 	
-	alert("starting to execute.....");
-	var request=response.createComment(comment);
-	alert("request to execute.....");
+		alert("starting to execute.....");
+		var request=response.createComment(comment);
+		alert("request to execute.....");
     
-	request.execute(function(commentResponseObj){
-		alert("comment Response: "+JSON.stringify(commentResponseObj));
-		alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
-		alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
-		targetCommentSelfURL = commentResponseObj.resources.self.ref;
-		targetPostResponseObj = commentResponseObj;
-		commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
-		commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
-		commentflag = true;
-	});
+		request.execute(function(commentResponseObj){
+			alert("comment Response: "+JSON.stringify(commentResponseObj));
+			alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
+			alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
+			targetCommentSelfURL = commentResponseObj.resources.self.ref;
+			targetPostResponseObj = commentResponseObj;
+			commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
+			commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
+			commentflag = true;
+		});
 
-	if(!commentflag){
-		var millisecondsToWait = 500;
-		setTimeout(function() {
-			// Whatever you want to do after the wait
-		}, millisecondsToWait);
-	}
+		if(!commentflag){
+			var millisecondsToWait = 500;
+			setTimeout(function() {
+				// Whatever you want to do after the wait
+			}, millisecondsToWait);
+		}
 	
 	
-    }
+    }*/
+		commentDataResponse = commentData
+		commentDataIndex = 0;
+		executeCommentCopy();
 	}
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
@@ -886,6 +891,58 @@ else if(pollIndex!=-1)
 }
 }
 
+
+function executeCommentCopy() {
+
+		if(commentDataIndex == commentData.length) 
+		{
+			console.log("commentData: "+commentData);
+			var comment=new osapi.jive.corev3.contents.Comment();
+			comment.content=commentData.list[i].content;
+			comment.parent=commentData.list[i].parent;
+			
+			alert("Init targetCommentSelfURL "+response.resources.self.ref);
+			alert("Init targetPostResponseObj ="+JSON.stringify(response));
+			alert("Init sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
+			alert("Init sourceCommentParentUrl = "+commentData.list[i].parent);
+			alert("commentDataIndex ="+commentDataIndex);
+			targetCommentSelfURL = response.resources.self.ref;
+			targetPostResponseObj = response;
+			
+			if(commentDataIndex > 0)
+			{
+					alert("inside if comment structure if");
+					alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
+					if(sourceCommentParentUrl in commentsSelfURLMap)
+					{
+						alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
+						alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
+					   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
+					   response = commentsPostURLMap[sourceCommentParentUrl];
+					}
+				
+			}
+		
+			alert("starting to execute.....");
+			var request=response.createComment(comment);
+			alert("request to execute.....");
+		
+			request.execute(function(commentResponseObj){
+				alert("comment Response: "+JSON.stringify(commentResponseObj));
+				alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
+				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
+				targetCommentSelfURL = commentResponseObj.resources.self.ref;
+				targetPostResponseObj = commentResponseObj;
+				commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
+				commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
+				commentflag = true;
+				commentDataIndex =commentDataIndex + 1;
+				executeCommentCopy();
+			});
+		}
+
+}
+
 function commentResponse(commentResponseObj) {
 alert("comment Response: "+JSON.stringify(commentResponseObj));
 
@@ -893,8 +950,8 @@ alert("comment Response: "+JSON.stringify(commentResponseObj));
 	alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
 	
 	
-	 targetCommentSelfURL = commentResponseObj.resources.self.ref;
-	 targetPostResponseObj = commentResponseObj;
+	targetCommentSelfURL = commentResponseObj.resources.self.ref;
+	targetPostResponseObj = commentResponseObj;
 	commentsSelfURLMap[sourceCommentSelfURL] = targetCommentSelfURL;
 	commentsPostURLMap[sourceCommentSelfURL] = targetPostResponseObj;
 	
