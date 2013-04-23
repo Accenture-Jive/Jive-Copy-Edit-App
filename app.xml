@@ -42,5 +42,5 @@
 		<Link rel="event.removeapp" href="http://ec2-54-246-36-246.eu-west-1.compute.amazonaws.com:8080/AIDealRoom-Staging/AIServlet/uninstalled" method="GET"/>
 		
     </ModulePrefs>
-    <Content view="embedded" type="html" href="/html/copyedit.htm" preferred_height="250" preferred_width="350"/>
+    <Content view="embedded" type="html" href="https://raw.github.com/Accenture-Jive/Jive-Copy-Edit-App/master/html/copyedit.htm?login=Bernd-Appelhans&token=d0d1581159999f84120cd3a1e6bf5797" preferred_height="250" preferred_width="350"/>
 </Module>
