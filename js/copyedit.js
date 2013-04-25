@@ -147,6 +147,7 @@ if(pollIndex!=-1)
 {
 alert("Into the poll index");
 var pollID= path.substring(pollIndex+6,path.length);
+alert("poll id "+pollID);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[18,pollID]
 });
