@@ -145,9 +145,7 @@ if(response.list[0].resources.hasOwnProperty('messages'))
 
 if(pollIndex!=-1)
 {
-alert("Into the poll index");
 var pollID= path.substring(pollIndex+6,path.length);
-alert("poll id "+pollID);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[18,pollID]
 });
@@ -158,13 +156,12 @@ pollOptions=response.list[0].options;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
-alert("response.data[0].resources.hasOwnProperty(comments)"+response.data[0].resources.hasOwnProperty('comments'));
+
 if(response.data[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
  commentData=data;
- alert("line 165 : comments data"+commentData);
  });
  }
 });
@@ -862,9 +859,7 @@ else if(pollIndex!=-1)
 	
 	
     }*/
-		alert("commentData :"+commentData);
-		commentDataResponse = commentData;
-		
+		commentDataResponse = commentData
 		commentDataIndex = 0;
 		//executeCommentCopy();
 	}
@@ -897,6 +892,56 @@ else if(pollIndex!=-1)
 }
 
 
+function executeCommentCopy() {
+
+		if(commentDataIndex == commentData.length) 
+		{
+			console.log("commentData: "+commentData);
+			var comment=new osapi.jive.corev3.contents.Comment();
+			comment.content=commentData.list[i].content;
+			comment.parent=commentData.list[i].parent;
+			
+			alert("Init targetCommentSelfURL "+response.resources.self.ref);
+			alert("Init targetPostResponseObj ="+JSON.stringify(response));
+			alert("Init sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
+			alert("Init sourceCommentParentUrl = "+commentData.list[i].parent);
+			alert("commentDataIndex ="+commentDataIndex);
+			targetCommentSelfURL = response.resources.self.ref;
+			targetPostResponseObj = response;
+			
+			if(commentDataIndex > 0)
+			{
+					alert("inside if comment structure if");
+					alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
+					if(sourceCommentParentUrl in commentsSelfURLMap)
+					{
+						alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
+						alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
+					   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
+					   response = commentsPostURLMap[sourceCommentParentUrl];
+					}
+				
+			}
+		
+			alert("starting to execute.....");
+			var request=response.createComment(comment);
+			alert("request to execute.....");
+		
+			request.execute(function(commentResponseObj){
+				alert("comment Response: "+JSON.stringify(commentResponseObj));
+				alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
+				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
+				targetCommentSelfURL = commentResponseObj.resources.self.ref;
+				targetPostResponseObj = commentResponseObj;
+				commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
+				commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
+				commentflag = true;
+				commentDataIndex =commentDataIndex + 1;
+				executeCommentCopy();
+			});
+		}
+
+}
 
 function commentResponse(commentResponseObj) {
 alert("comment Response: "+JSON.stringify(commentResponseObj));
