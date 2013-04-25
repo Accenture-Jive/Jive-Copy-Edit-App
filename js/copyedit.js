@@ -897,59 +897,7 @@ else if(pollIndex!=-1)
 }
 
 
-/*function executeCommentCopy() {
-		alert("Into the executeCommentCopy() :::");
-		alert("commentDataIndex :"+commentDataIndex);
-		alert("commentData.length :"+commentData.length);
-		if(commentDataIndex == commentData.length) 
-		{
-			console.log("commentData: "+commentData);
-			var comment=new osapi.jive.corev3.contents.Comment();
-			comment.content=commentData.list[commentDataIndex].content;
-			comment.parent=commentData.list[commentDataIndex].parent;
-			
-			alert("Init targetCommentSelfURL "+response.resources.self.ref);
-			alert("Init targetPostResponseObj ="+JSON.stringify(response));
-			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
-			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
-			alert("commentDataIndex ="+commentDataIndex);
-			targetCommentSelfURL = response.resources.self.ref;
-			targetPostResponseObj = response;
-			
-			if(commentDataIndex > 0)
-			{
-					alert("inside if comment structure if");
-					alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
-					if(sourceCommentParentUrl in commentsSelfURLMap)
-					{
-						alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
-						alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
-					   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
-					   response = commentsPostURLMap[sourceCommentParentUrl];
-					}
-				
-			}
-		
-			alert("starting to execute.....");
-			var request=response.createComment(comment);
-			alert("request to execute.....");
-		
-			request.execute(function(commentResponseObj){
-				alert("comment Response: "+JSON.stringify(commentResponseObj));
-				alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
-				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
-				targetCommentSelfURL = commentResponseObj.resources.self.ref;
-				targetPostResponseObj = commentResponseObj;
-				commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
-				commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
-				commentflag = true;
-				commentDataIndex =commentDataIndex + 1;
-				executeCommentCopy();
-			});
-		}
 
-}
-*/
 function commentResponse(commentResponseObj) {
 alert("comment Response: "+JSON.stringify(commentResponseObj));
 
