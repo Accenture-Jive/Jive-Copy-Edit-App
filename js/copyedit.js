@@ -859,8 +859,9 @@ else if(pollIndex!=-1)
 	
 	
     }*/
-	alert("commentData :"+commentData);
-		commentDataResponse = commentData
+		alert("commentData :"+commentData);
+		commentDataResponse = commentData;
+		
 		commentDataIndex = 0;
 		executeCommentCopy();
 	}
