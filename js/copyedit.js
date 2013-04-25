@@ -145,6 +145,7 @@ if(response.list[0].resources.hasOwnProperty('messages'))
 
 if(pollIndex!=-1)
 {
+alert("Into the poll index");
 var pollID= path.substring(pollIndex+6,path.length);
 var request = osapi.jive.corev3.contents.get({
 entityDescriptor:[18,pollID]
