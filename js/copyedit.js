@@ -801,7 +801,7 @@ else if(pollIndex!=-1)
 	{
 	if(isChecked==true)
 	{
-	for(var i=0;i<commentData.list.length;i++)
+	/*for(var i=0;i<commentData.list.length;i++)
     {
 		console.log("commentData: "+commentData);
 		var comment=new osapi.jive.corev3.contents.Comment();
@@ -858,7 +858,7 @@ else if(pollIndex!=-1)
 		}
 	
 	
-    }
+    }*/
 		commentDataResponse = commentData
 		commentDataIndex = 0;
 		executeCommentCopy();
