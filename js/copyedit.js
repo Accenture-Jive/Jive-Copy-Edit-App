@@ -861,7 +861,7 @@ else if(pollIndex!=-1)
     }*/
 		commentDataResponse = commentData
 		commentDataIndex = 0;
-		//executeCommentCopy();
+		executeCommentCopy();
 	}
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
@@ -893,7 +893,8 @@ else if(pollIndex!=-1)
 
 
 function executeCommentCopy() {
-
+		alert("Into the executeCommentCopy() :::");
+		alert("commentDataIndex :"+commentDataIndex);
 		if(commentDataIndex == commentData.length) 
 		{
 			console.log("commentData: "+commentData);
