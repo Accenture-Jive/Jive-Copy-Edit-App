@@ -157,7 +157,7 @@ pollOptions=response.list[0].options;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
-
+alert("response.data[0].resources.hasOwnProperty(comments)"+response.data[0].resources.hasOwnProperty('comments'));
 if(response.data[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
