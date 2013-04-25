@@ -861,7 +861,7 @@ else if(pollIndex!=-1)
     }*/
 		commentDataResponse = commentData
 		commentDataIndex = 0;
-		executeCommentCopy();
+		//executeCommentCopy();
 	}
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
