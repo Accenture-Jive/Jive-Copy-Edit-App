@@ -162,6 +162,7 @@ if(response.data[0].resources.hasOwnProperty('comments'))
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
  commentData=data;
+ alert("line 165 : comments data"+commentData);
  });
  }
 });
