@@ -157,6 +157,8 @@ docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 
+alert("subject : "+docSubject);
+
 if(response.data[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
