@@ -159,7 +159,7 @@ parentUrl=response.list[0].parent;
 
 alert("subject : "+docSubject);
 console.log(JSON.stringify(response));
-alert(response.data[0].resources.hasOwnProperty('comments'));
+alert(response.list[0].resources.hasOwnProperty('comments'));
 if(response.data[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
