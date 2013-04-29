@@ -948,11 +948,11 @@ function executeCommentCopy() {
 			
 			alert("starting to execute.....");
 			alert("comment created is "+JSON.stringify(comment));
-			var request=response.createComment(comment);
+			var request=response.createComment(comment,comment);
 			alert("request to execute.....");
 		
 			request.execute(function(commentResponseObj){
-				alert("comment Response: "+JSON.stringify(comment,commentResponseObj));
+				alert("comment Response: "+JSON.stringify(commentResponseObj));
 				alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
 				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
 				targetCommentSelfURL = commentResponseObj.resources.self.ref;
