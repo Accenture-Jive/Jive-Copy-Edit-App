@@ -903,7 +903,7 @@ function executeCommentCopy(contentResponse) {
 		alert("Into the execute comment copy :-");
 		alert("commentDataIndex: "+commentDataIndex);
 		alert("commentData legth: "+commentData.list.length);
-		if(commentDataIndex <= commentData.list.length) 
+		if(commentDataIndex < commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
 			if(commentDataIndex == 0) {
