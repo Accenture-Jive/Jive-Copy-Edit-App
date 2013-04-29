@@ -913,13 +913,7 @@ function executeCommentCopy() {
 				response = contentCreationResponse
 			}
 			
-			alert("Init targetCommentSelfURL "+response.resources.self.ref);
-			alert("Init targetPostResponseObj ="+JSON.stringify(response));
-			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
-			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
-			alert("commentDataIndex ="+commentDataIndex);
-			targetCommentSelfURL = response.resources.self.ref;
-			targetPostResponseObj = response;
+			
 			
 			if(commentDataIndex > 0)
 			{
@@ -934,8 +928,17 @@ function executeCommentCopy() {
 					}
 				
 			}
-		
+			
+			alert("Init targetCommentSelfURL "+response.resources.self.ref);
+			alert("Init targetPostResponseObj ="+JSON.stringify(response));
+			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
+			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
+			alert("commentDataIndex ="+commentDataIndex);
+			targetCommentSelfURL = response.resources.self.ref;
+			targetPostResponseObj = response;
+			
 			alert("starting to execute.....");
+			alert("comment created is "+JSON.stringify(comment));
 			var request=response.createComment(comment);
 			alert("request to execute.....");
 		
