@@ -958,7 +958,8 @@ function executeCommentCopy() {
 				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
 				targetCommentSelfURL = commentResponseObj.resources.self.ref;
 				targetPostResponseObj = commentResponseObj;
-				commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
+				//commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
+				commentsSelfURLMap[sourceCommentSelfURL] = comment.content=commentData.list[commentDataIndex].resources.self.ref;
 				commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
 				commentflag = true;
 				commentDataIndex =commentDataIndex + 1;
