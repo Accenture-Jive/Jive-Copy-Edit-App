@@ -165,7 +165,7 @@ if(response.list[0].resources.hasOwnProperty('comments'))
  var comments = response.list[0].getComments();
  comments.execute(function(data) {
  commentData=data;
- alert("commentData : 167 :"+JSON.stringify(commentData));
+ console.log("commentData : 167 :"+JSON.stringify(commentData));
  });
  }
 });
