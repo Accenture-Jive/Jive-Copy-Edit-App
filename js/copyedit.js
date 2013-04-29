@@ -800,7 +800,7 @@ var request = osapi.jive.core.discussions.get({id: docID});
 request.execute(function(response) {
 var htmlRef=response.data.messages.root.resources.html.ref;
 htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
-window.location = htmlRef+'/edit'; 	
+//window.location = htmlRef+'/edit'; 	
 });
 }
 else if(pollIndex!=-1)
