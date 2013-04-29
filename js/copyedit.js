@@ -948,7 +948,8 @@ function executeCommentCopy() {
 			
 			alert("starting to execute.....");
 			alert("comment created is "+JSON.stringify(comment));
-			var request=response.createComment(comment,comment);
+			console.log("comment created is "+JSON.stringify(comment));
+			var request=response.createComment(comment);
 			alert("request to execute.....");
 		
 			request.execute(function(commentResponseObj){
