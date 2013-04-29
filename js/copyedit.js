@@ -917,7 +917,7 @@ function executeCommentCopy() {
 			comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
-			
+			sourceCommentParentUrl = commentData.list[commentDataIndex].parent;
 			
 			
 			
