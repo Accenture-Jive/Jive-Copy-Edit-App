@@ -900,8 +900,8 @@ else if(pollIndex!=-1)
 function executeCommentCopy() {
 		alert("Into the execute comment copy :-");
 		alert("commentDataIndex: "+commentDataIndex);
-		alert("commentData legth: "+commentData.length);
-		if(commentDataIndex == commentData.length) 
+		alert("commentData legth: "+commentData.list.length);
+		if(commentDataIndex == commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
 			var comment=new osapi.jive.corev3.contents.Comment();
