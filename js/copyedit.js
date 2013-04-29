@@ -952,7 +952,7 @@ function executeCommentCopy() {
 			alert("request to execute.....");
 		
 			request.execute(function(commentResponseObj){
-				alert("comment Response: "+JSON.stringify(commentResponseObj));
+				alert("comment Response: "+JSON.stringify(comment,commentResponseObj));
 				alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
 				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
 				targetCommentSelfURL = commentResponseObj.resources.self.ref;
