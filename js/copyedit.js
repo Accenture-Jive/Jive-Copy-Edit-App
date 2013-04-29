@@ -898,7 +898,7 @@ else if(pollIndex!=-1)
 
 
 function executeCommentCopy() {
-		alert("Into the execute comment copy :-");
+		alert("Into the execute comment copyasasdadadsa :-");
 		alert("commentDataIndex: "+commentDataIndex);
 		alert("commentData legth: "+commentData.list.length);
 		if(commentDataIndex <= commentData.list.length) 
