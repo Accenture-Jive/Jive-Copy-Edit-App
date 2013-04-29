@@ -159,9 +159,9 @@ docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 	sourceCommentSelfURL = response.list[0].resources.self.ref;
-alert("subject : "+docSubject);
+//alert("subject : "+docSubject);
 console.log(JSON.stringify(response));
-alert(response.list[0].resources.hasOwnProperty('comments'));
+//alert(response.list[0].resources.hasOwnProperty('comments'));
 if(response.list[0].resources.hasOwnProperty('comments'))
 {
  var comments = response.list[0].getComments();
@@ -807,7 +807,7 @@ htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
 else if(pollIndex!=-1)
 	{
 	var redirectTo=response.resources.html.ref;
-	alert("zsdfsfd "+response.resources.html.ref);
+	//alert("zsdfsfd "+response.resources.html.ref);
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 	redirectTo=redirectTo.replace('polls','poll');
 	if(isChecked==true)
@@ -909,10 +909,10 @@ else if(pollIndex!=-1)
 
 function executeCommentCopy() 
 {
-		alert("Into the execute comment copy :-");
-				alert("redirectHrefLocation :"+redirectHrefLocation);
-		alert("commentDataIndex: "+commentDataIndex);
-		alert("commentData legth: "+commentData.list.length);
+		//alert("Into the execute comment copy :-");
+			//	alert("redirectHrefLocation :"+redirectHrefLocation);
+		//alert("commentDataIndex: "+commentDataIndex);
+		//alert("commentData legth: "+commentData.list.length);
 		if(commentDataIndex < commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
@@ -935,12 +935,12 @@ function executeCommentCopy()
 			
 			if(commentDataIndex > 0)
 			{
-					alert("inside if comment structure if");
-					alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
+				//	alert("inside if comment structure if");
+					//alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
 					if(sourceCommentParentUrl in commentsSelfURLMap)
 					{
-						alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
-						alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
+						//alert("comment.parent "+commentsSelfURLMap[sourceCommentParentUrl]);
+						//alert("response replce ="+JSON.stringify(commentsPostURLMap[sourceCommentParentUrl]));
 					   comment.parent = commentsSelfURLMap[sourceCommentParentUrl];
 					   response = commentsPostURLMap[sourceCommentParentUrl];
 					}
@@ -948,25 +948,25 @@ function executeCommentCopy()
 			}
 			
 
-			alert("Init targetCommentSelfURL "+response.resources.self.ref);
+			/*alert("Init targetCommentSelfURL "+response.resources.self.ref);
 			alert("Init targetPostResponseObj ="+JSON.stringify(response));
 			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
 			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
-			alert("commentDataIndex ="+commentDataIndex);
+			alert("commentDataIndex ="+commentDataIndex);*/
 			targetCommentSelfURL = response.resources.self.ref;
 			targetPostResponseObj = response;
 		
 			
-			alert("starting to execute.....");
-			alert("comment created is "+JSON.stringify(comment));
+			//alert("starting to execute.....");
+			//alert("comment created is "+JSON.stringify(comment));
 			console.log("comment created is "+JSON.stringify(comment));
 			var request=response.createComment(comment);
-			alert("request to execute.....");
+			//alert("request to execute.....");
 		
 			request.execute(function(commentResponseObj){
-				alert("comment Response: "+JSON.stringify(commentResponseObj));
+				/*alert("comment Response: "+JSON.stringify(commentResponseObj));
 				alert("comment Response: - targetCommentSelfURL "+commentResponseObj.resources.self.ref);
-				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));
+				alert("comment Response: - targetPostResponseObj ="+JSON.stringify(commentResponseObj));*/
 				targetCommentSelfURL = commentResponseObj.resources.self.ref;
 				targetPostResponseObj = commentResponseObj;
 				//commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
@@ -979,8 +979,8 @@ function executeCommentCopy()
 			});
 		}
 		else {
-		alert("Into else");
-		alert(redirectHrefLocation);
+	//	alert("Into else");
+		//alert(redirectHrefLocation);
 			window.location = redirectHrefLocation;
 		
 		}
