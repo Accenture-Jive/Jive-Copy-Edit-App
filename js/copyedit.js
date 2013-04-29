@@ -9,6 +9,7 @@ var isChecked=new Boolean();
 	var commentflag=false;
 	var commentDataResponse;
 	var commentDataIndex=0;
+	var contentCreationResponse;
 	
 var to_sel_place='';
 var commentData='';
@@ -764,6 +765,7 @@ function onContentCreated (response) {
 		sourceCommentSelfURL = response.resources.self.ref;
 		commentsSelfURLMap[sourceCommentSelfURL] = response.resources.self.ref;
 		commentsPostURLMap[sourceCommentSelfURL] = response;
+		contentCreationResponse = response;
 	if(docIndex!=-1)
 	{
 	if(isChecked==true)
@@ -898,23 +900,26 @@ else if(pollIndex!=-1)
 
 
 function executeCommentCopy() {
-		alert("Into the execute comment copyasasdadadsa :-");
+		alert("Into the execute comment copy :-");
 		alert("commentDataIndex: "+commentDataIndex);
 		alert("commentData legth: "+commentData.list.length);
 		if(commentDataIndex <= commentData.list.length) 
 		{
-			console.log("commentData: "+JSON.stringify(commentData));
+			console.log("commentData: "+commentData);
 			var comment=new osapi.jive.corev3.contents.Comment();
 			comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;
+			if(commentDataIndex == 0) {
+				response = contentCreationResponse
+			}
 			
-			alert("Init targetCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
-		//	alert("Init targetPostResponseObj ="+JSON.stringify(response));
+			alert("Init targetCommentSelfURL "+response.resources.self.ref);
+			alert("Init targetPostResponseObj ="+JSON.stringify(response));
 			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
 			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
 			alert("commentDataIndex ="+commentDataIndex);
-			targetCommentSelfURL = commentData.list[commentDataIndex].resources.self.ref;
-			targetPostResponseObj = comment;
+			targetCommentSelfURL = response.resources.self.ref;
+			targetPostResponseObj = response;
 			
 			if(commentDataIndex > 0)
 			{
