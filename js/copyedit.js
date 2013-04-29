@@ -903,7 +903,7 @@ function executeCommentCopy() {
 		alert("commentData legth: "+commentData.list.length);
 		if(commentDataIndex <= commentData.list.length) 
 		{
-			console.log("commentData: "+commentData);
+			console.log("commentData: "+JSON.stringify(commentData));
 			var comment=new osapi.jive.corev3.contents.Comment();
 			comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;
