@@ -157,7 +157,7 @@ pollOptions=response.list[0].options;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
-
+	sourceCommentSelfURL = response.resources.self.ref;
 alert("subject : "+docSubject);
 console.log(JSON.stringify(response));
 alert(response.list[0].resources.hasOwnProperty('comments'));
@@ -762,7 +762,7 @@ function onContentCreated (response) {
     }
 	else 
 	{
-		sourceCommentSelfURL = response.resources.self.ref;
+	
 		commentsSelfURLMap[sourceCommentSelfURL] = response.resources.self.ref;
 		commentsPostURLMap[sourceCommentSelfURL] = response;
 		contentCreationResponse = response;
@@ -925,8 +925,7 @@ function executeCommentCopy() {
 			
 			if(commentDataIndex > 0)
 			{
-					alert("inside if comment structure if");\
-					alert('map = '+commentsSelfURLMap);
+					alert("inside if comment structure if");
 					alert ("sourceCommentParentUrl in commentsSelfURLMap ="+(sourceCommentParentUrl in commentsSelfURLMap))
 					if(sourceCommentParentUrl in commentsSelfURLMap)
 					{
