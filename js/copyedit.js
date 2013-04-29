@@ -908,13 +908,13 @@ function executeCommentCopy() {
 			comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;
 			
-			alert("Init targetCommentSelfURL "+response.resources.self.ref);
-			alert("Init targetPostResponseObj ="+JSON.stringify(response));
+			alert("Init targetCommentSelfURL "+comment.resources.self.ref);
+		//	alert("Init targetPostResponseObj ="+JSON.stringify(response));
 			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
 			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
 			alert("commentDataIndex ="+commentDataIndex);
-			targetCommentSelfURL = response.resources.self.ref;
-			targetPostResponseObj = response;
+			targetCommentSelfURL = comment.resources.self.ref;
+			targetPostResponseObj = comment;
 			
 			if(commentDataIndex > 0)
 			{
