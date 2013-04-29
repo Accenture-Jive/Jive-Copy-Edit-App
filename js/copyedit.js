@@ -157,7 +157,7 @@ pollOptions=response.list[0].options;
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
-	sourceCommentSelfURL = response.resources.self.ref;
+	sourceCommentSelfURL = response.list[0].resources.self.ref;
 alert("subject : "+docSubject);
 console.log(JSON.stringify(response));
 alert(response.list[0].resources.hasOwnProperty('comments'));
