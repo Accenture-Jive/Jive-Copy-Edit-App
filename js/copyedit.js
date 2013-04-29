@@ -969,6 +969,7 @@ function executeCommentCopy(contentResponse) {
 			});
 		}
 		else  {
+			alert("Into else method");
 			var redirectTo=contentResponse.resources.html.ref;
 			redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 			redirectTo=redirectTo.replace('polls','poll');
