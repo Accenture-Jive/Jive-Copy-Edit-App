@@ -906,12 +906,20 @@ function executeCommentCopy() {
 		if(commentDataIndex <= commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
-			var comment=new osapi.jive.corev3.contents.Comment();
-			comment.content=commentData.list[commentDataIndex].content;
-			comment.parent=commentData.list[commentDataIndex].parent;
 			if(commentDataIndex == 0) {
 				response = contentCreationResponse
+				
 			}
+			var comment=new osapi.jive.corev3.contents.Comment();
+			/*comment.content=commentData.list[commentDataIndex].content;
+			comment.parent=commentData.list[commentDataIndex].parent;*/
+			
+			comment.content=commentData.list[commentDataIndex].content;
+			comment.parent=response.resources.self.ref;
+			
+			
+			
+			
 			
 			
 			
@@ -929,6 +937,7 @@ function executeCommentCopy() {
 				
 			}
 			
+
 			alert("Init targetCommentSelfURL "+response.resources.self.ref);
 			alert("Init targetPostResponseObj ="+JSON.stringify(response));
 			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
