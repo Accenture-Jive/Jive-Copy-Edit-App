@@ -10,6 +10,7 @@ var isChecked=new Boolean();
 	var commentDataResponse;
 	var commentDataIndex=0;
 	var contentCreationResponse;
+	var redirectHrefLocation;
 	
 var to_sel_place='';
 var commentData='';
@@ -813,7 +814,7 @@ else if(pollIndex!=-1)
 	{
 	
    // window.location = redirectTo+'/edit.jspa?ID='+response.id;
-   var redirectHrefLocation = redirectTo+'/edit.jspa?ID='+response.id;
+    redirectHrefLocation = redirectTo+'/edit.jspa?ID='+response.id;
 	/*for(var i=0;i<commentData.list.length;i++)
     {
 		console.log("commentData: "+commentData);
@@ -875,7 +876,7 @@ else if(pollIndex!=-1)
 		commentDataResponse = commentData;
 		alert("commentData :"+commentData);
 		commentDataIndex = 0;
-		executeCommentCopy(redirectHrefLocation);
+		executeCommentCopy();
 	}
 	/*var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
@@ -906,7 +907,7 @@ else if(pollIndex!=-1)
 }
 
 
-function executeCommentCopy(redirectHrefLocation) 
+function executeCommentCopy() 
 {
 		alert("Into the execute comment copy :-");
 				alert("redirectHrefLocation :"+redirectHrefLocation);
