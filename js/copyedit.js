@@ -868,12 +868,12 @@ else if(pollIndex!=-1)
 		commentDataResponse = commentData;
 		alert("commentData :"+commentData);
 		commentDataIndex = 0;
-		executeCommentCopy();
+		executeCommentCopy(response);
 	}
-	var redirectTo=response.resources.html.ref;
+	/*var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 	redirectTo=redirectTo.replace('polls','poll');
-    window.location = redirectTo+'/edit.jspa?ID='+response.id;
+    window.location = redirectTo+'/edit.jspa?ID='+response.id;*/
 	 }
 	 else if(blogIndex!=-1)
 	{
@@ -899,7 +899,7 @@ else if(pollIndex!=-1)
 }
 
 
-function executeCommentCopy() {
+function executeCommentCopy(contentResponse) {
 		alert("Into the execute comment copy :-");
 		alert("commentDataIndex: "+commentDataIndex);
 		alert("commentData legth: "+commentData.list.length);
@@ -967,6 +967,12 @@ function executeCommentCopy() {
 				commentDataIndex =commentDataIndex + 1;
 				executeCommentCopy();
 			});
+		}
+		else  {
+			var redirectTo=contentResponse.resources.html.ref;
+			redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
+			redirectTo=redirectTo.replace('polls','poll');
+			window.location = redirectTo+'/edit.jspa?ID='+response.id;
 		}
 	
 }
