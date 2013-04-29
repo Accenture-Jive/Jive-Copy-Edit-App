@@ -805,11 +805,13 @@ htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
 }
 else if(pollIndex!=-1)
 	{
-	if(isChecked==true)
-	{
 	var redirectTo=response.resources.html.ref;
+	alert("zsdfsfd "+response.resources.html.ref);
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 	redirectTo=redirectTo.replace('polls','poll');
+	if(isChecked==true)
+	{
+	
    // window.location = redirectTo+'/edit.jspa?ID='+response.id;
    var redirectHrefLocation = redirectTo+'/edit.jspa?ID='+response.id;
 	/*for(var i=0;i<commentData.list.length;i++)
