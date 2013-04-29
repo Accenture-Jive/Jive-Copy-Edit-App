@@ -971,7 +971,7 @@ function executeCommentCopy() {
 		var redirectTo=response.resources.html.ref;
 		redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 		redirectTo=redirectTo.replace('polls','poll');
-	   // window.location = redirectTo+'/edit.jspa?ID='+response.id;
+	    window.location = redirectTo+'/edit.jspa?ID='+response.id;
 
 }
 
