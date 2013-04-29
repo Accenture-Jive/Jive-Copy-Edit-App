@@ -807,6 +807,11 @@ else if(pollIndex!=-1)
 	{
 	if(isChecked==true)
 	{
+	var redirectTo=response.resources.html.ref;
+	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
+	redirectTo=redirectTo.replace('polls','poll');
+   // window.location = redirectTo+'/edit.jspa?ID='+response.id;
+   var redirectHrefLocation = redirectTo+'/edit.jspa?ID='+response.id;
 	/*for(var i=0;i<commentData.list.length;i++)
     {
 		console.log("commentData: "+commentData);
@@ -868,12 +873,12 @@ else if(pollIndex!=-1)
 		commentDataResponse = commentData;
 		alert("commentData :"+commentData);
 		commentDataIndex = 0;
-		executeCommentCopy(response);
+		executeCommentCopy(redirectHrefLocation);
 	}
 	/*var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 	redirectTo=redirectTo.replace('polls','poll');
-    window.location = redirectTo+'/edit.jspa?ID='+response.id;*/
+   // window.location = redirectTo+'/edit.jspa?ID='+response.id;*/
 	 }
 	 else if(blogIndex!=-1)
 	{
@@ -899,11 +904,13 @@ else if(pollIndex!=-1)
 }
 
 
-function executeCommentCopy(contentResponse) {
+function executeCommentCopy(redirectHrefLocation) 
+{
 		alert("Into the execute comment copy :-");
+				alert("redirectHrefLocation :"+redirectHrefLocation);
 		alert("commentDataIndex: "+commentDataIndex);
 		alert("commentData legth: "+commentData.list.length);
-		if(commentDataIndex < commentData.list.length) 
+		if(commentDataIndex <= commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
 			if(commentDataIndex == 0) {
@@ -968,14 +975,13 @@ function executeCommentCopy(contentResponse) {
 				executeCommentCopy();
 			});
 		}
-		else  {
-			alert("Into else method");
-			var redirectTo=contentResponse.resources.html.ref;
-			redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
-			redirectTo=redirectTo.replace('polls','poll');
-			alert(redirectTo+'/edit.jspa?ID='+contentResponse.id);
-			window.location = redirectTo+'/edit.jspa?ID='+contentResponse.id;
+		else {
+		alert("Into else");
+		alert(redirectHrefLocation);
+			window.location = redirectHrefLocation;
+		
 		}
+		
 	
 }
 
