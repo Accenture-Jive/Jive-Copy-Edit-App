@@ -726,7 +726,7 @@ osapi.http.get({
 	postJson.visibility='all';
 	delete postJson.parent;
 	}
-    osapi.jive.corev3.polls.create(postJson).execute(onContentCreated);	
+    osapi.jive.corev3.polls.create(postJson,{'headers' : { 'X-Jive-Run-As' : ['uri /people/2006']}}).execute(onContentCreated);	
 	}
 	else if(blogIndex!=-1)
 	{        
@@ -786,13 +786,14 @@ function onContentCreated (response) {
 	 {
 	 if(isChecked==true)
 	{
-	for(var i=0;i<messageData.list.length;i++)
+	/*for(var i=0;i<messageData.list.length;i++)
     {
     var message=new osapi.jive.corev3.contents.Message();
     message.content=messageData.list[i].content;
     message.parent=messageData.list[i].parent;
     response.createReply(message).execute(); 
-    }
+    }*/
+
 	}
 	var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
@@ -874,7 +875,7 @@ else if(pollIndex!=-1)
 	
     }*/
 		commentDataResponse = commentData;
-		alert("commentData :"+commentData);
+		//alert("commentData :"+commentData);
 		commentDataIndex = 0;
 		executeCommentCopy();
 	}
