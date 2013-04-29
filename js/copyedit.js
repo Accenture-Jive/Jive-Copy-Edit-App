@@ -905,13 +905,13 @@ function executeCommentCopy() {
 		{
 			console.log("commentData: "+commentData);
 			var comment=new osapi.jive.corev3.contents.Comment();
-			comment.content=commentData.list[i].content;
-			comment.parent=commentData.list[i].parent;
+			comment.content=commentData.list[commentDataIndex].content;
+			comment.parent=commentData.list[commentDataIndex].parent;
 			
 			alert("Init targetCommentSelfURL "+response.resources.self.ref);
 			alert("Init targetPostResponseObj ="+JSON.stringify(response));
-			alert("Init sourceCommentSelfURL "+commentData.list[i].resources.self.ref);
-			alert("Init sourceCommentParentUrl = "+commentData.list[i].parent);
+			alert("Init sourceCommentSelfURL "+commentData.list[commentDataIndex].resources.self.ref);
+			alert("Init sourceCommentParentUrl = "+commentData.list[commentDataIndex].parent);
 			alert("commentDataIndex ="+commentDataIndex);
 			targetCommentSelfURL = response.resources.self.ref;
 			targetPostResponseObj = response;
