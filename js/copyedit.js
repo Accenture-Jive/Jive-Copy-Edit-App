@@ -913,7 +913,7 @@ function executeCommentCopy()
 				alert("redirectHrefLocation :"+redirectHrefLocation);
 		alert("commentDataIndex: "+commentDataIndex);
 		alert("commentData legth: "+commentData.list.length);
-		if(commentDataIndex <= commentData.list.length) 
+		if(commentDataIndex < commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
 			if(commentDataIndex == 0) {
