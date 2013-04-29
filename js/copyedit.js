@@ -945,6 +945,7 @@ function executeCommentCopy() {
 			alert("commentDataIndex ="+commentDataIndex);
 			targetCommentSelfURL = response.resources.self.ref;
 			targetPostResponseObj = response;
+		
 			
 			alert("starting to execute.....");
 			alert("comment created is "+JSON.stringify(comment));
@@ -959,7 +960,8 @@ function executeCommentCopy() {
 				targetCommentSelfURL = commentResponseObj.resources.self.ref;
 				targetPostResponseObj = commentResponseObj;
 				//commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
-				commentsSelfURLMap[sourceCommentSelfURL] = commentData.list[commentDataIndex].resources.self.ref;
+				sourceCommentSelfURL = commentData.list[commentDataIndex].resources.self.ref;
+				commentsSelfURLMap[sourceCommentSelfURL] = commentResponseObj.resources.self.ref;
 				commentsPostURLMap[sourceCommentSelfURL] = commentResponseObj;
 				commentflag = true;
 				commentDataIndex =commentDataIndex + 1;
