@@ -159,7 +159,6 @@ docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
 
 alert("subject : "+docSubject);
-sourceCommentSelfURL = response.resources.self.ref;
 console.log(JSON.stringify(response));
 alert(response.list[0].resources.hasOwnProperty('comments'));
 if(response.list[0].resources.hasOwnProperty('comments'))
@@ -763,7 +762,7 @@ function onContentCreated (response) {
     }
 	else 
 	{
-		
+		sourceCommentSelfURL = response.resources.self.ref;
 		commentsSelfURLMap[sourceCommentSelfURL] = response.resources.self.ref;
 		commentsPostURLMap[sourceCommentSelfURL] = response;
 		contentCreationResponse = response;
