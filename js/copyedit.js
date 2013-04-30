@@ -791,7 +791,7 @@ function onContentCreated (response) {
 	 }
 	 else if(disIndex!=-1)
 	 {
-	 	var redirectTo=response.resources.html.ref;
+	 var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
     var docID= redirectTo.substring(startIndex+7,redirectTo.length);
 var request = osapi.jive.core.discussions.get({id: docID});
@@ -803,7 +803,7 @@ redirectHrefLocation = htmlRef+'/edit';
 });
 	 if(isChecked==true)
 	{	
-		commentDataResponse = commentData;
+		commentDataResponse = messageData;
 		//alert("commentData :"+commentData);
 		commentDataIndex = 0;
 		executeCommentCopy();
@@ -879,6 +879,11 @@ function executeCommentCopy()
 			//	alert("redirectHrefLocation :"+redirectHrefLocation);
 		//alert("commentDataIndex: "+commentDataIndex);
 		//alert("commentData legth: "+commentData.list.length);
+		if(disIndex!=-1)
+		{
+		alert("is discussion");
+		commentData=messageData;
+		}
 		if(commentDataIndex < commentData.list.length) 
 		{
 			console.log("commentData: "+commentData);
