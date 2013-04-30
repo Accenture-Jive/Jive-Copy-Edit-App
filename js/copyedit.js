@@ -767,25 +767,46 @@ function onContentCreated (response) {
 		commentsSelfURLMap[sourceCommentSelfURL] = response.resources.self.ref;
 		commentsPostURLMap[sourceCommentSelfURL] = response;
 		contentCreationResponse = response;
+
 	if(docIndex!=-1)
 	{
+		var redirectTo=response.resources.html.ref;
+        redirectHrefLocation = redirectTo+'/edit?ID='+response.id; 
 	if(isChecked==true)
 	{
-	for(var i=0;i<commentData.list.length;i++)
+		commentDataResponse = commentData;
+		//alert("commentData :"+commentData);
+		commentDataIndex = 0;
+		executeCommentCopy();
+	/*for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
     comment.parent=commentData.list[i].parent;
     response.createComment(comment).execute(); 
-    }
+    }*/
 	}
-  	var redirectTo=response.resources.html.ref;
-    window.location = redirectTo+'/edit?ID='+response.id; 
+  	//var redirectTo=response.resources.html.ref;
+    //window.location = redirectTo+'/edit?ID='+response.id; 
 	 }
 	 else if(disIndex!=-1)
 	 {
+	 	var redirectTo=response.resources.html.ref;
+	var startIndex=redirectTo.indexOf('thread');
+    var docID= redirectTo.substring(startIndex+7,redirectTo.length);
+var request = osapi.jive.core.discussions.get({id: docID});
+request.execute(function(response) {
+var htmlRef=response.data.messages.root.resources.html.ref;
+htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
+//window.location = htmlRef+'/edit'; 	
+redirectHrefLocation = htmlRef+'/edit';
+});
 	 if(isChecked==true)
-	{
+	{	
+		commentDataResponse = commentData;
+		//alert("commentData :"+commentData);
+		commentDataIndex = 0;
+		executeCommentCopy();
 	/*for(var i=0;i<messageData.list.length;i++)
     {
     var message=new osapi.jive.corev3.contents.Message();
@@ -794,7 +815,7 @@ function onContentCreated (response) {
     response.createReply(message).execute(); 
     }*/
 	}
-	var redirectTo=response.resources.html.ref;
+	/*var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
     var docID= redirectTo.substring(startIndex+7,redirectTo.length);
 var request = osapi.jive.core.discussions.get({id: docID});
@@ -802,7 +823,7 @@ request.execute(function(response) {
 var htmlRef=response.data.messages.root.resources.html.ref;
 htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
 //window.location = htmlRef+'/edit'; 	
-});
+});*/
 }
 else if(pollIndex!=-1)
 	{
@@ -813,8 +834,6 @@ else if(pollIndex!=-1)
 	redirectHrefLocation = redirectTo+'/edit.jspa?ID='+response.id;
 	if(isChecked==true)
 	{
-	
-  
 		commentDataResponse = commentData;
 		//alert("commentData :"+commentData);
 		commentDataIndex = 0;
@@ -827,11 +846,16 @@ else if(pollIndex!=-1)
 	 }
 	 else if(blogIndex!=-1)
 	{
+	var redirectTo=response.resources.html.ref;
+	redirectTo= redirectTo.substring(0,redirectTo.indexOf('/',10));
+    redirectHrefLocation = redirectTo+'/blog/update-post.jspa?ID='+response.id;
 	if(isChecked==true)
-	{
-	
-
-	for(var i=0;i<commentData.list.length;i++)
+	{	
+		commentDataResponse = commentData;
+		//alert("commentData :"+commentData);
+		commentDataIndex = 0;
+		executeCommentCopy();
+	/*for(var i=0;i<commentData.list.length;i++)
     {
     var comment=new osapi.jive.corev3.contents.Comment();
     comment.content=commentData.list[i].content;
@@ -839,11 +863,11 @@ else if(pollIndex!=-1)
 	
 
     response.createComment(comment).execute(); 
-    }
+    }*/
 	}
-	var redirectTo=response.resources.html.ref;
+	/*var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('/',10));
-    window.location = redirectTo+'/blog/update-post.jspa?ID='+response.id;
+    window.location = redirectTo+'/blog/update-post.jspa?ID='+response.id;*/
 	 }
 }
 }
