@@ -891,7 +891,15 @@ function executeCommentCopy()
 				response = contentCreationResponse
 				
 			}
-			var comment=new osapi.jive.corev3.contents.Comment();
+		if(disIndex!=-1)
+		{
+		alert("is message");
+        var comment=new osapi.jive.corev3.contents.Message();
+		}
+		else
+		{
+		var comment=new osapi.jive.corev3.contents.Comment();
+		}
 			/*comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;*/
 			
@@ -931,7 +939,14 @@ function executeCommentCopy()
 			//alert("starting to execute.....");
 			//alert("comment created is "+JSON.stringify(comment));
 			console.log("comment created is "+JSON.stringify(comment));
-			var request=response.createComment(comment);
+		if(disIndex!=-1)
+		{	
+		var request=response.createReply(comment);
+		}
+		else
+		{
+		var request=response.createComment(comment);
+		}
 			//alert("request to execute.....");
 		
 			request.execute(function(commentResponseObj){
