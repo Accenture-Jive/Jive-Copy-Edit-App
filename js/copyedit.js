@@ -701,7 +701,7 @@ Grp_poll_json='';
 
 Grp_file_json=docUrl;
 osapi.http.get({
-'href' : 'http://54.247.84.129:8081/AIDealRoom-CopyAppv1/AIServlet?app-name=copy-edit&inc_comments='+isChecked+'&my_place='+to_sel_place+'&srcgroup_place_url='+space_url+'&target_groupurl='+to_url+'&src_group_file='+Grp_file_json+'&src_group_document='+Grp_doc_json+'&src_idea='+Grp_idea_json+'&src_discussion='+Grp_disc_json+'&src_blog='+Grp_blog_json+'&src_poll='+Grp_poll_json+'&logged-user='+loggedUser+'&logged-userName='+loggedUserName+'&group-name='+dest_space_name,
+'href' : 'http://54.247.84.129:8080/AIDealRoom-CopyAppv1/AIServlet?app-name=copy-edit&inc_comments='+isChecked+'&my_place='+to_sel_place+'&srcgroup_place_url='+space_url+'&target_groupurl='+to_url+'&src_group_file='+Grp_file_json+'&src_group_document='+Grp_doc_json+'&src_idea='+Grp_idea_json+'&src_discussion='+Grp_disc_json+'&src_blog='+Grp_blog_json+'&src_poll='+Grp_poll_json+'&logged-user='+loggedUser+'&logged-userName='+loggedUserName+'&group-name='+dest_space_name,
 'format' : 'json',
 'authz' : 'signed'
 }).execute(refreshiframe);
@@ -997,7 +997,7 @@ function refreshiframe()
 { 
 flag=true;
 osapi.http.get({
-'href' : 'http://54.247.84.129:8081/AIDealRoom-CopyAppv1/LoggerServlet?logged-user='+loggedUser+'&logged-userName='+loggedUserName,
+'href' : 'http://54.247.84.129:8080/AIDealRoom-CopyAppv1/LoggerServlet?logged-user='+loggedUser+'&logged-userName='+loggedUserName,
 'format' : 'text',
 'authz' : 'signed'
 }).execute(refreshFrameResponse);
@@ -1011,7 +1011,7 @@ refreshiframe();
 setTimeout("refreshiframe()",1000); 	
 var str=response.content;
 //console.log("str: "+str);
-var res='{ error: "Connect to /54.246.36.246:8081 timed out" }';
+var res='{ error: "Connect to /54.246.36.246:8080 timed out" }';
 var errorCode=str.indexOf(res);
 //alert("errorCode: "+errorCode);
 if(errorCode!=0)
