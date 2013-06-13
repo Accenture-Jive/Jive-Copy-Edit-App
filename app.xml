@@ -38,8 +38,8 @@
                   icon="images/copy_edit_icon.png" />  ]]>
       </Param>  
     </Require>  
-		<Link rel="event.addapp" href="http://54.247.84.129:8080/UAT/AIServlet/installed" method="GET"/>
-		<Link rel="event.removeapp" href="http://54.247.84.129:8080/UAT/AIServlet/uninstalled" method="GET"/>
+		<Link rel="event.addapp" href="http://54.247.84.129:8081/UAT/AIServlet/installed" method="GET"/>
+		<Link rel="event.removeapp" href="http://54.247.84.129:8081/UAT/AIServlet/uninstalled" method="GET"/>
 		
     </ModulePrefs>
     <Content view="embedded" type="html" href="http://bit.ly/11NjOUV" preferred_height="250" preferred_width="350"/>
