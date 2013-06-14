@@ -910,10 +910,11 @@ function executeCommentCopy()
 			 
 
 
-        if(commentData.list[commentDataIndex].content[0].hasOwnProperty("text")){ //added missing closing parenthesis
+        if(commentData.list[commentDataIndex].content.hasOwnProperty("text")){ //added missing closing parenthesis
             var text = commentData.list[commentDataIndex].content.text;
 			alert("title: "+text);
             commentData.list[commentDataIndex].content.text = '<span class="red">' + text + '</span>';
+			console.log("Text: "+commentData.list[commentDataIndex].content.text);
         }
    
 			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;
