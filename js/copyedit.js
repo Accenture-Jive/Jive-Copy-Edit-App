@@ -142,8 +142,9 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  messageData=data;
  
  
- var d = new Date(messageData.list[commentDataIndex].updated);
-alert(d.toLocaleDateString());
+ var now = new Date(messageData.list[commentDataIndex].updated);
+alert(now.toLocaleDateString());
+alert(now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
  var d = new Date,
     dformat = [d.getDate(),
                d.getMonth()+1,
