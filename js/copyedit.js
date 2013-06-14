@@ -914,7 +914,7 @@ function executeCommentCopy()
             if(commentData.list[commentDataIndex].content.text.indexOf("<p>") !== -1)
 			{
 			var text=commentData.list[commentDataIndex].content.text;
-			var replaceStr='<p><span class="red">[Originally posted by: Suresh Peddapu on 06/14/2013 at 21:47]</span></p>';
+			var replaceStr='<p><span class="red">[Originally posted by: Suresh Peddapu on 06/14/2013 at 21:47]</span></p><br/>';
 			commentData.list[commentDataIndex].content.text=text.replace('<p>',replaceStr);
 			//console.log("after replace: "+commentData.list[commentDataIndex].content.text);
 			//var n=str.replace("Microsoft","W3Schools");
