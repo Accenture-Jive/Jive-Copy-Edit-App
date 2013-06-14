@@ -902,7 +902,7 @@ function executeCommentCopy()
 		}
 			/*comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;*/
-			var str= '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]';
+			var str= '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]<br/>';
 			comment.content= str.concat(commentData.list[commentDataIndex].content);
 			comment.parent=response.resources.self.ref;
 			
