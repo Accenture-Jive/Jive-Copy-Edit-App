@@ -905,7 +905,7 @@ function executeCommentCopy()
 			console.log(JSON.stringify(commentData.list[commentDataIndex].content));
 			
 			 var title;
-			 console.log("as Text: "+commentData.list[0].hasOwnProperty("text"));
+			 console.log("as Text: "+commentData.list[commentDataIndex].hasOwnProperty("text"));
 			 
     for(var i = 0; i < commentData.list[0].length; i++){
         if(commentData.list[0].hasOwnProperty("text")){
