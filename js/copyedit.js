@@ -906,14 +906,14 @@ function executeCommentCopy()
 			
 			 var title;
 			 console.log("as Text: "+commentData.list[commentDataIndex].content.hasOwnProperty("text"));
-			 console.log("as Text: "+commentData.list[commentDataIndex].content[0].hasOwnProperty("text"));
+			 console.log("Text: "+commentData.list[commentDataIndex].content.text);
 			 
 
 
         if(commentData.list[commentDataIndex].content[0].hasOwnProperty("text")){ //added missing closing parenthesis
-            var text = commentData.list[commentDataIndex].content[0].text;
+            var text = commentData.list[commentDataIndex].content.text;
 			alert("title: "+text);
-            commentData.list[commentDataIndex].content[0].text = '<span class="red">' + text + '</span>';
+            commentData.list[commentDataIndex].content.text = '<span class="red">' + text + '</span>';
         }
    
 			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;
