@@ -916,8 +916,10 @@ function executeCommentCopy()
 			{
 			var text=commentData.list[commentDataIndex].content.text;
 			var formattedName= messageData.list[commentDataIndex].author.name.formatted;
+			var updated= messageData.list[commentDataIndex].author.updated;
 			console.log("name: "+messageData.list[commentDataIndex].author.name.formatted);
-			var replaceStr='<p><span class="red">[Originally posted by: '+formattedName+' on 06/14/2013 at 21:47]</span></p><br/>';
+			console.log("name: "+messageData.list[commentDataIndex].author.updated);
+			var replaceStr='<p><span class="red">[Originally posted by: '+formattedName+' on '+updated+']</span></p><br/>';
 			commentData.list[commentDataIndex].content.text=text.replace('<p>',replaceStr);
 			//console.log("after replace: "+commentData.list[commentDataIndex].content.text);
 			//var n=str.replace("Microsoft","W3Schools");
