@@ -912,8 +912,8 @@ function executeCommentCopy()
 
         if(commentData.list[commentDataIndex].content.hasOwnProperty("text")){ //added missing closing parenthesis
             var text = commentData.list[commentDataIndex].content.text;
-			alert("title: "+text);
-            commentData.list[commentDataIndex].content.text = '<p><span class="red">' + '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]' + '</span></p><br/>'+text;
+			//alert("title: "+text);
+            //commentData.list[commentDataIndex].content.text = '<p><span class="red">' + '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]' + '</span></p><br/>'+text;
 			alert(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1);
 			if(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1)
 			{
