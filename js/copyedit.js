@@ -131,10 +131,11 @@ entityDescriptor:[1,disID]
 });
 // execute the request
 request.execute(function(response) {
-//console.log("DATA: "+JSON.stringify(response));
+console.log("DATA: "+JSON.stringify(response));
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
+
 if(response.list[0].resources.hasOwnProperty('messages'))
 {
  var messages = response.list[0].getReplies();
