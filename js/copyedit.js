@@ -906,19 +906,16 @@ function executeCommentCopy()
 			
 			 var title;
 			 console.log("as Text: "+commentData.list[commentDataIndex].content.hasOwnProperty("text"));
+			 console.log("as Text: "+commentData.list[commentDataIndex].content[0].hasOwnProperty("text"));
 			 
-    for(var i = 0; i < commentData.list[0].length; i++){
-        if(commentData.list[0].hasOwnProperty("text")){
-            //data[i]["text"] = data[i]["thumb"];
-            //delete data[i]["thumb"];
-			alert("hello");
-        }
 
-        if(data[i].hasOwnProperty("title")){ //added missing closing parenthesis
-            title = data[i].title;
-            data[i].title = '<span class="red">' + title + '</span>';
+
+        if(commentData.list[commentDataIndex].content[0].hasOwnProperty("text")){ //added missing closing parenthesis
+            var text = commentData.list[commentDataIndex].content[0].text;
+			alert("title: "+text);
+            commentData.list[commentDataIndex].content[0].text = '<span class="red">' + text + '</span>';
         }
-    }
+   
 			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
