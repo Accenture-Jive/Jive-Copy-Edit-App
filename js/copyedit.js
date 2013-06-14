@@ -918,11 +918,12 @@ function executeCommentCopy()
 			if(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1)
 			{
 			commentData.list[commentDataIndex].content.text=commentData.list[commentDataIndex].content.text.replace("<body>","<body>hello");
+			console.log("after replace: "+commentData.list[commentDataIndex].content.text);
 			//var n=str.replace("Microsoft","W3Schools");
 			}
 			console.log("Text: "+commentData.list[commentDataIndex].content.text);
         }
-   console.log(JSON.stringify(commentData.list[commentDataIndex].content));
+            //console.log(JSON.stringify(commentData.list[commentDataIndex].content));
 			comment.content= commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
