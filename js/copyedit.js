@@ -140,6 +140,19 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  var messages = response.list[0].getReplies();
  messages.execute(function(data) {
  messageData=data;
+ 
+ 
+ var d = new Date,
+    dformat = [d.getDate(),
+               d.getMonth()+1,
+               d.getFullYear()].join('/')+
+              ' ' +
+              [d.getHours(),
+               d.getMinutes(),
+               d.getSeconds()].join(':');
+			   console.log("date: "+d);
+			   console.log("dformat: "+dformat);
+			   
  });
  }
 });
