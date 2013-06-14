@@ -903,7 +903,7 @@ function executeCommentCopy()
 			/*comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;*/
 			
-			comment.content= '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47] <br/>'+commentData.list[commentDataIndex].content;
+			comment.content= '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]'+commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
 			sourceCommentParentUrl = commentData.list[commentDataIndex].parent;
