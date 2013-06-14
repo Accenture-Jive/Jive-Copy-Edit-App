@@ -142,10 +142,10 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  messageData=data;
  
  
- var now = new Date(messageData.list[commentDataIndex].updated);
+var now = new Date(messageData.list[commentDataIndex].updated);
 alert(now.toLocaleDateString());
-alert(now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
- var d = new Date,
+alert(now.getHours() + ":" + now.getMinutes());
+ /*var d = new Date,
     dformat = [d.getDate(),
                d.getMonth()+1,
                d.getFullYear()].join('/')+
@@ -154,7 +154,7 @@ alert(now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
                d.getMinutes(),
                d.getSeconds()].join(':');
 			   console.log("date: "+d);
-			   console.log("dformat: "+dformat);
+			   console.log("dformat: "+dformat);*/
 			   
  });
  }
@@ -934,7 +934,10 @@ function executeCommentCopy()
 			var formattedName= messageData.list[commentDataIndex].author.name.formatted;
 			var updated= messageData.list[commentDataIndex].updated;
 			console.log("name: "+messageData.list[commentDataIndex].author.name.formatted);
-			console.log("name: "+messageData.list[commentDataIndex].updated);
+			console.log("name: "+updated);
+			var now = new Date(updated);
+            console.log(now.toLocaleDateString()+' at '+now.getHours() + ":" + now.getMinutes());
+            //console.log(now.getHours() + ":" + now.getMinutes());
 			var replaceStr='<p><span class="red">[Originally posted by: '+formattedName+' on '+updated+']</span></p><br/>';
 			commentData.list[commentDataIndex].content.text=text.replace('<p>',replaceStr);
 			//console.log("after replace: "+commentData.list[commentDataIndex].content.text);
