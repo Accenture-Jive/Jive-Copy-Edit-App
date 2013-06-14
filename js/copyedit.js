@@ -142,7 +142,7 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  messageData=data;
  
  
- var d = messageData.list[commentDataIndex].updated,
+ var d = new Date,
     dformat = [d.getDate(),
                d.getMonth()+1,
                d.getFullYear()].join('/')+
