@@ -937,8 +937,9 @@ function executeCommentCopy()
 			console.log("name: "+updated);
 			var now = new Date(updated);
             console.log(now.toLocaleDateString()+' at '+now.getHours() + ":" + now.getMinutes());
+			var formattedDate=now.toLocaleDateString()+' at '+now.getHours() + ":" + now.getMinutes();
             //console.log(now.getHours() + ":" + now.getMinutes());
-			var replaceStr='<p><span class="red">[Originally posted by: '+formattedName+' on '+updated+']</span></p><br/>';
+			var replaceStr='<p><span class="red">[Originally posted by: '+formattedName+' on '+formattedDate+']</span></p><br/>';
 			commentData.list[commentDataIndex].content.text=text.replace('<p>',replaceStr);
 			//console.log("after replace: "+commentData.list[commentDataIndex].content.text);
 			//var n=str.replace("Microsoft","W3Schools");
