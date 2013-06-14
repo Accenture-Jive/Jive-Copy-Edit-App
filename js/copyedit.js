@@ -916,7 +916,7 @@ function executeCommentCopy()
             commentData.list[commentDataIndex].content.text = '<span class="red">' + text + '</span>';
 			console.log("Text: "+commentData.list[commentDataIndex].content.text);
         }
-   
+   console.log(JSON.stringify(commentData.list[commentDataIndex].content));
 			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
