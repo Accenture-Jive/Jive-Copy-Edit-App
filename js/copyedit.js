@@ -140,6 +140,7 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  var messages = response.list[0].getReplies();
  messages.execute(function(data) {
  messageData=data;
+ console.log("messsage Data: "+JSON.stringify(messageData));
  });
  }
 });
@@ -879,6 +880,7 @@ function executeCommentCopy()
 			//	alert("redirectHrefLocation :"+redirectHrefLocation);
 		//alert("commentDataIndex: "+commentDataIndex);
 		//alert("commentData legth: "+commentData.list.length);
+		console.log(JSON.stringify(messageData));
 		if(disIndex!=-1)
 		{
 		//alert("is discussion");
