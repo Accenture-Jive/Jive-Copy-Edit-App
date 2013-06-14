@@ -915,9 +915,9 @@ function executeCommentCopy()
 			//alert("title: "+text);
             //commentData.list[commentDataIndex].content.text = '<p><span class="red">' + '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]' + '</span></p><br/>'+text;
 			alert(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1);
-			if(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1)
+			if(commentData.list[commentDataIndex].content.text.indexOf("<p>") !== -1)
 			{
-			commentData.list[commentDataIndex].content.text=commentData.list[commentDataIndex].content.text.replace("<body>","<body>hello");
+			commentData.list[commentDataIndex].content.text=commentData.list[commentDataIndex].content.text.replace("<p>","<p>hello");
 			console.log("after replace: "+commentData.list[commentDataIndex].content.text);
 			//var n=str.replace("Microsoft","W3Schools");
 			}
