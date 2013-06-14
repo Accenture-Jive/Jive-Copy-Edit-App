@@ -141,7 +141,7 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  messages.execute(function(data) {
  messageData=data;
  console.log("messsage Data: "+JSON.stringify(messageData));
- console.log("name: "+messageData.list.author.name.formatted);
+ console.log("name: "+messageData.list[0].author.name.formatted);
  });
  }
 });
