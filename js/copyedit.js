@@ -139,23 +139,7 @@ if(response.list[0].resources.hasOwnProperty('messages'))
 {
  var messages = response.list[0].getReplies();
  messages.execute(function(data) {
- messageData=data;
- 
- 
-var now = new Date(messageData.list[commentDataIndex].updated);
-alert(now.toLocaleDateString());
-alert(now.getHours() + ":" + now.getMinutes());
- /*var d = new Date,
-    dformat = [d.getDate(),
-               d.getMonth()+1,
-               d.getFullYear()].join('/')+
-              ' ' +
-              [d.getHours(),
-               d.getMinutes(),
-               d.getSeconds()].join(':');
-			   console.log("date: "+d);
-			   console.log("dformat: "+dformat);*/
-			   
+ messageData=data;			   
  });
  }
 });
@@ -919,11 +903,11 @@ function executeCommentCopy()
 		}
 			/*comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;*/
-			console.log(JSON.stringify(commentData.list[commentDataIndex].content));
+			//console.log(JSON.stringify(commentData.list[commentDataIndex].content));
 			
-			 var title;
-			 console.log("as Text: "+commentData.list[commentDataIndex].content.hasOwnProperty("text"));
-			 console.log("Text: "+commentData.list[commentDataIndex].content.text);
+		
+			 //console.log("as Text: "+commentData.list[commentDataIndex].content.hasOwnProperty("text"));
+			 //console.log("Text: "+commentData.list[commentDataIndex].content.text);
 			 
 
 
@@ -933,10 +917,10 @@ function executeCommentCopy()
 			var text=commentData.list[commentDataIndex].content.text;
 			var formattedName= messageData.list[commentDataIndex].author.name.formatted;
 			var updated= messageData.list[commentDataIndex].updated;
-			console.log("name: "+messageData.list[commentDataIndex].author.name.formatted);
-			console.log("name: "+updated);
+			//console.log("name: "+messageData.list[commentDataIndex].author.name.formatted);
+			//console.log("name: "+updated);
 			var now = new Date(updated);
-            console.log(now.toLocaleDateString()+' at '+now.getHours() + ":" + now.getMinutes());
+            //console.log(now.toLocaleDateString()+' at '+now.getHours() + ":" + now.getMinutes());
 			var formattedDate=now.toLocaleDateString()+' at '+now.getHours() + ":" + now.getMinutes();
             //console.log(now.getHours() + ":" + now.getMinutes());
 			var replaceStr='<p><span class="red">[Originally posted by: '+formattedName+' on '+formattedDate+']</span></p><br/>';
@@ -944,7 +928,7 @@ function executeCommentCopy()
 			//console.log("after replace: "+commentData.list[commentDataIndex].content.text);
 			//var n=str.replace("Microsoft","W3Schools");
 			}
-			console.log("Text: "+commentData.list[commentDataIndex].content.text);
+			//console.log("Text: "+commentData.list[commentDataIndex].content.text);
         }
             //console.log(JSON.stringify(commentData.list[commentDataIndex].content));
 			comment.content= commentData.list[commentDataIndex].content;
