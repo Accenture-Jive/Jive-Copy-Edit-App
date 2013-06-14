@@ -902,7 +902,8 @@ function executeCommentCopy()
 		}
 			/*comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;*/
-			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;;
+			console.log(JSON.stringify(commentData.list[commentDataIndex].content));
+			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
 			sourceCommentParentUrl = commentData.list[commentDataIndex].parent;
