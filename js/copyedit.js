@@ -913,7 +913,13 @@ function executeCommentCopy()
         if(commentData.list[commentDataIndex].content.hasOwnProperty("text")){ //added missing closing parenthesis
             var text = commentData.list[commentDataIndex].content.text;
 			alert("title: "+text);
-            commentData.list[commentDataIndex].content.text = '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]'+text;
+            commentData.list[commentDataIndex].content.text = '<p><span class="red">' + '[Originally posted by: Daniel Kaplan on 01/31/2013 at 21:47]' + '</span></p><br/>'+text;
+			alert(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1);
+			if(commentData.list[commentDataIndex].content.text.indexOf("<body>") !== -1)
+			{
+			commentData.list[commentDataIndex].content.text=commentData.list[commentDataIndex].content.text.replace("<body>","<body>hello");
+			//var n=str.replace("Microsoft","W3Schools");
+			}
 			console.log("Text: "+commentData.list[commentDataIndex].content.text);
         }
    console.log(JSON.stringify(commentData.list[commentDataIndex].content));
