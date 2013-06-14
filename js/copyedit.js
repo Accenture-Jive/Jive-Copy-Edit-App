@@ -140,8 +140,6 @@ if(response.list[0].resources.hasOwnProperty('messages'))
  var messages = response.list[0].getReplies();
  messages.execute(function(data) {
  messageData=data;
- console.log("messsage Data: "+JSON.stringify(messageData));
- console.log("name: "+messageData.list[0].author.name.formatted);
  });
  }
 });
@@ -917,6 +915,7 @@ function executeCommentCopy()
             if(commentData.list[commentDataIndex].content.text.indexOf("<p>") !== -1)
 			{
 			var text=commentData.list[commentDataIndex].content.text;
+			console.log("name: "+messageData.list[commentDataIndex].author.name.formatted);
 			var replaceStr='<p><span class="red">[Originally posted by: Suresh Peddapu on 06/14/2013 at 21:47]</span></p><br/>';
 			commentData.list[commentDataIndex].content.text=text.replace('<p>',replaceStr);
 			//console.log("after replace: "+commentData.list[commentDataIndex].content.text);
