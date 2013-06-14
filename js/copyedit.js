@@ -903,6 +903,22 @@ function executeCommentCopy()
 			/*comment.content=commentData.list[commentDataIndex].content;
 			comment.parent=commentData.list[commentDataIndex].parent;*/
 			console.log(JSON.stringify(commentData.list[commentDataIndex].content));
+			
+			 var title;
+			 console.log("len: "+commentData.list[commentDataIndex].content.length);
+			 
+    for(var i = 0; i < commentData.list[commentDataIndex].content.length; i++){
+        if(commentData.list[commentDataIndex].content[i].hasOwnProperty("text")){
+            //data[i]["text"] = data[i]["thumb"];
+            //delete data[i]["thumb"];
+			alert("hello");
+        }
+
+        if(data[i].hasOwnProperty("title")){ //added missing closing parenthesis
+            title = data[i].title;
+            data[i].title = '<span class="red">' + title + '</span>';
+        }
+    }
 			comment.content= '[Originally posted by]'+" * "+commentData.list[commentDataIndex].content;
 			comment.parent=response.resources.self.ref;
 			
