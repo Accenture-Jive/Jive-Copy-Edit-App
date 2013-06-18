@@ -772,7 +772,7 @@ function onContentCreated (response) {
 	if(docIndex!=-1)
 	{
 		var redirectTo=response.resources.html.ref;
-        redirectHrefLocation = redirectTo+'/edit?ID='+response.id; 
+        window.location = redirectTo+'/edit?ID='+response.id; 
 	if(isChecked==true)
 	{
 		commentDataResponse = commentData;
@@ -800,7 +800,7 @@ request.execute(function(response) {
 var htmlRef=response.data.messages.root.resources.html.ref;
 htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
 //window.location = htmlRef+'/edit'; 	
-redirectHrefLocation = htmlRef+'/edit';
+window.location = htmlRef+'/edit';
 });
 	 if(isChecked==true)
 	{	
@@ -833,7 +833,7 @@ else if(pollIndex!=-1)
 	//alert("zsdfsfd "+response.resources.html.ref);
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('polls')+5);
 	redirectTo=redirectTo.replace('polls','poll');
-	redirectHrefLocation = redirectTo+'/edit.jspa?ID='+response.id;
+	window.location = redirectTo+'/edit.jspa?ID='+response.id;
 	if(isChecked==true)
 	{
 		commentDataResponse = commentData;
@@ -850,7 +850,7 @@ else if(pollIndex!=-1)
 	{
 	var redirectTo=response.resources.html.ref;
 	redirectTo= redirectTo.substring(0,redirectTo.indexOf('/',10));
-    redirectHrefLocation = redirectTo+'/blog/update-post.jspa?ID='+response.id;
+    window.location = redirectTo+'/blog/update-post.jspa?ID='+response.id;
 	if(isChecked==true)
 	{	
 		commentDataResponse = commentData;
