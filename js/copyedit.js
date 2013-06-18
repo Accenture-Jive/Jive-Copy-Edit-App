@@ -131,7 +131,7 @@ entityDescriptor:[1,disID]
 });
 // execute the request
 request.execute(function(response) {
-console.log("DATA: "+JSON.stringify(response));
+//console.log("DATA: "+JSON.stringify(response));
 docContent=response.list[0].content;
 docSubject=response.list[0].subject;
 parentUrl=response.list[0].parent;
@@ -816,7 +816,7 @@ redirectHrefLocation = htmlRef+'/edit';
     response.createReply(message).execute(); 
     }*/
 	}
-	/*var redirectTo=response.resources.html.ref;
+	var redirectTo=response.resources.html.ref;
 	var startIndex=redirectTo.indexOf('thread');
     var docID= redirectTo.substring(startIndex+7,redirectTo.length);
 var request = osapi.jive.core.discussions.get({id: docID});
@@ -824,7 +824,8 @@ request.execute(function(response) {
 var htmlRef=response.data.messages.root.resources.html.ref;
 htmlRef= htmlRef.substring(0,htmlRef.indexOf('#'));
 //window.location = htmlRef+'/edit'; 	
-});*/
+redirectHrefLocation = htmlRef+'/edit';
+});
 }
 else if(pollIndex!=-1)
 	{
