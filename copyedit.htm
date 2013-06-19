@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"> 
+<head>
+
+<!--js/jquery.datepick.js-->
+<script type="text/javascript" src="http://bit.ly/12eTYfe"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+ <script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
+
+<!--css/custom-theme/jquery-ui-1.8.16.custom.css-->
+<link type="text/css" href="http://bit.ly/Zk9Z3W" rel="stylesheet"/>
+<!--css/custom-theme/jive-elements.css -->
+<link type="text/css" href="http://bit.ly/Y36Y9J" rel="stylesheet"/>
+<!-- css/custom-theme/jive-icons.css-->
+<link type="text/css" href="http://bit.ly/ZHZZkQ" rel="stylesheet"/>
+<!-- css/security-groups.css-->
+<link type="text/css" href="http://bit.ly/11jzu3u" rel="stylesheet"/>
+<!-- css/style.css-->
+<link type="text/css" href="http://bit.ly/10cCcp2" rel="stylesheet"/>
+<!-- css/jquery.datepick.css-->
+<LINK href="http://bit.ly/12Hj5Zv" rel="stylesheet" type="text/css"/>    	
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<!--js/copyedit.js -->
+<script type="text/javascript" src="http://bit.ly/11jzEaQ"></script>
+<!--css/jquery.loadmask.css -->
+<link href="http://bit.ly/ZI09bP" rel="stylesheet" type="text/css" />
+<!--js/jquery.loadmask.js -->
+<script type="text/javascript" src="http://bit.ly/ZkagE4"></script>
+
+</head>
+<body id="maskLoad" style="text-align: center" onLoad="onPageLoad()">
+<div id="stylized" class="myform" style="font-family:Tahoma; width:230px; height:120px;">
+<table width="200">
+<tr>
+<td>
+<label id="to_label" style="margin-left:60px;width:100px;text-align:center;font-size:15px;font-weight:bold;">
+Copy To:
+</label>
+</td>
+</tr>
+<tr>
+<td>
+<label id="to_space" style="margin-left:50px;font-weight:normal;display:none;text-align:left;padding-top:10px;">Copy To Space</label>
+<label id="to_group" style="margin-left:50px;font-weight:normal;display:none;text-align:left;padding-top:10px;">Copy To Group</label>
+<label id="to_project" style="margin-left:50px;font-weight:normal;display:none;text-align:left;padding-top:10px;">Copy To Project</label>
+</td>
+</tr>
+
+<tr>
+<td>
+<br/>
+<select name="source_place" style="margin-left:60px;" id="to_place" onchange="javascript:toPlace();">  
+<option value="select_to">Select Place</option>
+<option value="this_to">This Place</option>
+<option value="my_place" selected>My Place</option>
+<option value="to_space">Select Space</option>
+<option value="to_group">Select Group</option>
+<option value="to_project">Select Project</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<br/>
+
+<div id="change_selection_div" style="width:250px;display:none;font-family:Tahoma;margin-left:5px;">
+<div id="selected_items" style="font-family:Tahoma;overflow-y:auto;">
+</div>
+<div id="newUpSel" style="float: left">
+<input type="checkbox" id="inc_comments" style="margin-left:55px" onchange='handleChange(this);'>Include comments/replies<br>
+<input type="button" id="start_copying_button" style="margin-top:10px;margin-left:60px; float:left" value="Copy & Edit" name="start_copying" onclick="javascript:startCopying()"/>
+<br></br><br/>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="dialog" title="Copy Edit not available" style="display:none;">
+Copying the selected content type is not yet available.!
+</div>
+
+<div id="footer" style="font-family:Tahoma">&copy; Accenture 2012-13</div>
+</body>
+</html>
